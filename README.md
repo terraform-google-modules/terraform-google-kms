@@ -1,10 +1,12 @@
 # terraform-google-kms
 
-This module was generated from [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template/), which by default generates a module that simply creates a GCS bucket. As the module develops, this README should be updated.
+Simple Cloud KMS module that allows managing a keyring, zero or more keys in the keyring, and IAM role bindings on individual keys.
 
 The resources/services/activations/deletions that this module will create/trigger are:
 
-- Create a GCS bucket with the provided name
+- Create a KMS keyring in the provided project
+- Create zero or more keys in the keyring
+- Create IAM role bindings for owners, encrypters, decrypters
 
 ## Usage
 
@@ -16,7 +18,14 @@ module "kms" {
   version = "~> 0.1"
 
   project_id  = "<PROJECT ID>"
-  bucket_name = "gcs-test-bucket"
+  location           = "europe"
+  name               = "sample-keyring"
+  keys               = ["foo", "spam"]
+  set_owners_for     = ["foo", "spam"]
+  owners = [
+    "group:one@example.com,group:two@example.com",
+    "group:one@example.com",
+  ]
 }
 ```
 
@@ -40,10 +49,11 @@ The following dependencies must be available:
 
 ### Service Account
 
-A service account with the following roles must be used to provision
+A service account with one of the following roles must be used to provision
 the resources of this module:
 
-- Storage Admin: `roles/storage.admin`
+- Cloud KMS Admin: `roles/cloudkms.admin` or
+- Owner: `roles/owner`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
@@ -54,7 +64,7 @@ service account with the necessary roles applied.
 A project with the following APIs enabled must be used to host the
 resources of this module:
 
-- Google Cloud Storage JSON API: `storage-api.googleapis.com`
+- Google Cloud Key Management Service: `cloudkms.googleapis.com`
 
 The [Project Factory module][project-factory-module] can be used to
 provision a project with the necessary APIs enabled.

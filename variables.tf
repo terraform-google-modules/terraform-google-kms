@@ -15,9 +15,53 @@
  */
 
 variable "project_id" {
-  description = "The project ID to deploy to"
+  description = "Project id where the keyring will be created."
 }
 
-variable "bucket_name" {
-  description = "The name of the bucket to create"
+# cf https://cloud.google.com/kms/docs/locations
+variable "location" {
+  description = "Location for the keyring."
+}
+
+variable "keyring" {
+  description = "Keyring name."
+}
+
+variable "keys" {
+  description = "Key names."
+  default     = []
+}
+
+variable "set_owners_for" {
+  description = "Name of keys for which owners will be set."
+  default     = []
+}
+
+variable "owners" {
+  description = "List of comma-separated owners for each key declared in set_owners_for."
+  default     = []
+}
+
+variable "set_encrypters_for" {
+  description = "Name of keys for which encrypters will be set."
+  default     = []
+}
+
+variable "encrypters" {
+  description = "List of comma-separated owners for each key declared in set_encrypters_for."
+  default     = []
+}
+
+variable "set_decrypters_for" {
+  description = "Name of keys for which decrypters will be set."
+  default     = []
+}
+
+variable "decrypters" {
+  description = "List of comma-separated owners for each key declared in set_decrypters_for."
+  default     = []
+}
+
+variable "key_rotation_period" {
+  default = "100000s"
 }

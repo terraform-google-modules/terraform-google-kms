@@ -18,7 +18,65 @@ terraform {
   required_version = "~> 0.11.0"
 }
 
-resource "google_storage_bucket" "main" {
-  project = "${var.project_id}"
-  name    = "${var.bucket_name}"
+locals {
+  keys_by_name = "${zipmap(var.keys, google_kms_crypto_key.key.*.self_link)}"
+}
+
+resource "google_kms_key_ring" "key_ring" {
+  name     = "${var.keyring}"
+  project  = "${var.project_id}"
+  location = "${var.location}"
+}
+
+resource "google_kms_crypto_key" "key" {
+  count           = "${length(var.keys)}"
+  name            = "${element(var.keys, count.index)}"
+  key_ring        = "${google_kms_key_ring.key_ring.self_link}"
+  rotation_period = "${var.key_rotation_period}"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "google_kms_crypto_key_iam_binding" "owners" {
+  count = "${length(var.set_owners_for)}"
+  role  = "roles/owner"
+
+  crypto_key_id = "${lookup(
+    local.keys_by_name,
+    element(var.set_owners_for, count.index)
+  )}"
+
+  members = [
+    "${compact(split(",", element(var.owners, count.index)))}",
+  ]
+}
+
+resource "google_kms_crypto_key_iam_binding" "decrypters" {
+  count = "${length(var.set_decrypters_for)}"
+  role  = "roles/cloudkms.cryptoKeyDecrypter"
+
+  crypto_key_id = "${lookup(
+    local.keys_by_name,
+    element(var.set_decrypters_for, count.index)
+  )}"
+
+  members = [
+    "${compact(split(",", element(var.decrypters, count.index)))}",
+  ]
+}
+
+resource "google_kms_crypto_key_iam_binding" "encrypters" {
+  count = "${length(var.set_encrypters_for)}"
+  role  = "roles/cloudkms.cryptoKeyEncrypter"
+
+  crypto_key_id = "${lookup(
+    local.keys_by_name,
+    element(var.set_encrypters_for, count.index)
+  )}"
+
+  members = [
+    "${compact(split(",", element(var.encrypters, count.index)))}",
+  ]
 }
