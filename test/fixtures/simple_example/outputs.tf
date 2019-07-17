@@ -14,9 +14,14 @@
  * limitations under the License.
  */
 
-output "bucket_name" {
-  description = "The name of the bucket."
-  value       = "${module.example.bucket_name}"
+output "keyring" {
+  description = "The name of the keyring."
+  value       = module.example.keyring
+}
+
+output "location" {
+  description = "Location for the keyring."
+  value       = "global"
 }
 
 output "project_id" {

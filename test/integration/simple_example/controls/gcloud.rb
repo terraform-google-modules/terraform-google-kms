@@ -18,6 +18,12 @@ control "gcloud" do
   describe command("gcloud --project=#{attribute("project_id")} services list --enabled") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should match "storage-api.googleapis.com" }
+    its(:stdout) { should match "cloudkms.googleapis.com" }
+  end
+
+  describe command("gcloud --project=#{attribute("project_id")} kms keyrings list --location #{attribute("location")}") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should match "locations/#{attribute("location")}/keyRings/#{attribute("keyring")}" }
   end
 end

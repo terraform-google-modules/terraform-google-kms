@@ -7,6 +7,9 @@ attributes:
   - name: project_id
     required: true
     type: string
-  - name: bucket_name
+  - name: keyring
+    required: true
+    type: string
+  - name: location
     required: true
     type: string

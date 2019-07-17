@@ -14,20 +14,6 @@
  * limitations under the License.
  */
 
-provider "random" {
-  version = "~> 2.0"
-}
-
-resource "random_pet" "main" {
-  length    = 1
-  prefix    = "simple-example"
-  separator = "-"
-}
-
-module "example" {
-  source = "../../../examples/simple_example"
-
-  project_id = var.project_id
-  keyring    = random_pet.main.id
-  location   = "global"
+terraform {
+  required_version = ">= 0.12"
 }

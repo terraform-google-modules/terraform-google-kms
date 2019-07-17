@@ -15,7 +15,7 @@
 control "gcp" do
   title "GCP Resources"
 
-  describe google_storage_bucket(name: attribute("bucket_name")) do
-    it { should exist }
+  describe google_kms_key_rings(project: attribute('project_id'), location: attribute("location")) do
+    its('key_ring_names') { should include attribute("keyring") }
   end
 end
