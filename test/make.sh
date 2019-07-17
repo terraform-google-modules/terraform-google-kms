@@ -25,7 +25,8 @@ finish() {
 trap finish EXIT
 # Create a temporary file in the auto-cleaned up directory while avoiding
 # overwriting TMPDIR for other processes.
-# shellcheck disable=SC2120 # (Arguments may be passed, e.g. maketemp -d)
+# shellcheck disable=SC2120
+# (Arguments may be passed, e.g. maketemp -d)
 maketemp() {
   TMPDIR="${DELETE_AT_EXIT}" mktemp "$@"
 }
@@ -76,14 +77,8 @@ function check_terraform() {
   set -e
   echo "Running terraform validate"
   find_files . -name "*.tf" -print0 \
-    | compat_xargs -0 -n1 dirname \
-    | sort -u \
-    | compat_xargs -t -n1 terraform validate --check-variables=false
-  echo "Running terraform fmt"
-  find_files . -name "*.tf" -print0 \
-    | compat_xargs -0 -n1 dirname \
-    | sort -u \
-    | compat_xargs -t -n1 terraform fmt -check=true -write=false
+    | xargs dirname | sort | uniq | xargs -L 1 -i{} \
+    bash -c 'terraform init "{}" > /dev/null && terraform validate "{}" && terraform fmt -check=true -write=false "{}"'
 }
 
 # This function runs 'go fmt' and 'go vet' on every file

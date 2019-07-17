@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-output "keyring_name" {
-  description = "The name of the keyring."
-  value       = module.kms.keyring_name
+terraform {
+  required_version = ">= 0.12"
 }
-

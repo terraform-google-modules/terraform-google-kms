@@ -21,6 +21,8 @@ provider "google" {
 module "kms" {
   source = "../.."
 
-  project_id  = "${var.project_id}"
-  bucket_name = "${var.bucket_name}"
+  project_id = var.project_id
+  keyring    = var.name
+  location   = "global"
 }
+

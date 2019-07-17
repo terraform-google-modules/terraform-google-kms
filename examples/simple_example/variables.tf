@@ -15,11 +15,12 @@
  */
 
 variable "project_id" {
+  type        = string
   description = "The ID of the project in which to provision resources."
-  type        = "string"
 }
 
-variable "bucket_name" {
-  description = "The name of the bucket to create."
-  type        = "string"
+variable "name" {
+  type        = string
+  description = "The name of the keyring to create."
 }
+
