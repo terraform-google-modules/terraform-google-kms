@@ -24,7 +24,7 @@ module "kms" {
   source  = "terraform-google-modules/kms/google"
   version = "~> 0.1"
 
-  project_id  = "<PROJECT ID>"
+  project_id         = "<PROJECT ID>"
   location           = "europe"
   name               = "sample-keyring"
   keys               = ["foo", "spam"]
