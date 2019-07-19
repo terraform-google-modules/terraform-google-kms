@@ -21,9 +21,10 @@ SHELL := /usr/bin/env bash
 # Docker build config variables
 CREDENTIALS_PATH					?= /workspace/credentials.json
 DOCKER_ORG							:= gcr.io/cloud-foundation-cicd
-DOCKER_TAG_BASE_KITCHEN_TERRAFORM	?= 2.5.0
+DOCKER_TAG_BASE_KITCHEN_TERRAFORM	?= 2.4.0
+DOCKER_TAG_BASE_LINT				?= 2.5.0
 DOCKER_REPO_BASE_KITCHEN_TERRAFORM	:= ${DOCKER_ORG}/cft/kitchen-terraform:${DOCKER_TAG_BASE_KITCHEN_TERRAFORM}
-DOCKER_REPO_BASE_LINT				:= ${DOCKER_ORG}/cft/lint:${DOCKER_TAG_BASE_KITCHEN_TERRAFORM}
+DOCKER_REPO_BASE_LINT				:= ${DOCKER_ORG}/cft/lint:${DOCKER_TAG_BASE_LINT}
 
 # All is the first target in the file so it will get picked up when you just run 'make' on its own
 .PHONY: all
@@ -92,9 +93,8 @@ version:
 docker_run:
 	docker run --rm -it \
 		-e PROJECT_ID \
-		-e SERVICE_ACCOUNT_JSON \
 		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v $(CURDIR):/workspace \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
 		/bin/bash -c "source test/ci_integration.sh && setup_environment && exec /bin/bash"
 
