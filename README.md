@@ -10,10 +10,9 @@ The resources/services/activations/deletions that this module will create/trigge
 
 ## Compatibility
 
-This module is meant for use with Terraform 0.12. If you haven't
-[upgraded][terraform-0.12-upgrade] and need a Terraform 0.11.x-compatible
+This module is meant for use with Terraform 0.12. If you haven't upgraded and need a Terraform 0.11.x-compatible
 version of this module, the last released version intended for Terraform 0.11.x
-is [0.1.0][v0.1.0].
+is [v0.1.0](https://registry.terraform.io/modules/terraform-google-modules/kms/google/0.1.0).
 
 ## Usage
 
