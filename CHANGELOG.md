@@ -9,7 +9,7 @@ and this project adheres to
 
 ## [Unreleased]
 
-## [2.0.0] - 2019-YY-ZZ
+## [1.0.0] - 2019-07-19
 
 ### Changed
 
@@ -21,5 +21,8 @@ and this project adheres to
 
 - Initial release
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-kms/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-kms/compare/v1.0.0...HEAD
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-kms/releases/tag/v0.1.0
+[1.0.0]: https://github.com/terraform-google-modules/terraform-google-kms/releases/tag/v1.0.0
+
+[#3]: https://github.com/terraform-google-modules/terraform-google-kms/pull/3
