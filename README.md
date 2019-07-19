@@ -1,4 +1,4 @@
-# terraform-google-kms
+# Google KMS Terraform Module
 
 Simple Cloud KMS module that allows managing a keyring, zero or more keys in the keyring, and IAM role bindings on individual keys.
 
@@ -7,6 +7,13 @@ The resources/services/activations/deletions that this module will create/trigge
 - Create a KMS keyring in the provided project
 - Create zero or more keys in the keyring
 - Create IAM role bindings for owners, encrypters, decrypters
+
+## Compatibility
+
+This module is meant for use with Terraform 0.12. If you haven't
+[upgraded][terraform-0.12-upgrade] and need a Terraform 0.11.x-compatible
+version of this module, the last released version intended for Terraform 0.11.x
+is [0.1.0][v0.1.0].
 
 ## Usage
 
@@ -44,7 +51,7 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform][terraform] v0.11
+- [Terraform][terraform] v0.12
 - [Terraform Provider for GCP][terraform-provider-gcp] plugin v2.0
 
 ### Service Account

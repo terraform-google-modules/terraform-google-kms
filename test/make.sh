@@ -25,7 +25,8 @@ finish() {
 trap finish EXIT
 # Create a temporary file in the auto-cleaned up directory while avoiding
 # overwriting TMPDIR for other processes.
-# shellcheck disable=SC2120 # (Arguments may be passed, e.g. maketemp -d)
+# shellcheck disable=SC2120
+# (Arguments may be passed, e.g. maketemp -d)
 maketemp() {
   TMPDIR="${DELETE_AT_EXIT}" mktemp "$@"
 }
@@ -73,17 +74,25 @@ function docker() {
 # This function runs 'terraform validate' and 'terraform fmt'
 # against all directory paths which contain *.tf files.
 function check_terraform() {
-  set -e
-  echo "Running terraform validate"
-  find_files . -name "*.tf" -print0 \
-    | compat_xargs -0 -n1 dirname \
-    | sort -u \
-    | compat_xargs -t -n1 terraform validate --check-variables=false
+  local rval=125
+  # fmt is before validate for faster feedback, validate requires terraform
+  # init which takes time.
   echo "Running terraform fmt"
   find_files . -name "*.tf" -print0 \
     | compat_xargs -0 -n1 dirname \
     | sort -u \
-    | compat_xargs -t -n1 terraform fmt -check=true -write=false
+    | compat_xargs -t -n1 terraform fmt -diff -check=true -write=false
+  rval="$?"
+  if [[ "${rval}" -gt 0 ]]; then
+    echo "Error: terraform fmt failed with exit code ${rval}" >&2
+    echo "Check the output for diffs and correct using terraform fmt <dir>" >&2
+    return "${rval}"
+  fi
+  echo "Running terraform validate"
+  find_files . -not -path "./test/fixtures/shared/*" -name "*.tf" -print0 \
+    | compat_xargs -0 -n1 dirname \
+    | sort -u \
+    | compat_xargs -t -n1 helpers/terraform_validate
 }
 
 # This function runs 'go fmt' and 'go vet' on every file
@@ -126,16 +135,18 @@ function check_trailing_whitespace() {
 
 function generate_docs() {
   echo "Generating markdown docs with terraform-docs"
-  local path tmpfile
-  while read -r path; do
-    if [[ -e "${path}/README.md" ]]; then
-      # shellcheck disable=SC2119
-      tmpfile="$(maketemp)"
-      echo "terraform-docs markdown ${path}"
-      terraform-docs markdown "${path}" > "${tmpfile}"
-      helpers/combine_docfiles.py "${path}"/README.md "${tmpfile}"
+  local pth helper_dir rval
+  helper_dir="$(pwd)/helpers"
+  while read -r pth; do
+    if [[ -e "${pth}/README.md" ]]; then
+      (cd "${pth}" || return 3; "${helper_dir}"/terraform_docs .;)
+      rval="$?"
+      if [[ "${rval}" -gt 0 ]]; then
+        echo "Error: terraform_docs in ${pth} exit code: ${rval}" >&2
+        return "${rval}"
+      fi
     else
-      echo "Skipping ${path} because README.md does not exist."
+      echo "Skipping ${pth} because README.md does not exist."
     fi
   done < <(find_files . -name '*.tf' -print0 \
     | compat_xargs -0 -n1 dirname \

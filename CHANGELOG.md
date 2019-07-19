@@ -9,6 +9,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.0.0] - 2019-YY-ZZ
+
+### Changed
+
+- Supported version of Terraform is 0.12. [#3]
+
 ## [0.1.0] - 2019-05-16
 
 ### Added

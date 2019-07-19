@@ -15,53 +15,65 @@
  */
 
 variable "project_id" {
+  type        = string
   description = "Project id where the keyring will be created."
 }
 
 # cf https://cloud.google.com/kms/docs/locations
 variable "location" {
+  type        = string
   description = "Location for the keyring."
 }
 
 variable "keyring" {
+  type        = string
   description = "Keyring name."
 }
 
 variable "keys" {
+  type        = list(string)
   description = "Key names."
   default     = []
 }
 
 variable "set_owners_for" {
+  type        = list(string)
   description = "Name of keys for which owners will be set."
   default     = []
 }
 
 variable "owners" {
+  type        = list(string)
   description = "List of comma-separated owners for each key declared in set_owners_for."
   default     = []
 }
 
 variable "set_encrypters_for" {
+  type        = list(string)
   description = "Name of keys for which encrypters will be set."
   default     = []
 }
 
 variable "encrypters" {
+  type        = list(string)
   description = "List of comma-separated owners for each key declared in set_encrypters_for."
   default     = []
 }
 
 variable "set_decrypters_for" {
+  type        = list(string)
   description = "Name of keys for which decrypters will be set."
   default     = []
 }
 
 variable "decrypters" {
+  type        = list(string)
   description = "List of comma-separated owners for each key declared in set_decrypters_for."
   default     = []
 }
 
 variable "key_rotation_period" {
+  type    = string
   default = "100000s"
 }
+

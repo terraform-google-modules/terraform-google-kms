@@ -15,11 +15,18 @@
  */
 
 variable "project_id" {
+  type        = string
   description = "The ID of the project in which to provision resources."
-  type        = "string"
 }
 
-variable "bucket_name" {
-  description = "The name of the bucket to create."
-  type        = "string"
+variable "location" {
+  type        = string
+  description = "Location for the keyring."
+
+  default = "global"
+}
+
+variable "keyring" {
+  type        = string
+  description = "Keyring name."
 }
