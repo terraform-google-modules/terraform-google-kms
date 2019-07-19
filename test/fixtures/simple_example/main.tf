@@ -27,7 +27,7 @@ resource "random_pet" "main" {
 module "example" {
   source = "../../../examples/simple_example"
 
-  project_id = var.project_id
+  project_id = data.terraform_remote_state.setup.outputs.project_id
   keyring    = random_pet.main.id
   location   = "global"
 }

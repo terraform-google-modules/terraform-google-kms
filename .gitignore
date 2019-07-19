@@ -1,5 +1,5 @@
 .terraform
-terraform.tfstate.d
+terraform.tfstate*
 *.pyc
 .kitchen
 credentials.json

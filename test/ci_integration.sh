@@ -27,14 +27,14 @@ finish() {
 # running the tests to Terraform input variables.  Also setup credentials for
 # use with kitchen-terraform, inspec, and gcloud.
 setup_environment() {
-  local tmpfile
-  tmpfile="$(mktemp)"
-  echo "${SERVICE_ACCOUNT_JSON}" > "${tmpfile}"
+  # local tmpfile
+  # tmpfile="$(mktemp)"
+  # echo "${SERVICE_ACCOUNT_JSON}" > "${tmpfile}"
 
-  # gcloud variables
-  export CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE="${tmpfile}"
-  # Application default credentials (Terraform google provider and inspec-gcp)
-  export GOOGLE_APPLICATION_CREDENTIALS="${tmpfile}"
+  # # gcloud variables
+  # export CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE="${tmpfile}"
+  # # Application default credentials (Terraform google provider and inspec-gcp)
+  # export GOOGLE_APPLICATION_CREDENTIALS="${tmpfile}"
 
   # Terraform variables
   export TF_VAR_project_id="$PROJECT_ID"
