@@ -9,11 +9,20 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0] - 2019-07-19
+
+### Changed
+
+- Supported version of Terraform is 0.12. [#3]
+
 ## [0.1.0] - 2019-05-16
 
 ### Added
 
 - Initial release
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-kms/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-kms/compare/v1.0.0...HEAD
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-kms/releases/tag/v0.1.0
+[1.0.0]: https://github.com/terraform-google-modules/terraform-google-kms/releases/tag/v1.0.0
+
+[#3]: https://github.com/terraform-google-modules/terraform-google-kms/pull/3

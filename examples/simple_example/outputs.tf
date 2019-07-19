@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-output "bucket_name" {
-  description = "The name of the bucket."
-  value       = "${module.kms.bucket_name}"
+output "keyring" {
+  description = "The name of the keyring."
+  value       = module.kms.keyring_name
 }
+
