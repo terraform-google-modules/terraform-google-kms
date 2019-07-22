@@ -15,4 +15,4 @@
 # limitations under the License.
 
 project_id=$(terraform output project_id)
-echo "export TF_VAR_project_id='$project_id'" > source.sh
+echo "export TF_VAR_project_id='$project_id'" > ../source.sh
