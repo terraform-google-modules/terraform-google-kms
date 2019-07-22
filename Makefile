@@ -108,43 +108,35 @@ lint_in_docker:
 
 .PHONY: docker_create
 docker_create:
-	docker run --rm -it \
-		-e PROJECT_ID \
+	docker run --rm \
 		-e SERVICE_ACCOUNT_JSON \
-		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v $(CURDIR):/workspace \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
-		/bin/bash -c "source test/ci_integration.sh && setup_environment && kitchen create"
+		/bin/bash -c "source test/ci_integration.sh && kitchen_do create"
 
 .PHONY: docker_converge
 docker_converge:
-	docker run --rm -it \
-		-e PROJECT_ID \
+	docker run --rm \
 		-e SERVICE_ACCOUNT_JSON \
-		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v $(CURDIR):/workspace \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
-		/bin/bash -c "source test/ci_integration.sh && setup_environment && kitchen converge"
+		/bin/bash -c "source test/ci_integration.sh && kitchen_do converge"
 
 .PHONY: docker_verify
 docker_verify:
-	docker run --rm -it \
-		-e PROJECT_ID \
+	docker run --rm \
 		-e SERVICE_ACCOUNT_JSON \
-		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v $(CURDIR):/workspace \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
-		/bin/bash -c "source test/ci_integration.sh && setup_environment && kitchen verify"
+		/bin/bash -c "source test/ci_integration.sh && kitchen_do verify"
 
 .PHONY: docker_destroy
 docker_destroy:
-	docker run --rm -it \
-		-e PROJECT_ID \
+	docker run --rm \
 		-e SERVICE_ACCOUNT_JSON \
-		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v $(CURDIR):/workspace \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
-		/bin/bash -c "source test/ci_integration.sh && setup_environment && kitchen destroy"
+		/bin/bash -c "source test/ci_integration.sh && kitchen_do destroy"
 
 .PHONY: test_integration_docker
 test_integration_docker:

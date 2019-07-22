@@ -47,6 +47,14 @@ setup_environment() {
   cd -
 }
 
+# Run kitchen_create
+kitchen_do() {
+  setup_auth
+  source test/setup/source.sh
+  export CMD="$@"
+  kitchen $CMD
+}
+
 main() {
   export SUITE="${SUITE:-}"
 
