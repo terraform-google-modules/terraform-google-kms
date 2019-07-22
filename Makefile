@@ -92,18 +92,16 @@ version:
 .PHONY: docker_run
 docker_run:
 	docker run --rm -it \
-		-e PROJECT_ID \
 		-e SERVICE_ACCOUNT_JSON \
 		-v $(CURDIR):/workspace \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
-		/bin/bash -c "source test/ci_integration.sh && setup_environment && exec /bin/bash"
+		/bin/bash -c "source test/ci_integration.sh && setup_auth && exec /bin/bash"
 
 # Run linters in Docker
 .PHONY: lint_in_docker
 lint_in_docker:
 	docker run --rm \
-		-e PROJECT_ID \
-		-e GOOGLE_CREDENTIALS \
+		-e SERVICE_ACCOUNT_JSON \
 		-v $(CURDIR):/workspace \
 		--workdir=/workspace \
 		${DOCKER_REPO_BASE_LINT}

@@ -26,7 +26,7 @@ finish() {
 # Map the input parameters provided by Concourse CI, or whatever mechanism is
 # running the tests to Terraform input variables.  Also setup credentials for
 # use with kitchen-terraform, inspec, and gcloud.
-setup_environment() {
+setup_auth() {
   # local tmpfile
   tmpfile="$(mktemp)"
   echo "${SERVICE_ACCOUNT_JSON}" > "${tmpfile}"
@@ -35,6 +35,15 @@ setup_environment() {
   export CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE="${tmpfile}"
   # # Application default credentials (Terraform google provider and inspec-gcp)
   export GOOGLE_APPLICATION_CREDENTIALS="${tmpfile}"
+}
+
+# Prepare the setup environment
+setup_environment() {
+  cd test/setup/
+  terraform init
+  terraform apply -auto-approve
+  source test/setup/source.sh
+  cd -
 }
 
 main() {
@@ -46,7 +55,7 @@ main() {
   trap finish EXIT
 
   # Setup environment variables
-  setup_environment
+  setup_auth
   set -x
 
   # Execute the test lifecycle
