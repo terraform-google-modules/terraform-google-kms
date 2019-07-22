@@ -93,7 +93,7 @@ version:
 docker_run:
 	docker run --rm -it \
 		-e PROJECT_ID \
-		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
+		-e SERVICE_ACCOUNT_JSON \
 		-v $(CURDIR):/workspace \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
 		/bin/bash -c "source test/ci_integration.sh && setup_environment && exec /bin/bash"
@@ -103,8 +103,7 @@ docker_run:
 lint_in_docker:
 	docker run --rm \
 		-e PROJECT_ID \
-		-e SERVICE_ACCOUNT_JSON \
-		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
+		-e GOOGLE_CREDENTIALS \
 		-v $(CURDIR):/workspace \
 		--workdir=/workspace \
 		${DOCKER_REPO_BASE_LINT}
