@@ -51,7 +51,7 @@ prepare_environment() {
 # Run kitchen_create
 kitchen_do() {
   setup_auth
-  source test/setup/source.sh
+  source test/source.sh
   export CMD="$@"
   kitchen $CMD
 }
