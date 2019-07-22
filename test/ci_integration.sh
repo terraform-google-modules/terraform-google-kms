@@ -27,14 +27,20 @@ finish() {
 # running the tests to Terraform input variables.  Also setup credentials for
 # use with kitchen-terraform, inspec, and gcloud.
 setup_auth() {
-  # local tmpfile
-  tmpfile="$(mktemp)"
-  echo "${SERVICE_ACCOUNT_JSON}" > "${tmpfile}"
+  if [[ -z "${SERVICE_ACCOUNT_JSON}" ]]; then
+    echo "No \$SERVICE_ACCOUNT_JSON found"
+  else
+    echo "Populating auth from \$SERVICE_ACCOUNT_JSON"
 
-  # # gcloud variables
-  export CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE="${tmpfile}"
-  # # Application default credentials (Terraform google provider and inspec-gcp)
-  export GOOGLE_APPLICATION_CREDENTIALS="${tmpfile}"
+    # local tmpfile
+    tmpfile="$(mktemp)"
+    echo "${SERVICE_ACCOUNT_JSON}" > "${tmpfile}"
+
+    # gcloud variables
+    export CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE="${tmpfile}"
+    # Application default credentials (Terraform google provider and inspec-gcp)
+    export GOOGLE_APPLICATION_CREDENTIALS="${tmpfile}"
+  fi
 }
 
 # Prepare the setup environment
