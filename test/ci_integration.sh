@@ -42,7 +42,8 @@ setup_environment() {
   cd test/setup/
   terraform init
   terraform apply -auto-approve
-  source test/setup/source.sh
+  ./make_source.sh
+  source source.sh
   cd -
 }
 
