@@ -14,3 +14,7 @@
 
 steps:
 - name: 'gcr.io/cloud-foundation-cicd/cft/lint:2.5.0'
+  id: 'lint'
+tags:
+- 'ci'
+- 'lint'

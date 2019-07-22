@@ -13,33 +13,25 @@
 # limitations under the License.
 
 steps:
-- name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
+- id: prepare
+  name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
   args: ['/bin/bash', '-c', 'source test/ci_integration.sh && prepare_environment']
   env:
-  - 'TF_VAR_org_id=826592752744'
-  - 'TF_VAR_folder_id=478787301645'
-  - 'TF_VAR_billing_account=01E8A0-35F760-5CF02A'
-- name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
+  - 'TF_VAR_org_id=$_ORG_ID'
+  - 'TF_VAR_folder_id=$FOLDER_ID'
+  - 'TF_VAR_billing_account=$BILLING_ACCOUNT'
+- id: create
+  name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
   args: ['/bin/bash', '-c', 'source test/ci_integration.sh && kitchen_do create']
-  env:
-  - 'TF_VAR_org_id=826592752744'
-  - 'TF_VAR_folder_id=478787301645'
-  - 'TF_VAR_billing_account=01E8A0-35F760-5CF02A'
-- name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
+- id: converge
+  name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
   args: ['/bin/bash', '-c', 'source test/ci_integration.sh && kitchen_do converge']
-  env:
-  - 'TF_VAR_org_id=826592752744'
-  - 'TF_VAR_folder_id=478787301645'
-  - 'TF_VAR_billing_account=01E8A0-35F760-5CF02A'
-- name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
+- id: verify
+  name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
   args: ['/bin/bash', '-c', 'source test/ci_integration.sh && kitchen_do verify']
-  env:
-  - 'TF_VAR_org_id=826592752744'
-  - 'TF_VAR_folder_id=478787301645'
-  - 'TF_VAR_billing_account=01E8A0-35F760-5CF02A'
-- name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
+- id: destroy
+  name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
   args: ['/bin/bash', '-c', 'source test/ci_integration.sh && kitchen_do destroy']
-  env:
-  - 'TF_VAR_org_id=826592752744'
-  - 'TF_VAR_folder_id=478787301645'
-  - 'TF_VAR_billing_account=01E8A0-35F760-5CF02A'
+tags:
+- 'ci'
+- 'integration'
