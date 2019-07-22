@@ -44,14 +44,14 @@ prepare_environment() {
   terraform init
   terraform apply -auto-approve
   ./make_source.sh
-  source source.sh
+  source ../source.sh
   cd -
 }
 
 # Run kitchen_create
 kitchen_do() {
-  setup_auth
   source test/source.sh
+  setup_auth
   export CMD="$@"
   kitchen $CMD
 }

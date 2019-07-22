@@ -16,3 +16,6 @@
 
 project_id=$(terraform output project_id)
 echo "export TF_VAR_project_id='$project_id'" > ../source.sh
+
+sa_json=$(terraform output sa_key)
+echo "export SERVICE_ACCOUNT_JSON='$(echo $sa_json | base64 --decode)'" >> ../source.sh

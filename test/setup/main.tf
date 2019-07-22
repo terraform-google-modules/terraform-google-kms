@@ -10,5 +10,6 @@ module "kms-project" {
 
   activate_apis = [
     "cloudkms.googleapis.com",
+    "serviceusage.googleapis.com"
   ]
 }
