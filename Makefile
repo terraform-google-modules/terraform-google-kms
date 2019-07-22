@@ -106,6 +106,14 @@ lint_in_docker:
 		--workdir=/workspace \
 		${DOCKER_REPO_BASE_LINT}
 
+.PHONY: docker_prepare
+docker_prepare:
+	docker run --rm \
+		-e SERVICE_ACCOUNT_JSON \
+		-v $(CURDIR):/workspace \
+		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
+		/bin/bash -c "source test/ci_integration.sh && prepare_environment"
+
 .PHONY: docker_create
 docker_create:
 	docker run --rm \

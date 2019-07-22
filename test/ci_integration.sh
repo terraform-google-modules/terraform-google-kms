@@ -38,7 +38,8 @@ setup_auth() {
 }
 
 # Prepare the setup environment
-setup_environment() {
+prepare_environment() {
+  setup_auth
   cd test/setup/
   terraform init
   terraform apply -auto-approve
