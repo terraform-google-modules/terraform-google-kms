@@ -77,13 +77,21 @@ version:
 	@source helpers/version-repo.sh
 
 # Run docker
+# .PHONY: docker_run
+# docker_run:
+# 	docker run --rm -it \
+# 		-e SERVICE_ACCOUNT_JSON \
+# 		-v $(CURDIR):/workspace \
+# 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
+# 		/bin/bash -c "source test/ci_integration.sh && setup_auth && exec /bin/bash"
+
 .PHONY: docker_run
-docker_run:
+docker_run: ## Launch a shell within the Docker test environment
 	docker run --rm -it \
 		-e SERVICE_ACCOUNT_JSON \
 		-v $(CURDIR):/workspace \
-		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
-		/bin/bash -c "source test/ci_integration.sh && setup_auth && exec /bin/bash"
+		cft/developer-tools:0.0.1 \
+		/bin/bash
 
 # Run linters in Docker
 .PHONY: lint_in_docker
