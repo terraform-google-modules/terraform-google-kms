@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright 2018 Google LLC
+# Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -50,16 +50,18 @@ prepare_environment() {
   terraform init
   terraform apply -auto-approve
   ./make_source.sh
+  # shellcheck disable=SC1091
   source ../source.sh
   cd -
 }
 
 # Run kitchen_create
 kitchen_do() {
+  # shellcheck disable=SC1091
   source test/source.sh
   setup_auth
-  export CMD="$@"
-  kitchen $CMD
+  export CMD="$*"
+  kitchen "$CMD"
 }
 
 main() {
