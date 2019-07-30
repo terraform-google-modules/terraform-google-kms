@@ -15,7 +15,7 @@
 steps:
 - name: 'gcr.io/cloud-foundation-cicd/cft/developer-tools:0.0.1'
   id: 'lint'
-  args: ['/bin/bash', '-c', 'make test_lint']
+  args: ['/usr/local/bin/test_lint.sh']
 tags:
 - 'ci'
 - 'lint'

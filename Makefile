@@ -98,7 +98,7 @@ docker_run: ## Launch a shell within the Docker test environment
 docker_test_lint:
 	docker run --rm -it \
 		-v $(CURDIR):/workspace \
-		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
+		cft/developer-tools:0.0.1 \
 		/usr/local/bin/test_lint.sh
 
 .PHONY: docker_prepare

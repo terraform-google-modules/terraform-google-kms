@@ -16,13 +16,13 @@
 
 # Prepare the setup environment
 prepare_environment() {
-  cd test/setup/
+  cd test/setup/ || exit
   terraform init
   terraform apply -auto-approve
   ./make_source.sh
   # shellcheck disable=SC1091
   source ../source.sh
-  cd -
+  cd - || return
 }
 
 # Run kitchen_create
