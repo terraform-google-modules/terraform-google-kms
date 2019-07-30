@@ -14,24 +14,30 @@
 
 steps:
 - id: prepare
-  name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source test/ci_integration.sh && prepare_environment']
   env:
   - 'TF_VAR_org_id=$_ORG_ID'
   - 'TF_VAR_folder_id=$_FOLDER_ID'
   - 'TF_VAR_billing_account=$_BILLING_ACCOUNT'
 - id: create
-  name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source test/ci_integration.sh && kitchen_do create']
 - id: converge
-  name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source test/ci_integration.sh && kitchen_do converge']
 - id: verify
-  name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source test/ci_integration.sh && kitchen_do verify']
 - id: destroy
-  name: 'gcr.io/cloud-foundation-cicd/cft/kitchen-terraform:2.4.0'
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source test/ci_integration.sh && kitchen_do destroy']
 tags:
 - 'ci'
 - 'integration'
+substitutions:
+  _DOCKER_IMAGE_DEVELOPER_TOOLS: 'cft/developer-tools'
+  _DOCKER_TAG_VERSION_DEVELOPER_TOOLS: '0.0.1'
+  _ORG_ID: '826592752744'
+  _FOLDER_ID: '478787301645'
+  _BILLING_ACCOUNT: '01E8A0-35F760-5CF02A'
