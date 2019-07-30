@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+set -eu
+
 # Prepare the setup environment
 prepare_environment() {
   cd test/setup/ || exit
@@ -30,6 +32,19 @@ kitchen_do() {
   # shellcheck disable=SC1091
   source test/source.sh
   init_credentials
+
   export CMD="$*"
   kitchen "$CMD"
+}
+
+# Run all integration tests
+run_integration_tests() {
+  echo "integration tests!"
+  # prepare_environment
+  # source test/source.sh
+
+  # init_credentials
+  # kitchen create
+  # kitchen converge
+  # kitchen verify
 }
