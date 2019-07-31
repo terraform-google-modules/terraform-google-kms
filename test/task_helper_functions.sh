@@ -27,7 +27,7 @@ prepare_environment() {
   cd - || return
 }
 
-# Run kitchen_create
+# Run kitchen tasks with sourced credentials
 kitchen_do() {
   # shellcheck disable=SC1091
   source test/source.sh

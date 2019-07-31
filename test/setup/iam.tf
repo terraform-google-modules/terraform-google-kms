@@ -33,7 +33,7 @@ resource "google_project_iam_member" "int_test" {
   count = length(local.int_required_roles)
 
   project = module.kms-project.project_id
-  role    = "${element(local.int_required_roles, count.index)}"
+  role    = local.int_required_roles[count.index]
   member  = "serviceAccount:${google_service_account.int_test.email}"
 }
 
