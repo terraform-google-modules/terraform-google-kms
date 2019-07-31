@@ -39,9 +39,32 @@ module "kms" {
 Functional examples are included in the
 [examples](./examples/) directory.
 
-[^]: (autogen_docs_start)
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Inputs
 
-[^]: (autogen_docs_end)
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| decrypters | List of comma-separated owners for each key declared in set_decrypters_for. | list(string) | `<list>` | no |
+| encrypters | List of comma-separated owners for each key declared in set_encrypters_for. | list(string) | `<list>` | no |
+| key\_rotation\_period |  | string | `"100000s"` | no |
+| keyring | Keyring name. | string | n/a | yes |
+| keys | Key names. | list(string) | `<list>` | no |
+| location | Location for the keyring. | string | n/a | yes |
+| owners | List of comma-separated owners for each key declared in set_owners_for. | list(string) | `<list>` | no |
+| project\_id | Project id where the keyring will be created. | string | n/a | yes |
+| set\_decrypters\_for | Name of keys for which decrypters will be set. | list(string) | `<list>` | no |
+| set\_encrypters\_for | Name of keys for which encrypters will be set. | list(string) | `<list>` | no |
+| set\_owners\_for | Name of keys for which owners will be set. | list(string) | `<list>` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| keyring | Self link of the keyring. |
+| keyring\_name | Name of the keyring. |
+| keys | Map of key name => key self link. |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
 
