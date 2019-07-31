@@ -2,19 +2,20 @@
 
 This document provides guidelines for contributing to the module.
 
+## Dependencies
+
+The following dependencies must be installed on the development system:
+
+- [Docker Engine][docker-engine]
+- [Google Cloud SDK][google-cloud-sdk]
+- [make]
+
 ## Generating Documentation for Inputs and Outputs
 
 The Inputs and Outputs tables in the READMEs of the root module,
 submodules, and example modules are automatically generated based on
 the `variables` and `outputs` of the respective modules. These tables
 must be refreshed if the module interfaces are changed.
-
-### Dependencies
-
-The following dependencies must be installed on the development system:
-
-- [make]
-- [terraform-docs] v0.6.0
 
 ### Execution
 
@@ -33,14 +34,6 @@ tools are packaged within a Docker image for convenience.
 The general strategy for these tests is to verify the behaviour of the
 [example modules](./examples), thus ensuring that the root module,
 submodules, and example modules are all functionally correct.
-
-### Dependencies
-
-The following dependencies must be installed on the development system:
-
-- [Docker Engine][docker-engine]
-- [Google Cloud SDK][google-cloud-sdk]
-- [make]
 
 ### Test Environment
 The easiest way to test the module is in an isolated test project. The setup for such a project is defined in [test/setup](./test/setup/) directory.
@@ -73,14 +66,14 @@ noninteractively, using the prepared test project.
 1. Run `make docker_run` to start the testing Docker container in
    interactive mode.
 
-1. Run `kitchen create <EXAMPLE_NAME>` to initialize the working
+1. Run `kitchen_do create <EXAMPLE_NAME>` to initialize the working
    directory for an example module.
 
-1. Run `kitchen converge <EXAMPLE_NAME>` to apply the example module.
+1. Run `kitchen_do converge <EXAMPLE_NAME>` to apply the example module.
 
-1. Run `kitchen verify <EXAMPLE_NAME>` to test the example module.
+1. Run `kitchen_do verify <EXAMPLE_NAME>` to test the example module.
 
-1. Run `kitchen destroy <EXAMPLE_NAME>` to destroy the example module
+1. Run `kitchen_do destroy <EXAMPLE_NAME>` to destroy the example module
    state.
 
 ## Linting and Formatting
@@ -88,20 +81,9 @@ noninteractively, using the prepared test project.
 Many of the files in the repository can be linted or formatted to
 maintain a standard of quality.
 
-### Dependencies
-
-The following dependencies must be installed on the development system:
-
-- [flake8]
-- [gofmt]
-- [hadolint]
-- [make]
-- [shellcheck]
-- [Terraform][terraform] v0.11
-
 ### Execution
 
-Run `make check`.
+Run `make docker_test_lint`.
 
 [docker-engine]: https://www.docker.com/products/docker-engine
 [flake8]: http://flake8.pycqa.org/en/latest/
