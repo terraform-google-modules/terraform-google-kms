@@ -41,6 +41,7 @@ kitchen_do() {
 
 # Run all integration tests
 run_integration_tests() {
+  # shellcheck disable=SC1091
   source test/source.sh
 
   init_credentials

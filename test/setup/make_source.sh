@@ -14,10 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-echo "#!/usr/bin/env bash " > ../source.sh
+echo "#!/usr/bin/env bash" > ../source.sh
 
 project_id=$(terraform output project_id)
-echo "export TF_VAR_project_id='$project_id'" > ../source.sh
+echo "export TF_VAR_project_id='$project_id'" >> ../source.sh
 
 sa_json=$(terraform output sa_key)
 # shellcheck disable=SC2086
