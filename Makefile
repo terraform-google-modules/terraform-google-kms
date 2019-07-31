@@ -21,10 +21,6 @@ DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 0.0.1
 DOCKER_IMAGE_DEVELOPER_TOOLS := cft/developer-tools
 REGISTRY_URL := gcr.io/cloud-foundation-cicd
 
- # The following tasks are provided as examples and aren't invoked from this
-# repository directly. These three make targets are the only targets that
-# should be included in every CFT module's `Makefile`
-# Enter docker container for local development
 .PHONY: docker_run
 docker_run:
 	docker run --rm -it \
