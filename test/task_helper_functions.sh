@@ -14,8 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -eu
-
 # Prepare the setup environment
 prepare_environment() {
   init_credentials
