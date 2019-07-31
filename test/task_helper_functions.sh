@@ -18,6 +18,8 @@ set -eu
 
 # Prepare the setup environment
 prepare_environment() {
+  init_credentials
+
   cd test/setup/ || exit
   terraform init
   terraform apply -auto-approve
@@ -39,12 +41,10 @@ kitchen_do() {
 
 # Run all integration tests
 run_integration_tests() {
-  echo "integration tests!"
-  # prepare_environment
-  # source test/source.sh
+  source test/source.sh
 
-  # init_credentials
-  # kitchen create
-  # kitchen converge
-  # kitchen verify
+  init_credentials
+  kitchen create
+  kitchen converge
+  kitchen verify
 }

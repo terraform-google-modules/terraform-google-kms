@@ -42,19 +42,31 @@ The following dependencies must be installed on the development system:
 - [Google Cloud SDK][google-cloud-sdk]
 - [make]
 
-### Inputs
+### Test Environment
+The easiest way to test the module is in an isolated test project. The setup for such a project is defined in [test/setup](./test/setup/) directory.
 
-Test instances are defined in the
-[Kitchen configuration file](./kitchen.yml). The inputs of each Kitchen
-instance may be configured with the `driver.variables` key in a
-local Kitchen configuration file located at `./kitchen.local.yml` or in
-a Terraform variables file located at
-`./test/fixtures/<instance>/variables.tfvars`.
+To use this setup, you need a service account with Project Creator access on a folder. Export the Service Account credentials to your environment like so:
 
-### Credentials
+```
+export SERVICE_ACCOUNT_JSON=$(< credentials.json)
+```
 
-Download the key of a Service Account with the
-[required roles][required-roles] to `./credentials.json`.
+You will also need to set a few environment variables:
+```
+export TF_VAR_org_id="your_org_id"
+export TF_VAR_folder_id="your_folder_id"
+export TF_VAR_billing_account="your_billing_account_id"
+```
+
+With these settings in place, you can prepare a test project using Docker:
+```
+make docker_test_prepare
+```
+
+### Noninteractive Execution
+
+Run `make test_integration_docker` to test all of the example modules
+noninteractively, using the prepared test project.
 
 ### Interactive Execution
 
@@ -70,11 +82,6 @@ Download the key of a Service Account with the
 
 1. Run `kitchen destroy <EXAMPLE_NAME>` to destroy the example module
    state.
-
-### Noninteractive Execution
-
-Run `make test_integration_docker` to test all of the example modules
-noninteractively.
 
 ## Linting and Formatting
 
