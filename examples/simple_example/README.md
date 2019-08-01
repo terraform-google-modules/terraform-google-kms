@@ -2,9 +2,22 @@
 
 This example illustrates how to use the `kms` module.
 
-[^]: (autogen_docs_start)
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Inputs
 
-[^]: (autogen_docs_end)
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| keyring | Keyring name. | string | n/a | yes |
+| location | Location for the keyring. | string | `"global"` | no |
+| project\_id | The ID of the project in which to provision resources. | string | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| keyring | The name of the keyring. |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 To provision this example, run the following from within this directory:
 - `terraform init` to get the plugins
