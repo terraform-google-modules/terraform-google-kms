@@ -32,7 +32,7 @@ The integration tests are run using [Kitchen][kitchen],
 tools are packaged within a Docker image for convenience.
 
 The general strategy for these tests is to verify the behaviour of the
-[example modules](./examples), thus ensuring that the root module,
+[example modules](./examples/), thus ensuring that the root module,
 submodules, and example modules are all functionally correct.
 
 ### Test Environment
