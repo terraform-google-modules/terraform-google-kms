@@ -17,7 +17,12 @@
 # Prepare the setup environment
 prepare_environment() {
   set -eu
-  init_credentials
+
+  if [[ -z "${SERVICE_ACCOUNT_JSON:-}" ]]; then
+    echo "Proceeding using application default credentials"
+  else
+    init_credentials
+  fi
 
   cd test/setup/ || exit
   terraform init
