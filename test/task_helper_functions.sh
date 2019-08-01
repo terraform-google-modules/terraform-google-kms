@@ -16,6 +16,7 @@
 
 # Prepare the setup environment
 prepare_environment() {
+  set -eu
   init_credentials
 
   cd test/setup/ || exit
