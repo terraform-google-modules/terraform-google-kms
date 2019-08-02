@@ -9,6 +9,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Added continuous integration using Cloud Build. [#11]
+
 ## [1.0.0] - 2019-07-19
 
 ### Changed
@@ -26,3 +30,4 @@ and this project adheres to
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-kms/releases/tag/v1.0.0
 
 [#3]: https://github.com/terraform-google-modules/terraform-google-kms/pull/3
+[#11]: https://github.com/terraform-google-modules/terraform-google-kms/pull/11
