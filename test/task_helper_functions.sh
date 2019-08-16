@@ -16,11 +16,36 @@
 
 # Prepare the setup environment
 prepare_environment() {
-  init_credentials
+  set -eu
+
+  if [[ -z "${SERVICE_ACCOUNT_JSON:-}" ]]; then
+    echo "Proceeding using application default credentials"
+  else
+    init_credentials
+  fi
 
   cd test/setup/ || exit
   terraform init
   terraform apply -auto-approve
+  ./make_source.sh
+  # shellcheck disable=SC1091
+  source ../source.sh
+  cd - || return
+}
+
+# Destroy the setup environment
+cleanup_environment() {
+  set -eu
+
+  if [[ -z "${SERVICE_ACCOUNT_JSON:-}" ]]; then
+    echo "Proceeding using application default credentials"
+  else
+    init_credentials
+  fi
+
+  cd test/setup/ || exit
+  terraform init
+  terraform destroy -auto-approve
   ./make_source.sh
   # shellcheck disable=SC1091
   source ../source.sh
