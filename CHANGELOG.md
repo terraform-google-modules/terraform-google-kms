@@ -9,8 +9,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.1.0]
+
 ### Added
 
+- Allow setting prevent_destroy lifecycle value on keys, add keyring resource output [#14]
 - Added continuous integration using Cloud Build. [#11]
 
 ## [1.0.0] - 2019-07-19
@@ -26,8 +29,10 @@ and this project adheres to
 - Initial release
 
 [Unreleased]: https://github.com/terraform-google-modules/terraform-google-kms/compare/v1.0.0...HEAD
-[0.1.0]: https://github.com/terraform-google-modules/terraform-google-kms/releases/tag/v0.1.0
+[1.1.0]: https://github.com/terraform-google-modules/terraform-google-kms/releases/tag/v1.1.0
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-kms/releases/tag/v1.0.0
+[0.1.0]: https://github.com/terraform-google-modules/terraform-google-kms/releases/tag/v0.1.0
 
-[#3]: https://github.com/terraform-google-modules/terraform-google-kms/pull/3
+[#14]: https://github.com/terraform-google-modules/terraform-google-kms/pull/11
 [#11]: https://github.com/terraform-google-modules/terraform-google-kms/pull/11
+[#3]: https://github.com/terraform-google-modules/terraform-google-kms/pull/3
