@@ -18,4 +18,11 @@ control "gcp" do
   describe google_kms_key_rings(project: attribute('project_id'), location: attribute("location")) do
     its('key_ring_names') { should include attribute("keyring") }
   end
+
+  attribute('keys').each_key do |key|
+    describe google_kms_crypto_key(project: attribute('project_id'), location: attribute("location"),  key_ring_name: attribute("keyring"), name: key) do
+      it {should exist }
+    end
+  end
+
 end

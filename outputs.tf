@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+# TODO(ludoo): use the 'keyring' output to expose the keyring resource
+
+output "keyring_resource" {
+  description = "Keyring resource."
+  value       = google_kms_key_ring.key_ring
+}
+
 output "keyring" {
   description = "Self link of the keyring."
   value       = google_kms_key_ring.key_ring.self_link

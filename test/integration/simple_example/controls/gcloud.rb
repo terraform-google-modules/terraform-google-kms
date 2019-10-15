@@ -26,4 +26,5 @@ control "gcloud" do
     its(:stderr) { should eq "" }
     its(:stdout) { should match "locations/#{attribute("location")}/keyRings/#{attribute("keyring")}" }
   end
+
 end

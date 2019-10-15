@@ -19,10 +19,10 @@ provider "google" {
 }
 
 module "kms" {
-  source = "../.."
-
-  project_id = var.project_id
-  keyring    = var.keyring
-  location   = "global"
+  source         = "../.."
+  project_id     = var.project_id
+  keyring        = var.keyring
+  location       = "global"
+  keys_ephemeral = ["one", "two"]
 }
 

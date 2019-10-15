@@ -15,65 +15,72 @@
  */
 
 variable "project_id" {
-  type        = string
   description = "Project id where the keyring will be created."
+  type        = string
 }
 
 # cf https://cloud.google.com/kms/docs/locations
 variable "location" {
-  type        = string
   description = "Location for the keyring."
+  type        = string
 }
 
 variable "keyring" {
-  type        = string
   description = "Keyring name."
+  type        = string
 }
 
 variable "keys" {
+  description = "Key names for keys that will have 'prevent_destroy' set to true in resource lifecycle."
   type        = list(string)
-  description = "Key names."
+  default     = []
+}
+
+variable "keys_ephemeral" {
+  description = "Key names for keys that will have 'prevent_destroy' set to false in resource lifecycle."
+  type        = list(string)
   default     = []
 }
 
 variable "set_owners_for" {
-  type        = list(string)
   description = "Name of keys for which owners will be set."
+  type        = list(string)
   default     = []
 }
 
 variable "owners" {
-  type        = list(string)
   description = "List of comma-separated owners for each key declared in set_owners_for."
+  type        = list(string)
   default     = []
 }
 
 variable "set_encrypters_for" {
-  type        = list(string)
   description = "Name of keys for which encrypters will be set."
+  type        = list(string)
   default     = []
 }
 
 variable "encrypters" {
-  type        = list(string)
   description = "List of comma-separated owners for each key declared in set_encrypters_for."
+  type        = list(string)
   default     = []
 }
 
 variable "set_decrypters_for" {
-  type        = list(string)
   description = "Name of keys for which decrypters will be set."
+  type        = list(string)
   default     = []
 }
 
 variable "decrypters" {
-  type        = list(string)
   description = "List of comma-separated owners for each key declared in set_decrypters_for."
+  type        = list(string)
   default     = []
 }
 
 variable "key_rotation_period" {
-  type    = string
-  default = "100000s"
+  description = "Key rotation period."
+  default     = "100000s"
+  type        = string
 }
 

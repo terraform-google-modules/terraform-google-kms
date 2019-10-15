@@ -19,3 +19,12 @@ output "keyring" {
   value       = module.kms.keyring_name
 }
 
+output "location" {
+  description = "The location of the keyring."
+  value       = module.kms.keyring_resource.location
+}
+
+output "keys" {
+  description = "The generated keys."
+  value       = module.kms.keys
+}

@@ -21,7 +21,12 @@ output "keyring" {
 
 output "location" {
   description = "Location for the keyring."
-  value       = "global"
+  value       = module.example.location
+}
+
+output "keys" {
+  description = "Generated keys."
+  value       = module.example.keys
 }
 
 output "project_id" {
