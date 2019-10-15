@@ -15,7 +15,7 @@
  */
 
 locals {
-  keys_by_name = zipmap(var.keys, google_kms_crypto_key.key.*.self_link)
+  keys_by_name = zipmap(var.keys, var.prevent_destroy ? google_kms_crypto_key.key[*].self_link : google_kms_crypto_key.key_ephemeral[*].self_link)
 }
 
 resource "google_kms_key_ring" "key_ring" {
@@ -25,7 +25,7 @@ resource "google_kms_key_ring" "key_ring" {
 }
 
 resource "google_kms_crypto_key" "key" {
-  count           = length(var.keys)
+  count           = var.prevent_destroy ? length(var.keys) : 0
   name            = var.keys[count.index]
   key_ring        = google_kms_key_ring.key_ring.self_link
   rotation_period = var.key_rotation_period
@@ -35,30 +35,35 @@ resource "google_kms_crypto_key" "key" {
   }
 }
 
+resource "google_kms_crypto_key" "key_ephemeral" {
+  count           = var.prevent_destroy ? 0 : length(var.keys)
+  name            = var.keys[count.index]
+  key_ring        = google_kms_key_ring.key_ring.self_link
+  rotation_period = var.key_rotation_period
+
+  lifecycle {
+    prevent_destroy = false
+  }
+}
+
 resource "google_kms_crypto_key_iam_binding" "owners" {
-  count = length(var.set_owners_for)
-  role  = "roles/owner"
-
+  count         = length(var.set_owners_for)
+  role          = "roles/owner"
   crypto_key_id = local.keys_by_name[var.set_owners_for[count.index]]
-
-  members = compact(split(",", var.owners[count.index]))
+  members       = compact(split(",", var.owners[count.index]))
 }
 
 resource "google_kms_crypto_key_iam_binding" "decrypters" {
-  count = length(var.set_decrypters_for)
-  role  = "roles/cloudkms.cryptoKeyDecrypter"
-
+  count         = length(var.set_decrypters_for)
+  role          = "roles/cloudkms.cryptoKeyDecrypter"
   crypto_key_id = local.keys_by_name[var.set_decrypters_for[count.index]]
-
-  members = compact(split(",", var.decrypters[count.index]))
+  members       = compact(split(",", var.decrypters[count.index]))
 }
 
 resource "google_kms_crypto_key_iam_binding" "encrypters" {
-  count = length(var.set_encrypters_for)
-  role  = "roles/cloudkms.cryptoKeyEncrypter"
-
+  count         = length(var.set_encrypters_for)
+  role          = "roles/cloudkms.cryptoKeyEncrypter"
   crypto_key_id = local.keys_by_name[element(var.set_encrypters_for, count.index)]
-
-  members = compact(split(",", var.encrypters[count.index]))
+  members       = compact(split(",", var.encrypters[count.index]))
 }
 
