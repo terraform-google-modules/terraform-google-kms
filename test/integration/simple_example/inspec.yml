@@ -13,3 +13,6 @@ attributes:
   - name: location
     required: true
     type: string
+  - name: keys
+    required: true
+    type: array

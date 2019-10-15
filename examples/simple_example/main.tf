@@ -19,10 +19,12 @@ provider "google" {
 }
 
 module "kms" {
-  source = "../.."
-
+  source     = "../.."
   project_id = var.project_id
   keyring    = var.keyring
   location   = "global"
+  keys       = var.keys
+  # keys can be destroyed by Terraform
+  prevent_destroy = false
 }
 

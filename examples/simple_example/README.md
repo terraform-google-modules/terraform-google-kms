@@ -8,6 +8,7 @@ This example illustrates how to use the `kms` module.
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | keyring | Keyring name. | string | n/a | yes |
+| keys | Key names. | list(string) | `<list>` | no |
 | location | Location for the keyring. | string | `"global"` | no |
 | project\_id | The ID of the project in which to provision resources. | string | n/a | yes |
 
@@ -16,6 +17,8 @@ This example illustrates how to use the `kms` module.
 | Name | Description |
 |------|-------------|
 | keyring | The name of the keyring. |
+| keys | List of created kkey names. |
+| location | The location of the keyring. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
