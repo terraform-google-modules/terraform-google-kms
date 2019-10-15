@@ -16,6 +16,8 @@ This example illustrates how to use the `kms` module.
 | Name | Description |
 |------|-------------|
 | keyring | The name of the keyring. |
+| keys | The generated keys. |
+| location | The location of the keyring. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

@@ -45,9 +45,10 @@ Functional examples are included in the
 |------|-------------|:----:|:-----:|:-----:|
 | decrypters | List of comma-separated owners for each key declared in set_decrypters_for. | list(string) | `<list>` | no |
 | encrypters | List of comma-separated owners for each key declared in set_encrypters_for. | list(string) | `<list>` | no |
-| key\_rotation\_period |  | string | `"100000s"` | no |
+| key\_rotation\_period | Key rotation period. | string | `"100000s"` | no |
 | keyring | Keyring name. | string | n/a | yes |
-| keys | Key names. | list(string) | `<list>` | no |
+| keys | Key names for keys that will have 'prevent_destroy' set to true in resource lifecycle. | list(string) | `<list>` | no |
+| keys\_ephemeral | Key names for keys that will have 'prevent_destroy' set to false in resource lifecycle. | list(string) | `<list>` | no |
 | location | Location for the keyring. | string | n/a | yes |
 | owners | List of comma-separated owners for each key declared in set_owners_for. | list(string) | `<list>` | no |
 | project\_id | Project id where the keyring will be created. | string | n/a | yes |
@@ -61,6 +62,7 @@ Functional examples are included in the
 |------|-------------|
 | keyring | Self link of the keyring. |
 | keyring\_name | Name of the keyring. |
+| keyring\_resource | Keyring resource. |
 | keys | Map of key name => key self link. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
