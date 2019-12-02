@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 
 SHELL := /usr/bin/env bash # Make will use bash instead of sh
 
-DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 0.4.3
+DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 0
 DOCKER_IMAGE_DEVELOPER_TOOLS := cft/developer-tools
 REGISTRY_URL := gcr.io/cloud-foundation-cicd
 
