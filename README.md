@@ -25,7 +25,7 @@ module "kms" {
 
   project_id         = "<PROJECT ID>"
   location           = "europe"
-  name               = "sample-keyring"
+  keyring            = "sample-keyring"
   keys               = ["foo", "spam"]
   set_owners_for     = ["foo", "spam"]
   owners = [
