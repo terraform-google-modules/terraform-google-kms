@@ -14,11 +14,16 @@
  * limitations under the License.
  */
 
-module "kms-project" {
+
+provider "google" {
+  version = "~> 2.12.0"
+}
+
+module "project_ci_kms" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 3.0"
 
-  name              = "ci-kms"
+  name              = "ci-kms-module"
   random_project_id = "true"
   org_id            = var.org_id
   folder_id         = var.folder_id

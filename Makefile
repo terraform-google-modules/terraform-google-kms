@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,15 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Please note that this file was generated from [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template).
-# Please make sure to contribute relevant changes upstream!
-
-SHELL := /usr/bin/env bash # Make will use bash instead of sh
+# Make will use bash instead of sh
+SHELL := /usr/bin/env bash
 
 DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 0
 DOCKER_IMAGE_DEVELOPER_TOOLS := cft/developer-tools
 REGISTRY_URL := gcr.io/cloud-foundation-cicd
 
+# Enter docker container for local development
 .PHONY: docker_run
 docker_run:
 	docker run --rm -it \
@@ -41,7 +40,7 @@ docker_test_prepare:
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/execute_with_credentials.sh prepare_environment
 
-# Cleanup tests within the docker container
+# Clean up test environment within the docker container
 .PHONY: docker_test_cleanup
 docker_test_cleanup:
 	docker run --rm -it \
@@ -53,7 +52,7 @@ docker_test_cleanup:
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/execute_with_credentials.sh cleanup_environment
 
- # Execute integration tests within the docker container
+# Execute integration tests within the docker container
 .PHONY: docker_test_integration
 docker_test_integration:
 	docker run --rm -it \
@@ -62,7 +61,7 @@ docker_test_integration:
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/test_integration.sh
 
- # Execute lint tests within the docker container
+# Execute lint tests within the docker container
 .PHONY: docker_test_lint
 docker_test_lint:
 	docker run --rm -it \
@@ -78,5 +77,6 @@ docker_generate_docs:
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/bin/bash -c 'source /usr/local/bin/task_helper_functions.sh && generate_docs'
 
+# Alias for backwards compatibility
 .PHONY: generate_docs
 generate_docs: docker_generate_docs
