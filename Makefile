@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Please note that this file was generated from [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template).
+# Please make sure to contribute relevant changes upstream!
+
 # Make will use bash instead of sh
 SHELL := /usr/bin/env bash
 
@@ -24,7 +27,7 @@ REGISTRY_URL := gcr.io/cloud-foundation-cicd
 docker_run:
 	docker run --rm -it \
 		-e SERVICE_ACCOUNT_JSON \
-		-v $(CURDIR):/workspace \
+		-v "$(CURDIR)":/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/bin/bash
 
@@ -36,7 +39,7 @@ docker_test_prepare:
 		-e TF_VAR_org_id \
 		-e TF_VAR_folder_id \
 		-e TF_VAR_billing_account \
-		-v $(CURDIR):/workspace \
+		-v "$(CURDIR)":/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/execute_with_credentials.sh prepare_environment
 
@@ -48,7 +51,7 @@ docker_test_cleanup:
 		-e TF_VAR_org_id \
 		-e TF_VAR_folder_id \
 		-e TF_VAR_billing_account \
-		-v $(CURDIR):/workspace \
+		-v "$(CURDIR)":/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/execute_with_credentials.sh cleanup_environment
 
@@ -57,7 +60,7 @@ docker_test_cleanup:
 docker_test_integration:
 	docker run --rm -it \
 		-e SERVICE_ACCOUNT_JSON \
-		-v $(CURDIR):/workspace \
+		-v "$(CURDIR)":/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/test_integration.sh
 
@@ -65,7 +68,7 @@ docker_test_integration:
 .PHONY: docker_test_lint
 docker_test_lint:
 	docker run --rm -it \
-		-v $(CURDIR):/workspace \
+		-v "$(CURDIR)":/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/test_lint.sh
 
@@ -73,7 +76,7 @@ docker_test_lint:
 .PHONY: docker_generate_docs
 docker_generate_docs:
 	docker run --rm -it \
-		-v $(CURDIR):/workspace \
+		-v "$(CURDIR)":/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/bin/bash -c 'source /usr/local/bin/task_helper_functions.sh && generate_docs'
 
