@@ -55,6 +55,7 @@ Functional examples are included in the
 | set\_decrypters\_for | Name of keys for which decrypters will be set. | list(string) | `<list>` | no |
 | set\_encrypters\_for | Name of keys for which encrypters will be set. | list(string) | `<list>` | no |
 | set\_owners\_for | Name of keys for which owners will be set. | list(string) | `<list>` | no |
+| kms\_depends\_on | Allowing dependency on a particular resource | any | `any` | no |
 
 ## Outputs
 
