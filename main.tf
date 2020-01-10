@@ -19,9 +19,10 @@ locals {
 }
 
 resource "google_kms_key_ring" "key_ring" {
-  name     = var.keyring
-  project  = var.project_id
-  location = var.location
+  depends_on = [var.kms_depends_on]
+  name       = var.keyring
+  project    = var.project_id
+  location   = var.location
 }
 
 resource "google_kms_crypto_key" "key" {

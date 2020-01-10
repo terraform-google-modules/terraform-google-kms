@@ -82,3 +82,7 @@ variable "key_rotation_period" {
   default = "100000s"
 }
 
+variable "kms_depends_on" {
+  type    = any
+  default = null
+}
