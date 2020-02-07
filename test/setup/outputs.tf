@@ -15,7 +15,7 @@
  */
 
 output "project_id" {
-  value = module.kms-project.project_id
+  value = module.project_ci_kms.project_id
 }
 
 output "sa_key" {
