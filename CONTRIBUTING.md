@@ -52,13 +52,14 @@ export TF_VAR_billing_account="your_billing_account_id"
 ```
 
 With these settings in place, you can prepare a test project using Docker:
+
 ```
 make docker_test_prepare
 ```
 
 ### Noninteractive Execution
 
-Run `make test_integration_docker` to test all of the example modules
+Run `make docker_test_integration` to test all of the example modules
 noninteractively, using the prepared test project.
 
 ### Interactive Execution
