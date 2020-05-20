@@ -16,12 +16,12 @@
 
 
 provider "google" {
-  version = "~> 2.12.0"
+  version = "~> 3.0"
 }
 
 module "project_ci_kms" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+  version = "~> 8.0"
 
   name              = "ci-kms-module"
   random_project_id = "true"
