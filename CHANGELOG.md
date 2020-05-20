@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [1.1.1](https://www.github.com/terraform-google-modules/terraform-google-kms/compare/v1.1.0...v1.1.1) (2020-05-20)
+
+
+### Bug Fixes
+
+* Map outputs by slicing the outputs to the length of inputs ([#20](https://www.github.com/terraform-google-modules/terraform-google-kms/issues/20)) ([338fff6](https://www.github.com/terraform-google-modules/terraform-google-kms/commit/338fff65ea1ae1cefcb40ed8166268d4400b7038))
+
 ## [Unreleased]
 
 ## [1.1.0]
