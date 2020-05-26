@@ -33,6 +33,11 @@ resource "google_kms_crypto_key" "key" {
   lifecycle {
     prevent_destroy = true
   }
+
+  version_template {
+    algorithm        = var.key_algorithm
+    protection_level = var.key_protection_level
+  }
 }
 
 resource "google_kms_crypto_key" "key_ephemeral" {
@@ -43,6 +48,11 @@ resource "google_kms_crypto_key" "key_ephemeral" {
 
   lifecycle {
     prevent_destroy = false
+  }
+
+  version_template {
+    algorithm        = var.key_algorithm
+    protection_level = var.key_protection_level
   }
 }
 
