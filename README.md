@@ -50,6 +50,7 @@ Functional examples are included in the
 | key\_rotation\_period |  | string | `"100000s"` | no |
 | keyring | Keyring name. | string | n/a | yes |
 | keys | Key names. | list(string) | `<list>` | no |
+| labels | Labels, provided as a map | map(string) | `<map>` | no |
 | location | Location for the keyring. | string | n/a | yes |
 | owners | List of comma-separated owners for each key declared in set_owners_for. | list(string) | `<list>` | no |
 | prevent\_destroy | Set the prevent_destroy lifecycle attribute on keys. | string | `"true"` | no |

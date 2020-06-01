@@ -38,6 +38,8 @@ resource "google_kms_crypto_key" "key" {
     algorithm        = var.key_algorithm
     protection_level = var.key_protection_level
   }
+
+  labels = var.labels
 }
 
 resource "google_kms_crypto_key" "key_ephemeral" {
@@ -54,6 +56,8 @@ resource "google_kms_crypto_key" "key_ephemeral" {
     algorithm        = var.key_algorithm
     protection_level = var.key_protection_level
   }
+
+  labels = var.labels
 }
 
 resource "google_kms_crypto_key_iam_binding" "owners" {
