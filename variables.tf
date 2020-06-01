@@ -93,3 +93,9 @@ variable "key_protection_level" {
   description = "The protection level to use when creating a version based on this template. Default value: \"SOFTWARE\" Possible values: [\"SOFTWARE\", \"HSM\"]"
   default     = "SOFTWARE"
 }
+
+variable "labels" {
+  type        = map(string)
+  description = "Labels, provided as a map"
+  default     = {}
+}
