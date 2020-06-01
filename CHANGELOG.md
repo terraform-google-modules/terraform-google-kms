@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0](https://www.github.com/terraform-google-modules/terraform-google-kms/compare/v1.1.1...v1.2.0) (2020-06-01)
+
+
+### Features
+
+* Add support for var.labels ([#29](https://www.github.com/terraform-google-modules/terraform-google-kms/issues/29)) ([ca19209](https://www.github.com/terraform-google-modules/terraform-google-kms/commit/ca19209f19c4679d9f5d663b05a8c7b9b7edc702))
+* Add variables to configure key_algorithm and key_protection_level  ([#27](https://www.github.com/terraform-google-modules/terraform-google-kms/issues/27)) ([3f01a09](https://www.github.com/terraform-google-modules/terraform-google-kms/commit/3f01a09f816da0b39f1ab35bed8f6cea694bed57))
+
 ### [1.1.1](https://www.github.com/terraform-google-modules/terraform-google-kms/compare/v1.1.0...v1.1.1) (2020-05-20)
 
 

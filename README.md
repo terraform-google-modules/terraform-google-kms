@@ -21,7 +21,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "kms" {
   source  = "terraform-google-modules/kms/google"
-  version = "~> 1.1"
+  version = "~> 1.2"
 
   project_id         = "<PROJECT ID>"
   location           = "europe"
