@@ -21,6 +21,11 @@ output "keyring" {
 
 output "keyring_resource" {
   description = "Keyring resource."
+  depends_on  = [
+    google_kms_crypto_key_iam_binding.decrypters[*],
+    google_kms_crypto_key_iam_binding.encrypters[*],
+    google_kms_crypto_key_iam_binding.owners[*],
+  ]
   value       = google_kms_key_ring.key_ring
 }
 
