@@ -42,22 +42,22 @@ Functional examples are included in the
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| decrypters | List of comma-separated owners for each key declared in set_decrypters_for. | list(string) | `<list>` | no |
-| encrypters | List of comma-separated owners for each key declared in set_encrypters_for. | list(string) | `<list>` | no |
-| key\_algorithm | The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs. | string | `"GOOGLE_SYMMETRIC_ENCRYPTION"` | no |
-| key\_protection\_level | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM"] | string | `"SOFTWARE"` | no |
-| key\_rotation\_period |  | string | `"100000s"` | no |
-| keyring | Keyring name. | string | n/a | yes |
-| keys | Key names. | list(string) | `<list>` | no |
-| labels | Labels, provided as a map | map(string) | `<map>` | no |
-| location | Location for the keyring. | string | n/a | yes |
-| owners | List of comma-separated owners for each key declared in set_owners_for. | list(string) | `<list>` | no |
-| prevent\_destroy | Set the prevent_destroy lifecycle attribute on keys. | string | `"true"` | no |
-| project\_id | Project id where the keyring will be created. | string | n/a | yes |
-| set\_decrypters\_for | Name of keys for which decrypters will be set. | list(string) | `<list>` | no |
-| set\_encrypters\_for | Name of keys for which encrypters will be set. | list(string) | `<list>` | no |
-| set\_owners\_for | Name of keys for which owners will be set. | list(string) | `<list>` | no |
+|------|-------------|------|---------|:--------:|
+| decrypters | List of comma-separated owners for each key declared in set\_decrypters\_for. | `list(string)` | `[]` | no |
+| encrypters | List of comma-separated owners for each key declared in set\_encrypters\_for. | `list(string)` | `[]` | no |
+| key\_algorithm | The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs. | `string` | `"GOOGLE_SYMMETRIC_ENCRYPTION"` | no |
+| key\_protection\_level | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM"] | `string` | `"SOFTWARE"` | no |
+| key\_rotation\_period | n/a | `string` | `"100000s"` | no |
+| keyring | Keyring name. | `string` | n/a | yes |
+| keys | Key names. | `list(string)` | `[]` | no |
+| labels | Labels, provided as a map | `map(string)` | `{}` | no |
+| location | Location for the keyring. | `string` | n/a | yes |
+| owners | List of comma-separated owners for each key declared in set\_owners\_for. | `list(string)` | `[]` | no |
+| prevent\_destroy | Set the prevent\_destroy lifecycle attribute on keys. | `bool` | `true` | no |
+| project\_id | Project id where the keyring will be created. | `string` | n/a | yes |
+| set\_decrypters\_for | Name of keys for which decrypters will be set. | `list(string)` | `[]` | no |
+| set\_encrypters\_for | Name of keys for which encrypters will be set. | `list(string)` | `[]` | no |
+| set\_owners\_for | Name of keys for which owners will be set. | `list(string)` | `[]` | no |
 
 ## Outputs
 
