@@ -30,6 +30,12 @@ variable "keyring" {
   type        = string
 }
 
+variable "existing_keyring" {
+  description = "Use existing keyring"
+  type        = bool
+  default     = false
+}
+
 variable "keys" {
   description = "Key names."
   type        = list(string)
@@ -41,61 +47,26 @@ variable "prevent_destroy" {
   default     = true
 }
 
-variable "set_owners_for" {
-  description = "Name of keys for which owners will be set."
-  type        = list(string)
+variable "acl" {
+  description = "Access control list for the managed keys."
+  type        = list(any)
   default     = []
 }
 
-variable "owners" {
-  description = "List of comma-separated owners for each key declared in set_owners_for."
-  type        = list(string)
+variable "key_opts_default" {
+  description = "Specifies the default key options (override with caution)."
+  type        = any
+  default = {
+    rotation_period  = "100000s"
+    algorithm        = "GOOGLE_SYMMETRIC_ENCRYPTION"
+    protection_level = "SOFTWARE"
+    labels           = {}
+    prevent_destroy  = true
+  }
+}
+
+variable "key_opts" {
+  description = "Specifies key specific options."
+  type        = any
   default     = []
-}
-
-variable "set_encrypters_for" {
-  description = "Name of keys for which encrypters will be set."
-  type        = list(string)
-  default     = []
-}
-
-variable "encrypters" {
-  description = "List of comma-separated owners for each key declared in set_encrypters_for."
-  type        = list(string)
-  default     = []
-}
-
-variable "set_decrypters_for" {
-  description = "Name of keys for which decrypters will be set."
-  type        = list(string)
-  default     = []
-}
-
-variable "decrypters" {
-  description = "List of comma-separated owners for each key declared in set_decrypters_for."
-  type        = list(string)
-  default     = []
-}
-
-variable "key_rotation_period" {
-  type    = string
-  default = "100000s"
-}
-
-variable "key_algorithm" {
-  type        = string
-  description = "The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs."
-  default     = "GOOGLE_SYMMETRIC_ENCRYPTION"
-}
-
-variable "key_protection_level" {
-  type        = string
-  description = "The protection level to use when creating a version based on this template. Default value: \"SOFTWARE\" Possible values: [\"SOFTWARE\", \"HSM\"]"
-  default     = "SOFTWARE"
-}
-
-variable "labels" {
-  type        = map(string)
-  description = "Labels, provided as a map"
-  default     = {}
 }
