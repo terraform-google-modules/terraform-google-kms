@@ -40,7 +40,7 @@ module "kms" {
     },
     {
       key = "spam"
-      encryptors = ["serviceAccount:one@example.com"]
+      encrypters = ["serviceAccount:one@example.com"]
     }
   ]
 }
