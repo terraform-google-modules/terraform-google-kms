@@ -55,8 +55,3 @@ output "acl" {
     merge(rule, { key_id = local.crypto_keys[rule.key].id })
   ]
 }
-
-output "permissions" {
-  description = "Permissions granted to the specified IAM identity."
-  value       = google_kms_crypto_key_iam_member.iam_rule
-}
