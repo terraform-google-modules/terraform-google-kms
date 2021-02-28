@@ -55,3 +55,14 @@ output "acl" {
     merge(rule, { key_id = local.crypto_keys[rule.key].id })
   ]
 }
+
+output "kms_keys" {
+  description = "Managed kms keys details."
+  value = { for k, v in local.crypto_keys : k => {
+    id              = v.id
+    key_ring        = v.key_ring
+    name            = v.name
+    purpose         = v.purpose
+    rotation_period = v.rotation_period
+  } }
+}
