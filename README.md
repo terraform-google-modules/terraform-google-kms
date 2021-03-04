@@ -55,6 +55,7 @@ Functional examples are included in the
 | owners | List of comma-separated owners for each key declared in set_owners_for. | list(string) | `<list>` | no |
 | prevent\_destroy | Set the prevent_destroy lifecycle attribute on keys. | string | `"true"` | no |
 | project\_id | Project id where the keyring will be created. | string | n/a | yes |
+| purpose | The immutable purpose of the CryptoKey. Possible values are ENCRYPT_DECRYPT, ASYMMETRIC_SIGN, and ASYMMETRIC_DECRYPT | string | `ENCRYPT_DECRYPT` | no |
 | set\_decrypters\_for | Name of keys for which decrypters will be set. | list(string) | `<list>` | no |
 | set\_encrypters\_for | Name of keys for which encrypters will be set. | list(string) | `<list>` | no |
 | set\_owners\_for | Name of keys for which owners will be set. | list(string) | `<list>` | no |
