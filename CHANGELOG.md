@@ -7,6 +7,17 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-kms/compare/v1.2.0...v2.0.0) (2021-03-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* add Terraform 0.13 constraint and module attribution (#40)
+
+### Features
+
+* add Terraform 0.13 constraint and module attribution ([#40](https://www.github.com/terraform-google-modules/terraform-google-kms/issues/40)) ([e46c56c](https://www.github.com/terraform-google-modules/terraform-google-kms/commit/e46c56c683961ceb750684409cbdfdff4492031d))
+
 ## [1.2.0](https://www.github.com/terraform-google-modules/terraform-google-kms/compare/v1.1.1...v1.2.0) (2020-06-01)
 
 

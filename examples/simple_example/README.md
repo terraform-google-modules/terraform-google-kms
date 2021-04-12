@@ -6,11 +6,11 @@ This example illustrates how to use the `kms` module.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| keyring | Keyring name. | string | n/a | yes |
-| keys | Key names. | list(string) | `<list>` | no |
-| location | Location for the keyring. | string | `"global"` | no |
-| project\_id | The ID of the project in which to provision resources. | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| keyring | Keyring name. | `string` | n/a | yes |
+| keys | Key names. | `list(string)` | `[]` | no |
+| location | Location for the keyring. | `string` | `"global"` | no |
+| project\_id | The ID of the project in which to provision resources. | `string` | n/a | yes |
 
 ## Outputs
 
