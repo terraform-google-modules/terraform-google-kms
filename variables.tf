@@ -41,6 +41,12 @@ variable "prevent_destroy" {
   default     = true
 }
 
+variable "purpose" {
+  type        = string
+  description = "The immutable purpose of the CryptoKey. Possible values are ENCRYPT_DECRYPT, ASYMMETRIC_SIGN, and ASYMMETRIC_DECRYPT."
+  default     = "ENCRYPT_DECRYPT"
+}
+
 variable "set_owners_for" {
   description = "Name of keys for which owners will be set."
   type        = list(string)
