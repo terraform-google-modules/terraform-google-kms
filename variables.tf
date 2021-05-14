@@ -99,3 +99,9 @@ variable "labels" {
   description = "Labels, provided as a map"
   default     = {}
 }
+
+variable "purpose" {
+  type        = string
+  description = "The immutable purpose of the CryptoKey. Possible values are ENCRYPT_DECRYPT, ASYMMETRIC_SIGN, and ASYMMETRIC_DECRYPT."
+  default     = "ENCRYPT_DECRYPT"
+}

@@ -29,6 +29,7 @@ resource "google_kms_crypto_key" "key" {
   name            = var.keys[count.index]
   key_ring        = google_kms_key_ring.key_ring.self_link
   rotation_period = var.key_rotation_period
+  purpose         = var.purpose
 
   lifecycle {
     prevent_destroy = true
@@ -47,7 +48,8 @@ resource "google_kms_crypto_key" "key_ephemeral" {
   name            = var.keys[count.index]
   key_ring        = google_kms_key_ring.key_ring.self_link
   rotation_period = var.key_rotation_period
-
+  purpose         = var.purpose
+  
   lifecycle {
     prevent_destroy = false
   }
