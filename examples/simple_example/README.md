@@ -7,6 +7,7 @@ This example illustrates how to use the `kms` module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| key\_opts | Specifies key specific options. | `any` | `[]` | no |
 | keyring | Keyring name. | `string` | n/a | yes |
 | keys | Key names. | `list(string)` | `[]` | no |
 | location | Location for the keyring. | `string` | `"global"` | no |
@@ -17,7 +18,7 @@ This example illustrates how to use the `kms` module.
 | Name | Description |
 |------|-------------|
 | keyring | The name of the keyring. |
-| keys | List of created kkey names. |
+| keys | List of created key names. |
 | location | The location of the keyring. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

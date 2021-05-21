@@ -15,12 +15,18 @@
  */
 
 module "kms" {
-  source     = "../.."
-  project_id = var.project_id
-  keyring    = var.keyring
-  location   = "global"
-  keys       = var.keys
-  # keys can be destroyed by Terraform
-  prevent_destroy = false
-}
+  source = "../.."
 
+  project_id = var.project_id
+  location   = var.location
+  keyring    = "sample-keyring"
+  keys       = ["foo"]
+
+  key_opts = [
+    {
+      key             = "foo"
+      rotation_period = "100000s"
+      prevent_destroy = false
+    },
+  ]
+}
