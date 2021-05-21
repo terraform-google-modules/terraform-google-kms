@@ -14,23 +14,55 @@
  * limitations under the License.
  */
 
-output "keyring" {
-  description = "Self link of the keyring."
-  value       = google_kms_key_ring.key_ring.self_link
-}
-
-output "keyring_resource" {
-  description = "Keyring resource."
-  value       = google_kms_key_ring.key_ring
+output "existing_keyring" {
+  description = "Existing keyring is used, i.e. keyring has been created."
+  value       = var.existing_keyring
 }
 
 output "keys" {
-  description = "Map of key name => key self link."
-  value       = local.keys_by_name
+  description = "Map of key name => id."
+  value       = { for key in local.crypto_keys : key.name => key.id }
+}
+
+output "location" {
+  description = "Location of the keyring."
+  value       = var.location
+}
+
+output "keyring_project" {
+  description = "Project of the keyring."
+  value       = var.project_id
+}
+
+output "keyring_id" {
+  description = "Self link of the keyring."
+  value       = local.keyring_self_link
+}
+
+output "keyring_self_link" {
+  description = "Self link of the keyring."
+  value       = local.keyring_self_link
 }
 
 output "keyring_name" {
   description = "Name of the keyring."
-  value       = google_kms_key_ring.key_ring.name
+  value       = var.keyring
 }
 
+output "acl" {
+  description = "Access control list provided."
+  value = [for rule in var.acl :
+    merge(rule, { key_id = local.crypto_keys[rule.key].id })
+  ]
+}
+
+output "kms_keys" {
+  description = "Managed kms keys details."
+  value = { for k, v in local.crypto_keys : k => {
+    id              = v.id
+    key_ring        = v.key_ring
+    name            = v.name
+    purpose         = v.purpose
+    rotation_period = v.rotation_period
+  } }
+}

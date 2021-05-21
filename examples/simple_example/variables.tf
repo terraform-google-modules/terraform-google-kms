@@ -35,3 +35,9 @@ variable "keys" {
   type        = list(string)
   default     = []
 }
+
+variable "key_opts" {
+  description = "Specifies key specific options."
+  type        = any
+  default     = []
+}
