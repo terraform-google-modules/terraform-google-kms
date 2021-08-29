@@ -3,3 +3,6 @@ terraform.tfstate*
 *.pyc
 .kitchen
 credentials.json
+
+# tf lock file
+.terraform.lock.hcl
