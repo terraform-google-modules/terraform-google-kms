@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0](https://www.github.com/terraform-google-modules/terraform-google-kms/compare/v2.0.1...v2.1.0) (2021-12-13)
+
+
+### Features
+
+* update TPG version constraints to allow 4.0 ([#50](https://www.github.com/terraform-google-modules/terraform-google-kms/issues/50)) ([14d80d7](https://www.github.com/terraform-google-modules/terraform-google-kms/commit/14d80d70966ff2ea64481cca83e8acbfff3fa65b))
+
 ### [2.0.1](https://www.github.com/terraform-google-modules/terraform-google-kms/compare/v2.0.0...v2.0.1) (2021-08-11)
 
 
