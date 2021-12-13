@@ -16,7 +16,7 @@
 
 output "keyring" {
   description = "Self link of the keyring."
-  value       = google_kms_key_ring.key_ring.self_link
+  value       = google_kms_key_ring.key_ring.id
 
   # The grants are important to the key be ready to use.
   depends_on = [
