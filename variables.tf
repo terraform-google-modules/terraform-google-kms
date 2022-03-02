@@ -88,6 +88,12 @@ variable "key_algorithm" {
   default     = "GOOGLE_SYMMETRIC_ENCRYPTION"
 }
 
+variable "key_purpose" {
+  type        = string
+  description = "The purpose of this CryptoKey. Default value is ENCRYPT_DECRYPT. Possible values are \"ENCRYPT_DECRYPT\", \"ASYMMETRIC_SIGN\", and \"ASYMMETRIC_DECRYPT\"."
+  default     = "ENCRYPT_DECRYPT"
+}
+
 variable "key_protection_level" {
   type        = string
   description = "The protection level to use when creating a version based on this template. Default value: \"SOFTWARE\" Possible values: [\"SOFTWARE\", \"HSM\"]"
