@@ -29,7 +29,8 @@ resource "google_kms_crypto_key" "key" {
   name            = var.keys[count.index]
   key_ring        = google_kms_key_ring.key_ring.id
   rotation_period = var.key_rotation_period
-
+  purpose         = var.key_purpose
+  
   lifecycle {
     prevent_destroy = true
   }
