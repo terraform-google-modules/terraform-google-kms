@@ -9,7 +9,7 @@ Updated the based module to add a variable for "purpose" allowing you to update 
 
 The files that were updated are:
 
-* `main.tf` to include `purpose = var.key_purpose` under `google_kms_crypto_key`:
+* `main.tf` to include `purpose = var.key_purpose` under `google_kms_crypto_key = key` and also `google_kms_crypto_key = key_ephemeral`:
 
 ```hcl
 resource "google_kms_crypto_key" "key_ephemeral" {
