@@ -16,7 +16,7 @@ name: simple_example
 depends:
   - name: inspec-gcp
     git: https://github.com/inspec/inspec-gcp.git
-    tag: v1.8.8
+    tag: v1.10.27
 attributes:
   - name: project_id
     required: true
