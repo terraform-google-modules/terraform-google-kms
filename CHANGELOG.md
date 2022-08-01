@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1](https://github.com/terraform-google-modules/terraform-google-kms/compare/v2.2.0...v2.2.1) (2022-07-20)
+
+
+### Bug Fixes
+
+* adding missing purpose field for ephemeral keys ([#61](https://github.com/terraform-google-modules/terraform-google-kms/issues/61)) ([1d6b259](https://github.com/terraform-google-modules/terraform-google-kms/commit/1d6b259d9796ac1cc76ee424966e2771ee93ee4b))
+
 ## [2.2.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v2.1.0...v2.2.0) (2022-06-10)
 
 
