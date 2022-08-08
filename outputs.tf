@@ -14,51 +14,35 @@
  * limitations under the License.
  */
 
-output "keyring" {
-  description = "Self link of the keyring."
-  value       = google_kms_key_ring.key_ring.id
-
-  # The grants are important to the key be ready to use.
-  depends_on = [
-    google_kms_crypto_key_iam_binding.owners,
-    google_kms_crypto_key_iam_binding.decrypters,
-    google_kms_crypto_key_iam_binding.encrypters,
-  ]
-}
-
-output "keyring_resource" {
-  description = "Keyring resource."
-  value       = google_kms_key_ring.key_ring
-
-  # The grants are important to the key be ready to use.
-  depends_on = [
-    google_kms_crypto_key_iam_binding.owners,
-    google_kms_crypto_key_iam_binding.decrypters,
-    google_kms_crypto_key_iam_binding.encrypters,
-  ]
+output "existing_keyring" {
+  description = "Existing keyring is used, i.e. keyring has been created."
+  value       = var.existing_keyring
 }
 
 output "keys" {
-  description = "Map of key name => key self link."
-  value       = local.keys_by_name
+  description = "Map of key name => id."
+  value       = { for key in local.crypto_keys : key.name => key.id }
+}
 
-  # The grants are important to the key be ready to use.
-  depends_on = [
-    google_kms_crypto_key_iam_binding.owners,
-    google_kms_crypto_key_iam_binding.decrypters,
-    google_kms_crypto_key_iam_binding.encrypters,
+output "keyring_id" {
+  description = "Self link of the keyring."
+  value       = local.keyring_id
+}
+
+output "acl" {
+  description = "Access control list provided."
+  value = [for rule in var.acl :
+    merge(rule, { key_id = local.crypto_keys[rule.key].id })
   ]
 }
 
-output "keyring_name" {
-  description = "Name of the keyring."
-  value       = google_kms_key_ring.key_ring.name
-
-  # The grants are important to the key be ready to use.
-  depends_on = [
-    google_kms_crypto_key_iam_binding.owners,
-    google_kms_crypto_key_iam_binding.decrypters,
-    google_kms_crypto_key_iam_binding.encrypters,
-  ]
+output "kms_keys" {
+  description = "Managed kms keys details."
+  value = { for k, v in local.crypto_keys : k => {
+    id              = v.id
+    key_ring        = v.key_ring
+    name            = v.name
+    purpose         = v.purpose
+    rotation_period = v.rotation_period
+  } }
 }
-

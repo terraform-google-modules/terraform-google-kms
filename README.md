@@ -28,10 +28,23 @@ module "kms" {
   location           = "europe"
   keyring            = "sample-keyring"
   keys               = ["foo", "spam"]
-  set_owners_for     = ["foo", "spam"]
-  owners = [
-    "group:one@example.com,group:two@example.com",
-    "group:one@example.com",
+
+  key_opts = [
+    {
+      key = "foo"
+      rotation_period = "100000s"
+    },
+  ]
+
+  acl = [
+    {
+      key = "foo"
+      owners = ["group:one@example.com","user:two@example.com"]
+    },
+    {
+      key = "spam"
+      encrypters = ["serviceAccount:one@example.com"]
+    }
   ]
 }
 ```
@@ -44,31 +57,24 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| decrypters | List of comma-separated owners for each key declared in set\_decrypters\_for. | `list(string)` | `[]` | no |
-| encrypters | List of comma-separated owners for each key declared in set\_encrypters\_for. | `list(string)` | `[]` | no |
-| key\_algorithm | The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs. | `string` | `"GOOGLE_SYMMETRIC_ENCRYPTION"` | no |
-| key\_protection\_level | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM"] | `string` | `"SOFTWARE"` | no |
-| key\_rotation\_period | n/a | `string` | `"100000s"` | no |
+| acl | Access control list for the managed keys. | `list(any)` | `[]` | no |
+| existing\_keyring | Use existing keyring | `bool` | `false` | no |
+| key\_opts | Specifies key specific options. | `any` | `[]` | no |
 | keyring | Keyring name. | `string` | n/a | yes |
 | keys | Key names. | `list(string)` | `[]` | no |
-| labels | Labels, provided as a map | `map(string)` | `{}` | no |
 | location | Location for the keyring. | `string` | n/a | yes |
-| owners | List of comma-separated owners for each key declared in set\_owners\_for. | `list(string)` | `[]` | no |
 | prevent\_destroy | Set the prevent\_destroy lifecycle attribute on keys. | `bool` | `true` | no |
 | project\_id | Project id where the keyring will be created. | `string` | n/a | yes |
-| purpose | The immutable purpose of the CryptoKey. Possible values are ENCRYPT\_DECRYPT, ASYMMETRIC\_SIGN, and ASYMMETRIC\_DECRYPT. | `string` | `"ENCRYPT_DECRYPT"` | no |
-| set\_decrypters\_for | Name of keys for which decrypters will be set. | `list(string)` | `[]` | no |
-| set\_encrypters\_for | Name of keys for which encrypters will be set. | `list(string)` | `[]` | no |
-| set\_owners\_for | Name of keys for which owners will be set. | `list(string)` | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| keyring | Self link of the keyring. |
-| keyring\_name | Name of the keyring. |
-| keyring\_resource | Keyring resource. |
-| keys | Map of key name => key self link. |
+| acl | Access control list provided. |
+| existing\_keyring | Existing keyring is used, i.e. keyring has been created. |
+| keyring\_id | Self link of the keyring. |
+| keys | Map of key name => id. |
+| kms\_keys | Managed kms keys details. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

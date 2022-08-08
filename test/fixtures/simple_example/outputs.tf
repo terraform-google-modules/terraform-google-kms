@@ -14,19 +14,9 @@
  * limitations under the License.
  */
 
-output "keyring" {
-  description = "The name of the keyring."
-  value       = module.example.keyring
-}
-
 output "keys" {
   description = "Name of generated keys."
   value       = module.example.keys
-}
-
-output "location" {
-  description = "Location for the keyring."
-  value       = module.example.location
 }
 
 output "project_id" {

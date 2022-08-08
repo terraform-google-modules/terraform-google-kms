@@ -29,5 +29,13 @@ module "example" {
   project_id = var.project_id
   keyring    = random_pet.main.id
   location   = "global"
-  keys       = ["one", "two"]
+  keys       = ["foo"]
+
+  key_opts = [
+    {
+      key             = "foo"
+      rotation_period = "100000s"
+      prevent_destroy = false
+    },
+  ]
 }
