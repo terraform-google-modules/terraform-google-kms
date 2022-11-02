@@ -1,4 +1,4 @@
-module github.com/terraform-google-modules/workspace/test/integration
+module  github.com/terraform-google-modules/terraform-google-kms/test/integration
 
 go 1.16
 

@@ -16,8 +16,6 @@ package simple_example
 
 import (
 	"fmt"
-	"regexp"
-	"strings"
 	"testing"
 
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
@@ -33,16 +31,14 @@ func TestSimpleExample(t *testing.T) {
 		projectId := bpt.GetStringOutput("project_id")
 		keyring := bpt.GetStringOutput("keyring")
 		location := bpt.GetStringOutput("location")
-		keys := bpt.GetStringOutput("keys")
+		keys := [2]string{"one", "two"}
 
 		op := gcloud.Runf(t, "--project=%s kms keyrings list --location %s", projectId, location).Array()[0].Get("name")
 		assert.Contains(op.String(), fmt.Sprintf("projects/%s/locations/%s/keyRings/%s", projectId, location, keyring), "Contains KeyRing")
 
 		op1 := gcloud.Runf(t, "kms keys list --project=%s --keyring %s --location %s", projectId, keyring, location).Array()
-		keys = regexp.MustCompile(`[^a-zA-Z0-9 ]+`).ReplaceAllString(keys, "")
 		for index, element := range op1 {
-			key := strings.Fields(keys)
-			assert.Contains(element.Get("name").String(), fmt.Sprintf("projects/%s/locations/%s/keyRings/%s/cryptoKeys/%s", projectId, location, keyring, key[index]), "Contains Keys")
+			assert.Contains(element.Get("name").String(), fmt.Sprintf("projects/%s/locations/%s/keyRings/%s/cryptoKeys/%s", projectId, location, keyring, keys[index]), "Contains Keys")
 		}
 	})
 
