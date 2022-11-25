@@ -28,11 +28,16 @@ module "kms" {
   location           = "europe"
   keyring            = "sample-keyring"
   keys               = ["foo", "spam"]
-  set_owners_for     = ["foo", "spam"]
-  owners = [
-    "group:one@example.com,group:two@example.com",
-    "group:one@example.com",
-  ]
+
+  owners = {
+    foo = [
+      "group:one@example.com",
+      "group:two@example.com",
+    ]
+    spam = [
+      "group:one@example.com",
+    ]
+  }
 }
 ```
 
@@ -44,8 +49,8 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| decrypters | List of comma-separated owners for each key declared in set\_decrypters\_for. | `list(string)` | `[]` | no |
-| encrypters | List of comma-separated owners for each key declared in set\_encrypters\_for. | `list(string)` | `[]` | no |
+| decrypters | Map of decrypter for each key. | `map(list(string))` | `{}` | no |
+| encrypters | Map of encrypter for each key. | `map(list(string))` | `{}` | no |
 | key\_algorithm | The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs. | `string` | `"GOOGLE_SYMMETRIC_ENCRYPTION"` | no |
 | key\_protection\_level | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM"] | `string` | `"SOFTWARE"` | no |
 | key\_rotation\_period | n/a | `string` | `"100000s"` | no |
@@ -53,13 +58,10 @@ Functional examples are included in the
 | keys | Key names. | `list(string)` | `[]` | no |
 | labels | Labels, provided as a map | `map(string)` | `{}` | no |
 | location | Location for the keyring. | `string` | n/a | yes |
-| owners | List of comma-separated owners for each key declared in set\_owners\_for. | `list(string)` | `[]` | no |
+| owners | Map of owners for each key. | `map(list(string))` | `{}` | no |
 | prevent\_destroy | Set the prevent\_destroy lifecycle attribute on keys. | `bool` | `true` | no |
 | project\_id | Project id where the keyring will be created. | `string` | n/a | yes |
 | purpose | The immutable purpose of the CryptoKey. Possible values are ENCRYPT\_DECRYPT, ASYMMETRIC\_SIGN, and ASYMMETRIC\_DECRYPT. | `string` | `"ENCRYPT_DECRYPT"` | no |
-| set\_decrypters\_for | Name of keys for which decrypters will be set. | `list(string)` | `[]` | no |
-| set\_encrypters\_for | Name of keys for which encrypters will be set. | `list(string)` | `[]` | no |
-| set\_owners\_for | Name of keys for which owners will be set. | `list(string)` | `[]` | no |
 
 ## Outputs
 

@@ -40,7 +40,7 @@ output "keyring_resource" {
 
 output "keys" {
   description = "Map of key name => key self link."
-  value       = local.keys_by_name
+  value       = var.keys
 
   # The grants are important to the key be ready to use.
   depends_on = [
