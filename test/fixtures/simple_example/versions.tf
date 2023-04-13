@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-module "kms" {
-  source     = "../.."
-  project_id = var.project_id
-  keyring    = var.keyring
-  location   = var.location
-  keys       = var.keys
-  # keys can be destroyed by Terraform
-  prevent_destroy = false
+terraform {
+  required_version = ">= 0.13"
+  required_providers {
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 3.0"
+    }
+  }
 }
-

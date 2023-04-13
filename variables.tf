@@ -38,6 +38,7 @@ variable "keys" {
 
 variable "prevent_destroy" {
   description = "Set the prevent_destroy lifecycle attribute on keys."
+  type        = bool
   default     = true
 }
 
@@ -84,8 +85,9 @@ variable "decrypters" {
 }
 
 variable "key_rotation_period" {
-  type    = string
-  default = "100000s"
+  description = "Generate a new key every time this period passes."
+  type        = string
+  default     = "100000s"
 }
 
 variable "key_algorithm" {
