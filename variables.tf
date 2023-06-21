@@ -48,40 +48,22 @@ variable "purpose" {
   default     = "ENCRYPT_DECRYPT"
 }
 
-variable "set_owners_for" {
-  description = "Name of keys for which owners will be set."
-  type        = list(string)
-  default     = []
+variable "owners_by_key" {
+  description = "Map of keys and lists of their owners"
+  type        = map(list(string))
+  default     = {}
 }
 
-variable "owners" {
-  description = "List of comma-separated owners for each key declared in set_owners_for."
-  type        = list(string)
-  default     = []
+variable "encrypters_by_key" {
+  description = "Map of keys and lists of their encrypters"
+  type        = map(list(string))
+  default     = {}
 }
 
-variable "set_encrypters_for" {
-  description = "Name of keys for which encrypters will be set."
-  type        = list(string)
-  default     = []
-}
-
-variable "encrypters" {
-  description = "List of comma-separated owners for each key declared in set_encrypters_for."
-  type        = list(string)
-  default     = []
-}
-
-variable "set_decrypters_for" {
-  description = "Name of keys for which decrypters will be set."
-  type        = list(string)
-  default     = []
-}
-
-variable "decrypters" {
-  description = "List of comma-separated owners for each key declared in set_decrypters_for."
-  type        = list(string)
-  default     = []
+variable "decrypters_by_key" {
+  description = "Map of keys and their decrypters"
+  type        = map(list(string))
+  default     = {}
 }
 
 variable "key_rotation_period" {

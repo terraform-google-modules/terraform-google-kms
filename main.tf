@@ -63,23 +63,25 @@ resource "google_kms_crypto_key" "key_ephemeral" {
 }
 
 resource "google_kms_crypto_key_iam_binding" "owners" {
-  count         = length(var.set_owners_for)
+  for_each = var.owners_by_key
+
   role          = "roles/owner"
-  crypto_key_id = local.keys_by_name[var.set_owners_for[count.index]]
-  members       = compact(split(",", var.owners[count.index]))
+  crypto_key_id = local.keys_by_name[each.key]
+  members       = each.value
 }
 
 resource "google_kms_crypto_key_iam_binding" "decrypters" {
-  count         = length(var.set_decrypters_for)
+  for_each = var.decrypters_by_key
+
   role          = "roles/cloudkms.cryptoKeyDecrypter"
-  crypto_key_id = local.keys_by_name[var.set_decrypters_for[count.index]]
-  members       = compact(split(",", var.decrypters[count.index]))
+  crypto_key_id = local.keys_by_name[each.key]
+  members       = each.value
 }
 
 resource "google_kms_crypto_key_iam_binding" "encrypters" {
-  count         = length(var.set_encrypters_for)
-  role          = "roles/cloudkms.cryptoKeyEncrypter"
-  crypto_key_id = local.keys_by_name[element(var.set_encrypters_for, count.index)]
-  members       = compact(split(",", var.encrypters[count.index]))
-}
+  for_each = var.encrypters_by_key
 
+  role          = "roles/cloudkms.cryptoKeyEncrypter"
+  crypto_key_id = local.keys_by_name[each.key]
+  members       = each.value
+}

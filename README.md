@@ -28,10 +28,12 @@ module "kms" {
   location           = "europe"
   keyring            = "sample-keyring"
   keys               = ["foo", "spam"]
-  set_owners_for     = ["foo", "spam"]
-  owners = [
-    "group:one@example.com,group:two@example.com",
-    "group:one@example.com",
+  owners_by_key = [
+    foo: [
+      "group:one@example.com",
+      "group:two@example.com"
+    ]
+    spam: ["group:one@example.com"]
   ]
 }
 ```
@@ -44,31 +46,29 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| decrypters | List of comma-separated owners for each key declared in set\_decrypters\_for. | `list(string)` | `[]` | no |
-| encrypters | List of comma-separated owners for each key declared in set\_encrypters\_for. | `list(string)` | `[]` | no |
-| key\_algorithm | The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs. | `string` | `"GOOGLE_SYMMETRIC_ENCRYPTION"` | no |
-| key\_protection\_level | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM"] | `string` | `"SOFTWARE"` | no |
-| key\_rotation\_period | Generate a new key every time this period passes. | `string` | `"100000s"` | no |
-| keyring | Keyring name. | `string` | n/a | yes |
-| keys | Key names. | `list(string)` | `[]` | no |
-| labels | Labels, provided as a map | `map(string)` | `{}` | no |
-| location | Location for the keyring. | `string` | n/a | yes |
-| owners | List of comma-separated owners for each key declared in set\_owners\_for. | `list(string)` | `[]` | no |
-| prevent\_destroy | Set the prevent\_destroy lifecycle attribute on keys. | `bool` | `true` | no |
-| project\_id | Project id where the keyring will be created. | `string` | n/a | yes |
-| purpose | The immutable purpose of the CryptoKey. Possible values are ENCRYPT\_DECRYPT, ASYMMETRIC\_SIGN, and ASYMMETRIC\_DECRYPT. | `string` | `"ENCRYPT_DECRYPT"` | no |
-| set\_decrypters\_for | Name of keys for which decrypters will be set. | `list(string)` | `[]` | no |
-| set\_encrypters\_for | Name of keys for which encrypters will be set. | `list(string)` | `[]` | no |
-| set\_owners\_for | Name of keys for which owners will be set. | `list(string)` | `[]` | no |
+| <a name="input_decrypters_by_key"></a> [decrypters\_by\_key](#input\_decrypters\_by\_key) | Map of keys and their decrypters | `map(list(string))` | `{}` | no |
+| <a name="input_encrypters_by_key"></a> [encrypters\_by\_key](#input\_encrypters\_by\_key) | Map of keys and lists of their encrypters | `map(list(string))` | `{}` | no |
+| <a name="input_key_algorithm"></a> [key\_algorithm](#input\_key\_algorithm) | The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs. | `string` | `"GOOGLE_SYMMETRIC_ENCRYPTION"` | no |
+| <a name="input_key_protection_level"></a> [key\_protection\_level](#input\_key\_protection\_level) | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM"] | `string` | `"SOFTWARE"` | no |
+| <a name="input_key_rotation_period"></a> [key\_rotation\_period](#input\_key\_rotation\_period) | Generate a new key every time this period passes. | `string` | `"100000s"` | no |
+| <a name="input_keyring"></a> [keyring](#input\_keyring) | Keyring name. | `string` | n/a | yes |
+| <a name="input_keys"></a> [keys](#input\_keys) | Key names. | `list(string)` | `[]` | no |
+| <a name="input_labels"></a> [labels](#input\_labels) | Labels, provided as a map | `map(string)` | `{}` | no |
+| <a name="input_location"></a> [location](#input\_location) | Location for the keyring. | `string` | n/a | yes |
+| <a name="input_owners_by_key"></a> [owners\_by\_key](#input\_owners\_by\_key) | Map of keys and lists of their owners | `map(list(string))` | `{}` | no |
+| <a name="input_prevent_destroy"></a> [prevent\_destroy](#input\_prevent\_destroy) | Set the prevent\_destroy lifecycle attribute on keys. | `bool` | `true` | no |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | Project id where the keyring will be created. | `string` | n/a | yes |
+| <a name="input_purpose"></a> [purpose](#input\_purpose) | The immutable purpose of the CryptoKey. Possible values are ENCRYPT\_DECRYPT, ASYMMETRIC\_SIGN, and ASYMMETRIC\_DECRYPT. | `string` | `"ENCRYPT_DECRYPT"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| keyring | Self link of the keyring. |
-| keyring\_name | Name of the keyring. |
-| keyring\_resource | Keyring resource. |
-| keys | Map of key name => key self link. |
+| <a name="output_keyring"></a> [keyring](#output\_keyring) | Self link of the keyring. |
+| <a name="output_keyring_name"></a> [keyring\_name](#output\_keyring\_name) | Name of the keyring. |
+| <a name="output_keyring_resource"></a> [keyring\_resource](#output\_keyring\_resource) | Keyring resource. |
+| <a name="output_keys"></a> [keys](#output\_keys) | Map of key name => key self link. |
+<!-- END_TF_DOCS -->
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
