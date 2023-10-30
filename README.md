@@ -47,6 +47,7 @@ Functional examples are included in the
 | decrypters | List of comma-separated owners for each key declared in set\_decrypters\_for. | `list(string)` | `[]` | no |
 | encrypters | List of comma-separated owners for each key declared in set\_encrypters\_for. | `list(string)` | `[]` | no |
 | key\_algorithm | The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs. | `string` | `"GOOGLE_SYMMETRIC_ENCRYPTION"` | no |
+| key\_destroy\_scheduled\_duration | Set The period of time that versions of keys spend in the DESTROY\_SCHEDULED state before transitioning to DESTROYED. | `string` | `"86400"` | no |
 | key\_protection\_level | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM"] | `string` | `"SOFTWARE"` | no |
 | key\_rotation\_period | Generate a new key every time this period passes. | `string` | `"100000s"` | no |
 | keyring | Keyring name. | `string` | n/a | yes |
@@ -55,7 +56,6 @@ Functional examples are included in the
 | location | Location for the keyring. | `string` | n/a | yes |
 | owners | List of comma-separated owners for each key declared in set\_owners\_for. | `list(string)` | `[]` | no |
 | prevent\_destroy | Set the prevent\_destroy lifecycle attribute on keys. | `bool` | `true` | no |
-| key\_destroy\_scheduled\_duration | Set the destroy\_scheduled\_duration attribute on keys. The default when not set is 24 hours | `string` | `""` | no |
 | project\_id | Project id where the keyring will be created. | `string` | n/a | yes |
 | purpose | The immutable purpose of the CryptoKey. Possible values are ENCRYPT\_DECRYPT, ASYMMETRIC\_SIGN, and ASYMMETRIC\_DECRYPT. | `string` | `"ENCRYPT_DECRYPT"` | no |
 | set\_decrypters\_for | Name of keys for which decrypters will be set. | `list(string)` | `[]` | no |

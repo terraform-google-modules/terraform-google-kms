@@ -43,9 +43,9 @@ variable "prevent_destroy" {
 }
 
 variable "key_destroy_scheduled_duration" {
-  description = "Set The period of time that versions of keys spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED"
+  description = "Set The period of time that versions of keys spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED."
   type = string
-  default = ""
+  default = "86400"
 }
 
 variable "purpose" {
