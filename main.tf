@@ -35,6 +35,8 @@ resource "google_kms_crypto_key" "key" {
     prevent_destroy = true
   }
 
+  destroy_scheduled_duration  = var.key_destroy_scheduled_duration
+
   version_template {
     algorithm        = var.key_algorithm
     protection_level = var.key_protection_level
@@ -53,6 +55,8 @@ resource "google_kms_crypto_key" "key_ephemeral" {
   lifecycle {
     prevent_destroy = false
   }
+
+  destroy_scheduled_duration  = var.key_destroy_scheduled_duration 
 
   version_template {
     algorithm        = var.key_algorithm

@@ -55,6 +55,7 @@ Functional examples are included in the
 | location | Location for the keyring. | `string` | n/a | yes |
 | owners | List of comma-separated owners for each key declared in set\_owners\_for. | `list(string)` | `[]` | no |
 | prevent\_destroy | Set the prevent\_destroy lifecycle attribute on keys. | `bool` | `true` | no |
+| key\_destroy\_scheduled\_duration | Set the destroy\_scheduled\_duration attribute on keys. The default when not set is 24 hours | `string` | `""` | no |
 | project\_id | Project id where the keyring will be created. | `string` | n/a | yes |
 | purpose | The immutable purpose of the CryptoKey. Possible values are ENCRYPT\_DECRYPT, ASYMMETRIC\_SIGN, and ASYMMETRIC\_DECRYPT. | `string` | `"ENCRYPT_DECRYPT"` | no |
 | set\_decrypters\_for | Name of keys for which decrypters will be set. | `list(string)` | `[]` | no |

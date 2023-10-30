@@ -42,6 +42,12 @@ variable "prevent_destroy" {
   default     = true
 }
 
+variable "key_destroy_scheduled_duration" {
+  description = "Set The period of time that versions of keys spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED"
+  type = string
+  default = ""
+}
+
 variable "purpose" {
   type        = string
   description = "The immutable purpose of the CryptoKey. Possible values are ENCRYPT_DECRYPT, ASYMMETRIC_SIGN, and ASYMMETRIC_DECRYPT."
