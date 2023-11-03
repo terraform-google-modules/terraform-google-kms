@@ -93,7 +93,7 @@ variable "decrypters" {
 variable "key_rotation_period" {
   description = "Generate a new key every time this period passes."
   type        = string
-  default     = "100000s"
+  default     = "7776000s"
 }
 
 variable "key_algorithm" {
