@@ -25,7 +25,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-kms/v2.2.3"
+    module_name = "blueprints/terraform/terraform-google-kms/v2.3.0"
   }
 
 }
