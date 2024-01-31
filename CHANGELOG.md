@@ -7,6 +7,18 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v2.2.3...v2.3.0) (2024-01-30)
+
+
+### Features
+
+* add support for destroy_scheduled_duration ([#109](https://github.com/terraform-google-modules/terraform-google-kms/issues/109)) ([c26f3fb](https://github.com/terraform-google-modules/terraform-google-kms/commit/c26f3fb91186d809bbc4c7856fe6a73c9b193344))
+
+
+### Bug Fixes
+
+* Change default rotation period from 28 hours to 90 days  ([#111](https://github.com/terraform-google-modules/terraform-google-kms/issues/111)) ([44d01da](https://github.com/terraform-google-modules/terraform-google-kms/commit/44d01da9fc471b03b48bbf67bc977b7d98a19d79))
+
 ## [2.2.3](https://github.com/terraform-google-modules/terraform-google-kms/compare/v2.2.2...v2.2.3) (2023-10-16)
 
 
