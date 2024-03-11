@@ -30,6 +30,8 @@ resource "google_kms_crypto_key" "key" {
   key_ring        = google_kms_key_ring.key_ring.id
   rotation_period = var.key_rotation_period
   purpose         = var.purpose
+  import_only     = var.import_only
+  skip_initial_version_creation = var.skip_initial_version_creation
 
   lifecycle {
     prevent_destroy = true
@@ -51,6 +53,8 @@ resource "google_kms_crypto_key" "key_ephemeral" {
   key_ring        = google_kms_key_ring.key_ring.id
   rotation_period = var.key_rotation_period
   purpose         = var.purpose
+  import_only     = var.import_only
+  skip_initial_version_creation = var.skip_initial_version_creation
 
   lifecycle {
     prevent_destroy = false
