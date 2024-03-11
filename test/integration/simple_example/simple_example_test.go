@@ -16,6 +16,7 @@ package simple_example
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
@@ -33,8 +34,16 @@ func TestSimpleExample(t *testing.T) {
 		location := bpt.GetStringOutput("location")
 		keys := [2]string{"one", "two"}
 
-		op := gcloud.Runf(t, "--project=%s kms keyrings list --location %s", projectId, location).Array()[0].Get("name")
-		assert.Contains(op.String(), fmt.Sprintf("projects/%s/locations/%s/keyRings/%s", projectId, location, keyring), "Contains KeyRing")
+		resultArray := gcloud.Runf(t, "--project=%s kms keyrings list --location %s", projectId, location).Array()
+		found := false
+		for _, item := range resultArray {
+			name := item.Get("name").String()
+			if strings.Contains(name, fmt.Sprintf("projects/%s/locations/%s/keyRings/%s", projectId, location, keyring)) {
+				found = true
+				break
+			}
+		}
+		assert.True(found, "Contains KeyRing")
 
 		op1 := gcloud.Runf(t, "kms keys list --project=%s --keyring %s --location %s", projectId, keyring, location).Array()
 		for index, element := range op1 {
