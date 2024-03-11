@@ -15,7 +15,7 @@
  */
 
 module "kms" {
-  source = "../.."
+  source = "romanini-ciandt/kms/google"
   # source  = "terraform-google-modules/kms/google"
   # version = "~> 2.0"
 
@@ -28,7 +28,7 @@ module "kms" {
   import_only                   = var.import_only
   skip_initial_version_creation = var.skip_initial_version_creation
   key_rotation_period           = var.key_rotation_period
-  purpose = var.purpose
-  key_algorithm = var.key_algorithm
+  purpose                       = var.purpose
+  key_algorithm                 = var.key_algorithm
 }
 

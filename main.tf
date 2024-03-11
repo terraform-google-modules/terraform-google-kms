@@ -25,12 +25,12 @@ resource "google_kms_key_ring" "key_ring" {
 }
 
 resource "google_kms_crypto_key" "key" {
-  count           = var.prevent_destroy ? length(var.keys) : 0
-  name            = var.keys[count.index]
-  key_ring        = google_kms_key_ring.key_ring.id
-  rotation_period = var.key_rotation_period
-  purpose         = var.purpose
-  import_only     = var.import_only
+  count                         = var.prevent_destroy ? length(var.keys) : 0
+  name                          = var.keys[count.index]
+  key_ring                      = google_kms_key_ring.key_ring.id
+  rotation_period               = var.key_rotation_period
+  purpose                       = var.purpose
+  import_only                   = var.import_only
   skip_initial_version_creation = var.skip_initial_version_creation
 
   lifecycle {
@@ -48,12 +48,12 @@ resource "google_kms_crypto_key" "key" {
 }
 
 resource "google_kms_crypto_key" "key_ephemeral" {
-  count           = var.prevent_destroy ? 0 : length(var.keys)
-  name            = var.keys[count.index]
-  key_ring        = google_kms_key_ring.key_ring.id
-  rotation_period = var.key_rotation_period
-  purpose         = var.purpose
-  import_only     = var.import_only
+  count                         = var.prevent_destroy ? 0 : length(var.keys)
+  name                          = var.keys[count.index]
+  key_ring                      = google_kms_key_ring.key_ring.id
+  rotation_period               = var.key_rotation_period
+  purpose                       = var.purpose
+  import_only                   = var.import_only
   skip_initial_version_creation = var.skip_initial_version_creation
 
   lifecycle {

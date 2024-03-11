@@ -115,13 +115,13 @@ variable "labels" {
 }
 
 variable "import_only" {
-  type = bool
+  type        = bool
   description = "Whether these keys may contain imported versions only."
-  default = false
+  default     = false
 }
 
 variable "skip_initial_version_creation" {
-  type = bool
+  type        = bool
   description = "If set to true, the request will create CryptoKeys without any CryptoKeyVersions."
-  default = false
+  default     = false
 }

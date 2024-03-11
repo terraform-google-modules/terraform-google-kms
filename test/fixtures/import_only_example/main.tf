@@ -21,14 +21,14 @@ resource "random_pet" "main" {
 }
 
 module "example" {
-  source     = "../../../examples/import_only_example"
-  project_id = var.project_id
-  keyring    = random_pet.main.id
-  location   = "global"
-  keys       = ["one", "two"]
-  import_only = true
+  source                        = "../../../examples/import_only_example"
+  project_id                    = var.project_id
+  keyring                       = random_pet.main.id
+  location                      = "global"
+  keys                          = ["one", "two"]
+  import_only                   = true
   skip_initial_version_creation = true
-  key_rotation_period = ""
-  purpose = "RAW_ENCRYPT_DECRYPT"
-  key_algorithm = "AES_256_GCM"
+  key_rotation_period           = ""
+  purpose                       = "RAW_ENCRYPT_DECRYPT"
+  key_algorithm                 = "AES_256_GCM"
 }
