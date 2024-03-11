@@ -50,7 +50,7 @@ variable "key_destroy_scheduled_duration" {
 
 variable "purpose" {
   type        = string
-  description = "Default value is ENCRYPT_DECRYPT. See purpose reference (https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose) for possible inputs:"
+  description = "The immutable purpose of the CryptoKey. Default value is ENCRYPT_DECRYPT. See purpose reference (https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose) for possible inputs:"
   default     = "ENCRYPT_DECRYPT"
 }
 
