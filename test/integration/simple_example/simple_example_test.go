@@ -33,7 +33,7 @@ func TestSimpleExample(t *testing.T) {
 		location := bpt.GetStringOutput("location")
 		keys := [2]string{"one", "two"}
 
-		op := gcloud.Runf(t, "--project=%s kms keyrings list --location %s", projectId, location).Array()[0].Get("name")
+		op := gcloud.Runf(t, "--project=%s kms keyrings list --location %s --sort-by ~createTime", projectId, location).Array()[0].Get("name")
 		assert.Contains(op.String(), fmt.Sprintf("projects/%s/locations/%s/keyRings/%s", projectId, location, keyring), "Contains KeyRing")
 
 		op1 := gcloud.Runf(t, "kms keys list --project=%s --keyring %s --location %s", projectId, keyring, location).Array()
