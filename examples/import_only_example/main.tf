@@ -15,7 +15,7 @@
  */
 
 module "kms" {
-  source = "github.com/romanini-ciandt/terraform-google-kms?ref=11b64a6b1829ddc8ef9cf200d00565064fbd9e61"
+  source = "../.."
 
   # TODO: Update with the following source when v2.4 is released
   # source  = "terraform-google-modules/kms/google"
