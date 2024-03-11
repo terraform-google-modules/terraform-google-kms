@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ variable "skip_initial_version_creation" {
 
 variable "purpose" {
   type        = string
-  description = "The immutable purpose of the CryptoKey. Default value is ENCRYPT_DECRYPT. See purpose reference (https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose) for possible inputs:"
+  description = "The immutable purpose of the CryptoKey. Default value is ENCRYPT_DECRYPT. See purpose reference (https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose) for possible inputs."
   default     = "ENCRYPT_DECRYPT"
 }
 

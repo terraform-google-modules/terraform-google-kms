@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,11 @@
  */
 
 module "kms" {
-  source = "romanini-ciandt/kms/google"
+  source = "github.com/romanini-ciandt/terraform-google-kms?ref=11b64a6b1829ddc8ef9cf200d00565064fbd9e61"
+
+  # TODO: Update with the following source when v2.4 is released
   # source  = "terraform-google-modules/kms/google"
-  # version = "~> 2.0"
+  # version = "~> 2.4"
 
   project_id = var.project_id
   keyring    = var.keyring

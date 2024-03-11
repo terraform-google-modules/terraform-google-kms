@@ -1,6 +1,6 @@
-# Simple Example
+# Import Only Example
 
-This example illustrates how to use the `kms` module.
+This example illustrates how to use the `kms` module when you want to create a CryptoKey with no CryptoKeyVersion in order to import the key material.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
@@ -14,7 +14,7 @@ This example illustrates how to use the `kms` module.
 | keys | Key names. | `list(string)` | `[]` | no |
 | location | Location for the keyring. | `string` | `"global"` | no |
 | project\_id | The ID of the project in which to provision resources. | `string` | n/a | yes |
-| purpose | The immutable purpose of the CryptoKey. Default value is ENCRYPT\_DECRYPT. See purpose reference (https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose) for possible inputs: | `string` | `"ENCRYPT_DECRYPT"` | no |
+| purpose | The immutable purpose of the CryptoKey. Default value is ENCRYPT\_DECRYPT. See purpose reference (https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose) for possible inputs. | `string` | `"ENCRYPT_DECRYPT"` | no |
 | skip\_initial\_version\_creation | If set to true, the request will create CryptoKeys without any CryptoKeyVersions. | `bool` | `false` | no |
 
 ## Outputs
