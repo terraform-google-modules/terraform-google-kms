@@ -117,5 +117,5 @@ variable "labels" {
 variable "crypto_key_backend" {
   type        = string
   description = "(Optional) The resource name of the backend environment associated with all CryptoKeyVersions within this CryptoKey. The resource name is in the format 'projects//locations//ekmConnections/*' and only applies to 'EXTERNAL_VPC' keys."
-  default     = ""
+  default     = null
 }
