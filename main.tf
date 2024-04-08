@@ -32,7 +32,7 @@ resource "google_kms_crypto_key" "key" {
   purpose                       = var.purpose
   import_only                   = var.import_only
   skip_initial_version_creation = var.skip_initial_version_creation
-  crypto_key_backend = var.crypto_key_backend
+  crypto_key_backend            = var.crypto_key_backend
 
   lifecycle {
     prevent_destroy = true
@@ -56,7 +56,7 @@ resource "google_kms_crypto_key" "key_ephemeral" {
   purpose                       = var.purpose
   import_only                   = var.import_only
   skip_initial_version_creation = var.skip_initial_version_creation
-  crypto_key_backend = var.crypto_key_backend
+  crypto_key_backend            = var.crypto_key_backend
 
   lifecycle {
     prevent_destroy = false
