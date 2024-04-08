@@ -104,7 +104,7 @@ variable "key_algorithm" {
 
 variable "key_protection_level" {
   type        = string
-  description = "The protection level to use when creating a version based on this template. Default value: \"SOFTWARE\" Possible values: [\"SOFTWARE\", \"HSM\"]"
+  description = "The protection level to use when creating a version based on this template. Default value: \"SOFTWARE\" Possible values: [\"SOFTWARE\", \"HSM\", \"EXTERNAL\", \"EXTERNAL_VPC\"]"
   default     = "SOFTWARE"
 }
 
@@ -112,4 +112,10 @@ variable "labels" {
   type        = map(string)
   description = "Labels, provided as a map"
   default     = {}
+}
+
+variable "crypto_key_backend" {
+  type        = string
+  description = "(Optional) The resource name of the backend environment associated with all CryptoKeyVersions within this CryptoKey. The resource name is in the format 'projects//locations//ekmConnections/*' and only applies to 'EXTERNAL_VPC' keys."
+  default     = null
 }
