@@ -44,12 +44,13 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| crypto\_key\_backend | (Optional) The resource name of the backend environment associated with all CryptoKeyVersions within this CryptoKey. The resource name is in the format 'projects//locations//ekmConnections/*' and only applies to 'EXTERNAL\_VPC' keys. | `string` | `null` | no |
 | decrypters | List of comma-separated owners for each key declared in set\_decrypters\_for. | `list(string)` | `[]` | no |
 | encrypters | List of comma-separated owners for each key declared in set\_encrypters\_for. | `list(string)` | `[]` | no |
 | import\_only | Whether these keys may contain imported versions only. | `bool` | `false` | no |
 | key\_algorithm | The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs. | `string` | `"GOOGLE_SYMMETRIC_ENCRYPTION"` | no |
 | key\_destroy\_scheduled\_duration | Set the period of time that versions of keys spend in the DESTROY\_SCHEDULED state before transitioning to DESTROYED. | `string` | `null` | no |
-| key\_protection\_level | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM"] | `string` | `"SOFTWARE"` | no |
+| key\_protection\_level | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL\_VPC"] | `string` | `"SOFTWARE"` | no |
 | key\_rotation\_period | Generate a new key every time this period passes. | `string` | `"7776000s"` | no |
 | keyring | Keyring name. | `string` | n/a | yes |
 | keys | Key names. | `list(string)` | `[]` | no |
