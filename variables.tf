@@ -50,7 +50,7 @@ variable "key_destroy_scheduled_duration" {
 
 variable "purpose" {
   type        = string
-  description = "The immutable purpose of the CryptoKey. Possible values are ENCRYPT_DECRYPT, ASYMMETRIC_SIGN, and ASYMMETRIC_DECRYPT."
+  description = "The immutable purpose of the CryptoKey. Default value is ENCRYPT_DECRYPT. See purpose reference (https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose) for possible inputs."
   default     = "ENCRYPT_DECRYPT"
 }
 
@@ -112,6 +112,18 @@ variable "labels" {
   type        = map(string)
   description = "Labels, provided as a map"
   default     = {}
+}
+
+variable "import_only" {
+  type        = bool
+  description = "Whether these keys may contain imported versions only."
+  default     = false
+}
+
+variable "skip_initial_version_creation" {
+  type        = bool
+  description = "If set to true, the request will create CryptoKeys without any CryptoKeyVersions."
+  default     = false
 }
 
 variable "crypto_key_backend" {

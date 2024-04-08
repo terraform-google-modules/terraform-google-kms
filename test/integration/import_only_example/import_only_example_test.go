@@ -23,7 +23,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSimpleExample(t *testing.T) {
+func TestImportOnlyExample(t *testing.T) {
 	bpt := tft.NewTFBlueprintTest(t)
 	bpt.DefineVerify(func(assert *assert.Assertions) {
 		bpt.DefaultVerify(assert)
@@ -38,8 +38,8 @@ func TestSimpleExample(t *testing.T) {
 
 		op1 := gcloud.Runf(t, "kms keys list --project=%s --keyring %s --location %s", projectId, keyring, location).Array()
 		for index, element := range op1 {
-			assert.Equal(element.Get("primary").Map()["name"].Str, fmt.Sprintf("projects/%s/locations/%s/keyRings/%s/cryptoKeys/%s/cryptoKeyVersions/1", projectId, location, keyring, keys[index]), "Contains Keys")
-			assert.False(element.Get("importOnly").Bool(), "ImportOnly flag")
+			assert.Equal(element.Get("name").String(), fmt.Sprintf("projects/%s/locations/%s/keyRings/%s/cryptoKeys/%s", projectId, location, keyring, keys[index]), "Contains Keys")
+			assert.True(element.Get("importOnly").Bool(), "ImportOnly flag")
 		}
 	})
 

@@ -47,6 +47,7 @@ Functional examples are included in the
 | crypto\_key\_backend | (Optional) The resource name of the backend environment associated with all CryptoKeyVersions within this CryptoKey. The resource name is in the format 'projects//locations//ekmConnections/*' and only applies to 'EXTERNAL\_VPC' keys. | `string` | `null` | no |
 | decrypters | List of comma-separated owners for each key declared in set\_decrypters\_for. | `list(string)` | `[]` | no |
 | encrypters | List of comma-separated owners for each key declared in set\_encrypters\_for. | `list(string)` | `[]` | no |
+| import\_only | Whether these keys may contain imported versions only. | `bool` | `false` | no |
 | key\_algorithm | The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs. | `string` | `"GOOGLE_SYMMETRIC_ENCRYPTION"` | no |
 | key\_destroy\_scheduled\_duration | Set the period of time that versions of keys spend in the DESTROY\_SCHEDULED state before transitioning to DESTROYED. | `string` | `null` | no |
 | key\_protection\_level | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL\_VPC"] | `string` | `"SOFTWARE"` | no |
@@ -58,10 +59,11 @@ Functional examples are included in the
 | owners | List of comma-separated owners for each key declared in set\_owners\_for. | `list(string)` | `[]` | no |
 | prevent\_destroy | Set the prevent\_destroy lifecycle attribute on keys. | `bool` | `true` | no |
 | project\_id | Project id where the keyring will be created. | `string` | n/a | yes |
-| purpose | The immutable purpose of the CryptoKey. Possible values are ENCRYPT\_DECRYPT, ASYMMETRIC\_SIGN, and ASYMMETRIC\_DECRYPT. | `string` | `"ENCRYPT_DECRYPT"` | no |
+| purpose | The immutable purpose of the CryptoKey. Default value is ENCRYPT\_DECRYPT. See purpose reference (https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose) for possible inputs. | `string` | `"ENCRYPT_DECRYPT"` | no |
 | set\_decrypters\_for | Name of keys for which decrypters will be set. | `list(string)` | `[]` | no |
 | set\_encrypters\_for | Name of keys for which encrypters will be set. | `list(string)` | `[]` | no |
 | set\_owners\_for | Name of keys for which owners will be set. | `list(string)` | `[]` | no |
+| skip\_initial\_version\_creation | If set to true, the request will create CryptoKeys without any CryptoKeyVersions. | `bool` | `false` | no |
 
 ## Outputs
 

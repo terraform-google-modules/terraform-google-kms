@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.13"
-  required_providers {
+output "keyring" {
+  description = "The name of the keyring."
+  value       = module.kms.keyring_resource.name
+}
 
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 3.87, < 6"
-    }
-  }
+output "location" {
+  description = "The location of the keyring."
+  value       = module.kms.keyring_resource.location
+}
 
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-kms/v2.3.0"
-  }
+output "keys" {
+  description = "List of created kkey names."
+  value       = keys(module.kms.keys)
+}
 
+output "project_id" {
+  description = "The ID of the project in which resources are provisioned."
+  value       = var.project_id
 }
