@@ -14,23 +14,24 @@
  * limitations under the License.
  */
 
+resource "random_pet" "main" {
+  length    = 1
+  prefix    = "simple-example"
+  separator = "-"
+}
+
 module "kms" {
   source = "../.."
 
-  # TODO: Update with the following source when v2.4 is released
-  # source  = "terraform-google-modules/kms/google"
-  # version = "~> 2.4"
-
   project_id = var.project_id
-  keyring    = var.keyring
-  location   = var.location
-  keys       = var.keys
+  keyring    = random_pet.main.id
+  location   = "global"
+  keys       = ["one", "two"]
   # keys can be destroyed by Terraform
   prevent_destroy               = false
-  import_only                   = var.import_only
-  skip_initial_version_creation = var.skip_initial_version_creation
-  key_rotation_period           = var.key_rotation_period
-  purpose                       = var.purpose
-  key_algorithm                 = var.key_algorithm
+  import_only                   = true
+  skip_initial_version_creation = true
+  key_rotation_period           = ""
+  purpose                       = "RAW_ENCRYPT_DECRYPT"
+  key_algorithm                 = "AES_256_GCM"
 }
-
