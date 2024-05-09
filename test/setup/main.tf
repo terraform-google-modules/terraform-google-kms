@@ -16,7 +16,7 @@
 
 module "project_ci_kms" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 14.0"
+  version = "~> 15.0"
 
   name              = "ci-kms-module"
   random_project_id = "true"
