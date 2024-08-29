@@ -131,3 +131,26 @@ variable "crypto_key_backend" {
   description = "(Optional) The resource name of the backend environment associated with all CryptoKeyVersions within this CryptoKey. The resource name is in the format 'projects//locations//ekmConnections/*' and only applies to 'EXTERNAL_VPC' keys."
   default     = null
 }
+
+variable "autokey_folder_number" {
+  type        = string
+  description = "(Optional) The Autokey folder number for which to retrieve config. Required when using Autokey."
+  default     = null
+}
+
+variable "autokey_handles" {
+  type = map(object({
+    name                   = string
+    resource_type_selector = string
+    location               = string
+    project                = string
+  }))
+  description = <<-EOF
+    "(Optional) A KeyHandle is a resource used by Autokey to auto-provision CryptoKeys for CMEK for a particular service.
+    name: The resource name for the KeyHandle.
+    resource_type_selector: Indicates the resource type that the resulting CryptoKey is meant to protect, in the following format: {SERVICE}.googleapis.com/{TYPE}. For example, storage.googleapis.com/Bucket.
+    location: The location for the KeyHandle. A full list of valid locations can be found by running gcloud kms locations list.
+    project: The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
+  EOF
+  default     = null
+}

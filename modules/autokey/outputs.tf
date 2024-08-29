@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,12 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project_ci_kms.project_id
+output "autokey_config_id" {
+  description = "An Autokey configuration identifier."
+  value       = var.autokey_folder_number != null ? google_kms_autokey_config.main[0].id : ""
 }
 
-output "autokey_resource_project_id" {
-  value = module.autokey_resource_project.project_id
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
-}
-
-output "folder_id" {
-  value = split("/", google_folder.test_folder.id)[1]
+output "autokey_keyhandles" {
+  description = "A list of KeyHandles created."
+  value       = local.create_autokey_key_handles ? google_kms_key_handle.main : {}
 }

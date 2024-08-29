@@ -14,6 +14,17 @@
  * limitations under the License.
  */
 
+resource "random_string" "suffix" {
+  length  = 6
+  special = false
+  upper   = false
+}
+
+resource "google_folder" "test_folder" {
+  display_name = "test_kms_fldr_${random_string.suffix.result}"
+  parent       = "folders/${var.folder_id}"
+}
+
 module "project_ci_kms" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 15.0"
@@ -28,4 +39,22 @@ module "project_ci_kms" {
     "cloudkms.googleapis.com",
     "serviceusage.googleapis.com"
   ]
+}
+
+module "autokey_resource_project" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 15.0"
+
+  name              = "autokey_resource_project"
+  random_project_id = "true"
+  org_id            = var.org_id
+  folder_id         = var.folder_id
+  billing_account   = var.billing_account
+
+  activate_api_identities = [{
+    api = "cloudkms.googleapis.com"
+    roles = [
+      "roles/cloudkms.admin"
+    ]
+  }]
 }

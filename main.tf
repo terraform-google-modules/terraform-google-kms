@@ -93,3 +93,11 @@ resource "google_kms_crypto_key_iam_binding" "encrypters" {
   members       = compact(split(",", var.encrypters[count.index]))
 }
 
+module "autokey" {
+  count  = var.autokey_folder_number != null ? 1 : 0
+  source = "./modules/autokey"
+
+  project_id            = var.project_id
+  autokey_folder_number = var.autokey_folder_number
+  autokey_handles       = var.autokey_handles
+}

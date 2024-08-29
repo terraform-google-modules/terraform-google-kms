@@ -44,6 +44,8 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| autokey\_folder\_number | (Optional) The Autokey folder number for which to retrieve config. Required when using Autokey. | `string` | `null` | no |
+| autokey\_handles | "(Optional) A KeyHandle is a resource used by Autokey to auto-provision CryptoKeys for CMEK for a particular service.<br>name: The resource name for the KeyHandle.<br>resource\_type\_selector: Indicates the resource type that the resulting CryptoKey is meant to protect, in the following format: {SERVICE}.googleapis.com/{TYPE}. For example, storage.googleapis.com/Bucket.<br>location: The location for the KeyHandle. A full list of valid locations can be found by running gcloud kms locations list.<br>project: The ID of the project in which the resource belongs. If it is not provided, the provider project is used. | <pre>map(object({<br>    name                   = string<br>    resource_type_selector = string<br>    location               = string<br>    project                = string<br>  }))</pre> | `null` | no |
 | crypto\_key\_backend | (Optional) The resource name of the backend environment associated with all CryptoKeyVersions within this CryptoKey. The resource name is in the format 'projects//locations//ekmConnections/*' and only applies to 'EXTERNAL\_VPC' keys. | `string` | `null` | no |
 | decrypters | List of comma-separated owners for each key declared in set\_decrypters\_for. | `list(string)` | `[]` | no |
 | encrypters | List of comma-separated owners for each key declared in set\_encrypters\_for. | `list(string)` | `[]` | no |
@@ -69,6 +71,8 @@ Functional examples are included in the
 
 | Name | Description |
 |------|-------------|
+| autokey\_config\_id | A list of KeyHandles created. |
+| autokey\_keyhandles | A list of KeyHandles created. |
 | keyring | Self link of the keyring. |
 | keyring\_name | Name of the keyring. |
 | keyring\_resource | Keyring resource. |

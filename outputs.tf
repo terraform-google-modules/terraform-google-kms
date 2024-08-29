@@ -62,3 +62,12 @@ output "keyring_name" {
   ]
 }
 
+output "autokey_config_id" {
+  description = "A list of KeyHandles created."
+  value       = var.autokey_folder_number != null ? module.autokey[0].autokey_config_id : ""
+}
+
+output "autokey_keyhandles" {
+  description = "A list of KeyHandles created."
+  value       = var.autokey_handles != null ? module.autokey[0].autokey_keyhandles : {}
+}
