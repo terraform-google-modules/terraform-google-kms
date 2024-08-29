@@ -27,7 +27,7 @@ variable "autokey_resource_project_id" {
 variable "location" {
   description = "Location for the keyring."
   type        = string
-  default     = "global"
+  default     = "us-central1"
 }
 
 variable "folder_id" {

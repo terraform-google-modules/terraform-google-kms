@@ -27,7 +27,7 @@ module "kms" {
       name                   = "example-key-handle",
       project                = var.autokey_resource_project_id,
       resource_type_selector = "storage.googleapis.com/Bucket",
-      location               = "global"
+      location               = "us-central1"
     }
   }
 }

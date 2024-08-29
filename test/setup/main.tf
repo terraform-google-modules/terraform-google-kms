@@ -37,19 +37,9 @@ module "project_ci_kms" {
 
   activate_apis = [
     "cloudkms.googleapis.com",
-    "serviceusage.googleapis.com"
+    "serviceusage.googleapis.com",
+    "cloudresourcemanager.googleapis.com"
   ]
-}
-
-module "autokey_resource_project" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 15.0"
-
-  name              = "autokey_resource_project"
-  random_project_id = "true"
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
 
   activate_api_identities = [{
     api = "cloudkms.googleapis.com"
@@ -57,4 +47,20 @@ module "autokey_resource_project" {
       "roles/cloudkms.admin"
     ]
   }]
+}
+
+module "autokey_resource_project" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 15.0"
+
+  name              = "autokey-resource"
+  random_project_id = "true"
+  org_id            = var.org_id
+  folder_id         = var.folder_id
+  billing_account   = var.billing_account
+
+  activate_apis = [
+    "serviceusage.googleapis.com",
+    "cloudresourcemanager.googleapis.com"
+  ]
 }
