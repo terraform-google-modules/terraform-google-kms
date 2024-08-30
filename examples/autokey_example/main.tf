@@ -18,7 +18,7 @@ module "autokey" {
   source = "../.."
 
   project_id            = var.project_id
-  keyring               = "keyring5"
+  keyring               = "example-keyring"
   location              = var.location
   keys                  = []
   autokey_folder_number = var.folder_id
@@ -27,19 +27,19 @@ module "autokey" {
       name                   = "bucket-key-handle",
       project                = var.autokey_resource_project_id,
       resource_type_selector = "storage.googleapis.com/Bucket",
-      location               = "us-central1"
+      location               = var.location
     }
     compute_disk = {
       name                   = "disk-key-handle",
       project                = var.autokey_resource_project_id,
       resource_type_selector = "compute.googleapis.com/Disk",
-      location               = "us-central1"
+      location               = var.location
     }
     bigquery_dataset = {
       name                   = "dataset-key-handle",
       project                = var.autokey_resource_project_id,
       resource_type_selector = "bigquery.googleapis.com/Dataset",
-      location               = "us-central1"
+      location               = var.location
     }
   }
 }
