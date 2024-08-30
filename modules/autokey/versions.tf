@@ -37,10 +37,10 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-kms/v2.3.0"
+    module_name = "blueprints/terraform/terraform-google-kms:autokey/v2.3.0"
   }
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-kms/v2.3.0"
+    module_name = "blueprints/terraform/terraform-google-kms:autokey/v2.3.0"
   }
 
 }

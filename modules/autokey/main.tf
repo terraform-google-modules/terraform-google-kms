@@ -26,6 +26,10 @@ resource "google_kms_autokey_config" "main" {
   key_project = "projects/${var.project_id}"
 }
 
+data "google_project" "kms_project" {
+  project_id = var.project_id
+}
+
 #Create KMS Service Agent
 resource "google_project_service_identity" "kms_service_agent" {
   count    = local.create_autokey_key_handles ? 1 : 0
@@ -41,10 +45,6 @@ resource "time_sleep" "wait_service_agent" {
 
   create_duration = "10s"
   depends_on      = [google_project_service_identity.kms_service_agent]
-}
-
-data "google_project" "kms_project" {
-  project_id = var.project_id
 }
 
 #Grant the KMS Service Agent the Cloud KMS Admin role

@@ -15,7 +15,7 @@
  */
 
 variable "project_id" {
-  description = "Project id where the Autokey configuration and KeyHandle will be created."
+  description = "Project id where the Autokey configuration and KeyHandles will be created."
   type        = string
 }
 

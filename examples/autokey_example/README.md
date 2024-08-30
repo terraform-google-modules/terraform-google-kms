@@ -16,9 +16,8 @@ This example illustrates how to use the `kms` module with [KMS Autokey](https://
 
 | Name | Description |
 |------|-------------|
-| keyring | The name of the keyring. |
-| keys | List of created kkey names. |
-| location | The location of the keyring. |
+| autokey\_config\_id | A list of KeyHandles created. |
+| autokey\_keyhandles | A list of KeyHandles created. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

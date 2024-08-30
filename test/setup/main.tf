@@ -32,13 +32,13 @@ module "project_ci_kms" {
   name              = "ci-kms-module"
   random_project_id = "true"
   org_id            = var.org_id
-  folder_id         = var.folder_id
+  folder_id         = google_folder.test_folder.folder_id
   billing_account   = var.billing_account
 
   activate_apis = [
     "cloudkms.googleapis.com",
     "serviceusage.googleapis.com",
-    "cloudresourcemanager.googleapis.com"
+    "cloudresourcemanager.googleapis.com",
   ]
 
   activate_api_identities = [{
@@ -56,7 +56,7 @@ module "autokey_resource_project" {
   name              = "autokey-resource"
   random_project_id = "true"
   org_id            = var.org_id
-  folder_id         = var.folder_id
+  folder_id         = google_folder.test_folder.folder_id
   billing_account   = var.billing_account
 
   activate_apis = [

@@ -29,20 +29,12 @@ resource "google_service_account" "int_test" {
   display_name = "kms-int-test"
 }
 
-resource "google_project_iam_member" "int_test" {
+resource "google_folder_iam_member" "int_test" {
   count = length(local.int_required_roles)
 
-  project = module.project_ci_kms.project_id
-  role    = local.int_required_roles[count.index]
-  member  = "serviceAccount:${google_service_account.int_test.email}"
-}
-
-resource "google_project_iam_member" "int_test_autokey" {
-  count = length(local.int_required_roles)
-
-  project = module.autokey_resource_project.project_id
-  role    = local.int_required_roles[count.index]
-  member  = "serviceAccount:${google_service_account.int_test.email}"
+  folder = google_folder.test_folder.folder_id
+  role   = local.int_required_roles[count.index]
+  member = "serviceAccount:${google_service_account.int_test.email}"
 }
 
 resource "google_service_account_key" "int_test" {
