@@ -9,7 +9,7 @@ This example illustrates how to use the `kms` module with [KMS Autokey](https://
 |------|-------------|------|---------|:--------:|
 | autokey\_resource\_project\_id | The ID of the project for Autokey to be used (e.g: a storage project which expects to use Autokey as CMEK). | `string` | n/a | yes |
 | folder\_id | The Autokey folder number for which to retrieve config. Required when using Autokey. | `string` | n/a | yes |
-| location | Location for the keyring. | `string` | `"us-central1"` | no |
+| location | Location for the autokey keyring. | `string` | `"us-central1"` | no |
 | project\_id | The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys). | `string` | n/a | yes |
 
 ## Outputs
@@ -18,6 +18,8 @@ This example illustrates how to use the `kms` module with [KMS Autokey](https://
 |------|-------------|
 | autokey\_config\_id | A list of KeyHandles created. |
 | autokey\_keyhandles | A list of KeyHandles created. |
+| autokey\_project\_id | Project used for autokey. |
+| location | Location for the autokey keyring. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

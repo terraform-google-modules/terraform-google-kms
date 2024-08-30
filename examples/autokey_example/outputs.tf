@@ -23,3 +23,13 @@ output "autokey_keyhandles" {
   description = "A list of KeyHandles created."
   value       = module.autokey.autokey_keyhandles != null ? module.autokey.autokey_keyhandles : {}
 }
+
+output "autokey_project_id" {
+  description = "Project used for autokey."
+  value       = var.project_id
+}
+
+output "location" {
+  description = "Location for the autokey keyring."
+  value       = var.location
+}

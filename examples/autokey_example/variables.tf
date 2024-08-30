@@ -25,7 +25,7 @@ variable "autokey_resource_project_id" {
 }
 
 variable "location" {
-  description = "Location for the keyring."
+  description = "Location for the autokey keyring."
   type        = string
   default     = "us-central1"
 }

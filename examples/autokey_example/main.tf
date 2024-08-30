@@ -18,7 +18,7 @@ module "autokey" {
   source = "../.."
 
   project_id            = var.project_id
-  keyring               = "example-keyring"
+  keyring               = "example-keyring-8"
   location              = var.location
   keys                  = []
   autokey_folder_number = var.folder_id
