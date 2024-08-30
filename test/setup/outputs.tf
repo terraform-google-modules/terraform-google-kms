@@ -22,6 +22,10 @@ output "autokey_resource_project_id" {
   value = module.autokey_resource_project.project_id
 }
 
+output "autokey_resource_project_number" {
+  value = module.autokey_resource_project.project_number
+}
+
 output "sa_key" {
   value     = google_service_account_key.int_test.private_key
   sensitive = true

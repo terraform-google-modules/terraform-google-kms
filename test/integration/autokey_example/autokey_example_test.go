@@ -1,4 +1,4 @@
-// Copyright 2022 Google LLC
+// Copyright 2024 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,8 +28,8 @@ import (
 	"golang.org/x/oauth2/google"
 )
 
-func validateKeyHandleVersion(input string, projectId string, location string) bool {
-	pattern := fmt.Sprintf(`^projects/%s/locations/%s/keyRings/autokey/cryptoKeys/.*-(bigquery-dataset|compute-disk|storage-bucket)-.*?/cryptoKeyVersions/1$`, projectId, location)
+func validateKeyHandleVersion(input string, projectId string, location string, autokeyResource string) bool {
+	pattern := fmt.Sprintf(`^projects/%s/locations/%s/keyRings/autokey/cryptoKeys/%s-(bigquery-dataset|compute-disk|storage-bucket)-.*?/cryptoKeyVersions/1$`, projectId, location, autokeyResource)
 	regex := regexp.MustCompile(pattern)
 	return regex.MatchString(input)
 }
@@ -42,7 +42,9 @@ func TestAutokeyExample(t *testing.T) {
 		projectId := bpt.GetStringOutput("autokey_project_id")
 		autokeyConfig := bpt.GetStringOutput("autokey_config_id")
 		location := bpt.GetStringOutput("location")
+		autokeyResourceProjectNumber := bpt.GetTFSetupJsonOutput("autokey_resource_project_number")
 
+		// Autokey config doesn't have a gcloud command yet. That's why we need to hit the API.
 		autokeyConfigUrl := fmt.Sprintf("https://cloudkms.googleapis.com/v1/%s", autokeyConfig)
 
 		httpClient, err := google.DefaultClient(context.Background(), "https://www.googleapis.com/auth/cloud-platform")
@@ -75,7 +77,7 @@ func TestAutokeyExample(t *testing.T) {
 		// Asserting if Autokey keyHandles were created
 		op1 := gcloud.Runf(t, "kms keys list --project=%s --keyring autokey --location %s", projectId, location).Array()
 		for _, element := range op1 {
-			assert.True(validateKeyHandleVersion(element.Get("primary").Map()["name"].Str, projectId, location), "Contains KeyHandles")
+			assert.True(validateKeyHandleVersion(element.Get("primary").Map()["name"].Str, projectId, location, autokeyResourceProjectNumber.Str), "Contains KeyHandles")
 		}
 	})
 
