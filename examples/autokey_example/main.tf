@@ -15,12 +15,9 @@
  */
 
 module "autokey" {
-  source = "../.."
+  source = "terraform-google-modules/kms/google//modules/autokey"
 
   project_id            = var.project_id
-  keyring               = "example-keyring"
-  location              = var.location
-  keys                  = []
   autokey_folder_number = var.folder_id
   autokey_handles = {
     storage_bucket = {

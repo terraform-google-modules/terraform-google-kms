@@ -16,7 +16,7 @@ This example illustrates how to use the `kms` module with [KMS Autokey](https://
 
 | Name | Description |
 |------|-------------|
-| autokey\_config\_id | A list of KeyHandles created. |
+| autokey\_config\_id | An Autokey configuration identifier. |
 | autokey\_keyhandles | A list of KeyHandles created. |
 | autokey\_project\_id | Project used for autokey. |
 | location | Location for the autokey keyring. |

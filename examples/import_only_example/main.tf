@@ -21,7 +21,7 @@ resource "random_pet" "main" {
 }
 
 module "kms" {
-  source = "../.."
+  source = "romanini-ciandt/kms/google"
 
   project_id = var.project_id
   keyring    = random_pet.main.id

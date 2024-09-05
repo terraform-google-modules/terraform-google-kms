@@ -34,10 +34,10 @@ variable "autokey_handles" {
   }))
   description = <<-EOF
     "(Optional) A KeyHandle is a resource used by Autokey to auto-provision CryptoKeys for CMEK for a particular service.
-    name: The resource name for the KeyHandle.
-    resource_type_selector: Indicates the resource type that the resulting CryptoKey is meant to protect, in the following format: {SERVICE}.googleapis.com/{TYPE}. For example, storage.googleapis.com/Bucket.
-    location: The location for the KeyHandle. A full list of valid locations can be found by running gcloud kms locations list.
-    project: The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
+    - name: The resource name for the KeyHandle.
+    - resource_type_selector: Indicates the resource type that the resulting CryptoKey is meant to protect, in the following format: {SERVICE}.googleapis.com/{TYPE}. For example, storage.googleapis.com/Bucket. All Cloud KMS Autokey compatible services available at https://cloud.google.com/kms/docs/autokey-overview#compatible-services.
+    - location: The location for the KeyHandle. A full list of valid locations can be found by running gcloud kms locations list.
+    - project: The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
   EOF
   default     = null
 }

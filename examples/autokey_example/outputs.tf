@@ -15,7 +15,7 @@
  */
 
 output "autokey_config_id" {
-  description = "A list of KeyHandles created."
+  description = "An Autokey configuration identifier."
   value       = module.autokey.autokey_config_id != null ? module.autokey.autokey_config_id : ""
 }
 
