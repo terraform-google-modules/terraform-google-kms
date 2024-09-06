@@ -7,6 +7,25 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v2.3.0...v3.0.0) (2024-08-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=5.23:** bump TPG for crypto_key_backend ([#139](https://github.com/terraform-google-modules/terraform-google-kms/issues/139))
+* Add import flags ([#133](https://github.com/terraform-google-modules/terraform-google-kms/issues/133))
+
+### Features
+
+* Add import flags ([#133](https://github.com/terraform-google-modules/terraform-google-kms/issues/133)) ([70d2718](https://github.com/terraform-google-modules/terraform-google-kms/commit/70d27186756a8fd2860f8107eba511dca5771f8f))
+* Add support for EXTERNAL_VPC ([#137](https://github.com/terraform-google-modules/terraform-google-kms/issues/137)) ([f553b67](https://github.com/terraform-google-modules/terraform-google-kms/commit/f553b67d5e8143200a9368e2dd7cbd7e9f455094))
+* **deps:** Update Terraform google to v6 ([#150](https://github.com/terraform-google-modules/terraform-google-kms/issues/150)) ([b7d99e3](https://github.com/terraform-google-modules/terraform-google-kms/commit/b7d99e382972642cd5dc33ebc6d4fac7e7e6a36c))
+
+
+### Bug Fixes
+
+* **TPG>=5.23:** bump TPG for crypto_key_backend ([#139](https://github.com/terraform-google-modules/terraform-google-kms/issues/139)) ([36d0319](https://github.com/terraform-google-modules/terraform-google-kms/commit/36d0319740c7fd751e879df01180e32dcb1cc924))
+
 ## [2.3.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v2.2.3...v2.3.0) (2024-01-30)
 
 

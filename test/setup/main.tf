@@ -27,7 +27,7 @@ resource "google_folder" "test_folder" {
 
 module "project_ci_kms" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 15.0"
+  version = "~> 16.0"
 
   name              = "ci-kms-module"
   random_project_id = "true"
