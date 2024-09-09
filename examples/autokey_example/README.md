@@ -8,7 +8,7 @@ This example illustrates how to use the `autokey` kms submodule for [KMS Autokey
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | autokey\_resource\_project\_id | The ID of the project for Autokey to be used (e.g: a storage project which expects to use Autokey as CMEK). | `string` | n/a | yes |
-| folder\_id | The Autokey folder number for which to retrieve config. Required when using Autokey. | `string` | n/a | yes |
+| folder\_id | The Autokey folder number used by Autokey config resource. Required when using Autokey. | `string` | n/a | yes |
 | location | Location for the autokey keyring. | `string` | `"us-central1"` | no |
 | project\_id | The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys). | `string` | n/a | yes |
 

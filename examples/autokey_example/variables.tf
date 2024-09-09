@@ -32,6 +32,6 @@ variable "location" {
 
 variable "folder_id" {
   type        = string
-  description = "The Autokey folder number for which to retrieve config. Required when using Autokey."
+  description = "The Autokey folder number used by Autokey config resource. Required when using Autokey."
 }
 

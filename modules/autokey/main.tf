@@ -18,7 +18,7 @@ locals {
   create_autokey_key_handles = var.autokey_folder_number != null && var.autokey_handles != null
 }
 
-resource "google_kms_autokey_config" "main" {
+resource "google_kms_autokey_config" "primary" {
   count    = var.autokey_folder_number != null ? 1 : 0
   provider = google-beta
 
@@ -38,7 +38,7 @@ resource "random_string" "suffix" {
   upper   = false
 }
 
-resource "google_kms_key_handle" "main" {
+resource "google_kms_key_handle" "primary" {
   for_each = local.create_autokey_key_handles ? var.autokey_handles : tomap({})
   provider = google-beta
 

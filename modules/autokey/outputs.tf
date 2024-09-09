@@ -16,10 +16,10 @@
 
 output "autokey_config_id" {
   description = "An Autokey configuration identifier."
-  value       = var.autokey_folder_number != null ? google_kms_autokey_config.main[0].id : ""
+  value       = var.autokey_folder_number != null ? google_kms_autokey_config.primary[0].id : ""
 }
 
 output "autokey_keyhandles" {
   description = "A list of KeyHandles created."
-  value       = local.create_autokey_key_handles ? google_kms_key_handle.main : {}
+  value       = local.create_autokey_key_handles ? google_kms_key_handle.primary : {}
 }
