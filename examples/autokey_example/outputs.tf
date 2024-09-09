@@ -20,7 +20,7 @@ output "autokey_config_id" {
 }
 
 output "autokey_keyhandles" {
-  description = "A list of KeyHandles created."
+  description = "A map of KeyHandles created."
   value       = module.autokey.autokey_keyhandles != null ? module.autokey.autokey_keyhandles : {}
 }
 

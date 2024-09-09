@@ -17,7 +17,7 @@ This example illustrates how to use the `autokey` kms submodule for [KMS Autokey
 | Name | Description |
 |------|-------------|
 | autokey\_config\_id | An Autokey configuration identifier. |
-| autokey\_keyhandles | A list of KeyHandles created. |
+| autokey\_keyhandles | A map of KeyHandles created. |
 | autokey\_project\_id | Project used for autokey. |
 | location | Location for the autokey keyring. |
 

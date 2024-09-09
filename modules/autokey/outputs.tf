@@ -20,6 +20,6 @@ output "autokey_config_id" {
 }
 
 output "autokey_keyhandles" {
-  description = "A list of KeyHandles created."
+  description = "A map of KeyHandles created."
   value       = local.create_autokey_key_handles ? google_kms_key_handle.primary : {}
 }
