@@ -28,8 +28,8 @@ import (
 	"golang.org/x/oauth2/google"
 )
 
-func validateKeyHandleVersion(input string, projectId string, location string, autokeyResource string) bool {
-	pattern := fmt.Sprintf(`^projects/%s/locations/%s/keyRings/autokey/cryptoKeys/%s-(bigquery-dataset|compute-disk|storage-bucket)-.*?/cryptoKeyVersions/1$`, projectId, location, autokeyResource)
+func validateKeyHandleVersion(input string, projectId string, autokeyResource string) bool {
+	pattern := fmt.Sprintf(`^projects/%s/locations/us-central1/keyRings/autokey/cryptoKeys/%s-(bigquery-dataset|compute-disk|storage-bucket)-.*?/cryptoKeyVersions/1$`, projectId, autokeyResource)
 	regex := regexp.MustCompile(pattern)
 	return regex.MatchString(input)
 }
@@ -41,7 +41,6 @@ func TestAutokeyExample(t *testing.T) {
 
 		projectId := bpt.GetStringOutput("autokey_project_id")
 		autokeyConfig := bpt.GetStringOutput("autokey_config_id")
-		location := bpt.GetStringOutput("location")
 		autokeyResourceProjectNumber := bpt.GetTFSetupJsonOutput("autokey_resource_project_number")
 
 		// Autokey config doesn't have a gcloud command yet. That's why we need to hit the API.
@@ -71,13 +70,13 @@ func TestAutokeyExample(t *testing.T) {
 		assert.Equal(autokeyConfigProject, fmt.Sprintf("projects/%s", projectId), "autokey expected for project %s", projectId)
 
 		// Asserting if Autokey keyring was created
-		op := gcloud.Runf(t, "--project=%s kms keyrings list --location %s --filter name:autokey", projectId, location).Array()[0].Get("name")
-		assert.Contains(op.String(), fmt.Sprintf("projects/%s/locations/%s/keyRings/autokey", projectId, location), "Contains Autokey KeyRing")
+		op := gcloud.Runf(t, "--project=%s kms keyrings list --location us-central1 --filter name:autokey", projectId).Array()[0].Get("name")
+		assert.Contains(op.String(), fmt.Sprintf("projects/%s/locations/us-central1/keyRings/autokey", projectId), "Contains Autokey KeyRing")
 
 		// Asserting if Autokey keyHandles were created
-		op1 := gcloud.Runf(t, "kms keys list --project=%s --keyring autokey --location %s", projectId, location).Array()
+		op1 := gcloud.Runf(t, "kms keys list --project=%s --keyring autokey --location us-central1", projectId).Array()
 		for _, element := range op1 {
-			assert.True(validateKeyHandleVersion(element.Get("primary").Map()["name"].Str, projectId, location, autokeyResourceProjectNumber.Str), "Contains KeyHandles")
+			assert.True(validateKeyHandleVersion(element.Get("primary").Map()["name"].Str, projectId, autokeyResourceProjectNumber.Str), "Contains KeyHandles")
 		}
 	})
 
