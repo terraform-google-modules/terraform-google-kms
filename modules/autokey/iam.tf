@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+data "google_project" "kms_project" {
+  project_id = var.project_id
+}
+
 #Create KMS Service Agent
 resource "google_project_service_identity" "kms_service_agent" {
   count    = local.create_autokey_key_handles ? 1 : 0

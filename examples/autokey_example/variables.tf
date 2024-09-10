@@ -24,12 +24,6 @@ variable "autokey_resource_project_id" {
   type        = string
 }
 
-variable "location" {
-  description = "Location for the autokey keyring."
-  type        = string
-  default     = "us-central1"
-}
-
 variable "folder_id" {
   type        = string
   description = "The Autokey folder number used by Autokey config resource. Required when using Autokey."

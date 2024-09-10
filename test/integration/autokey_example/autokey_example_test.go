@@ -50,18 +50,18 @@ func TestAutokeyExample(t *testing.T) {
 		httpClient, err := google.DefaultClient(context.Background(), "https://www.googleapis.com/auth/cloud-platform")
 
 		if err != nil {
-			return
+			t.Fatal(err.Error())
 		}
 
 		resp, err := httpClient.Get(autokeyConfigUrl)
 		if err != nil {
-			return
+			t.Fatal(err.Error())
 		}
 
 		defer resp.Body.Close()
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			return
+			t.Fatal(err.Error())
 		}
 
 		result := utils.ParseJSONResult(t, string(body))
