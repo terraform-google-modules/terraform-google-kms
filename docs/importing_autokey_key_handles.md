@@ -35,10 +35,11 @@ If you have any existing [Autokey Key Handles](https://cloud.google.com/kms/docs
             location               = "AUTOKEY-LOCATION"
         },
         # Note: If you have multiple Key Handles, you can append it here, following the same pattern.
-        # Note 2: YOUR_SERVICE_ALIAS can be any meaningful string, e.g. storage_bucket
+        # Note 2: YOUR_SERVICE_ALIAS can be any meaningful string, e.g. "storage_bucket"
     }
     ```
-1. Run terraform `terraform import google_kms_key_handle.primary["/YOUR_SERVICE_ALIAS"/] projects/AUTOKEY-RESOURCE-PROJECT-ID/locations/AUTOKEY-LOCATION/keyHandles/AUTOKEY-KEYHANDLE-NAME`. You should receive the following output:
+1. Run `terraform init`
+1. Run `terraform import google_kms_key_handle.primary["/YOUR_SERVICE_ALIAS"/] projects/AUTOKEY-RESOURCE-PROJECT-ID/locations/AUTOKEY-LOCATION/keyHandles/AUTOKEY-KEYHANDLE-NAME`. You should receive the following output:
 
     ```
     Import successful!
