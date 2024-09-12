@@ -39,7 +39,7 @@ resource "google_kms_key_handle" "primary" {
   provider = google-beta
 
   project                = each.value.project
-  name                   = "${each.value.name}-${random_string.suffix[0].result}"
+  name                   = each.value.name
   location               = each.value.location
   resource_type_selector = each.value.resource_type_selector
 
