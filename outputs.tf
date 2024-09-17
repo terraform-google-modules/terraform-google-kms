@@ -61,4 +61,3 @@ output "keyring_name" {
     google_kms_crypto_key_iam_binding.encrypters,
   ]
 }
-

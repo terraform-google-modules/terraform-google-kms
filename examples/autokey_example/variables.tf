@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.13"
-  required_providers {
-
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 5.31.0, < 7"
-    }
-  }
-
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-kms/v3.0.0"
-  }
-
+variable "project_id" {
+  description = "The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys)."
+  type        = string
 }
+
+variable "autokey_resource_project_id" {
+  description = "The ID of the project for Autokey to be used (e.g: a storage project which expects to use Autokey as CMEK)."
+  type        = string
+}
+
+variable "folder_id" {
+  type        = string
+  description = "The Autokey folder number used by Autokey config resource. Required when using Autokey."
+}
+

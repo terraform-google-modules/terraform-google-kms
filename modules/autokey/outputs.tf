@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.13"
-  required_providers {
+output "autokey_config_id" {
+  description = "An Autokey configuration identifier."
+  value       = var.autokey_folder_number != null ? google_kms_autokey_config.primary[0].id : ""
+}
 
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 5.31.0, < 7"
-    }
-  }
-
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-kms/v3.0.0"
-  }
-
+output "autokey_keyhandles" {
+  description = "A map of KeyHandles created."
+  value       = local.create_autokey_key_handles ? google_kms_key_handle.primary : {}
 }

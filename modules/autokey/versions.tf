@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,27 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 5.31.0, < 7"
+      version = ">= 5.31.0"
+    }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = ">= 5.31.0"
+    }
+    time = {
+      source  = "hashicorp/time"
+      version = ">= 0.12.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 3.6.2"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-kms/v3.0.0"
+    module_name = "blueprints/terraform/terraform-google-kms:autokey/v3.0.0"
+  }
+  provider_meta "google-beta" {
+    module_name = "blueprints/terraform/terraform-google-kms:autokey/v3.0.0"
   }
 
 }
