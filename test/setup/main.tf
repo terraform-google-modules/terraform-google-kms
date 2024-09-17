@@ -51,7 +51,7 @@ module "project_ci_kms" {
 
 module "autokey_resource_project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 15.0"
+  version = "~> 16.0"
 
   name              = "autokey-resource"
   random_project_id = "true"
