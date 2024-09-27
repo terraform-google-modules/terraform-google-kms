@@ -18,7 +18,7 @@ echo ----------------------------------------------
 echo Starting terraform init process
 echo ----------------------------------------------
 
-terraform init -upgrade
+terraform init
 
 echo ----------------------------------------------
 echo terraform init process completed
@@ -29,13 +29,13 @@ echo Starting terraform import process
 echo ----------------------------------------------
 
 if [ -n "$AUTOKEY_BQ_KEY_HANDLE_NAME" ]; then
-terraform import google_kms_key_handle.primary[\"bq_dataset\"] projects/$AUTOKEY_BQ_KEY_HANDLE_PROJECT/locations/$AUTOKEY_BQ_KEY_HANDLE_LOCATION/keyHandles/$AUTOKEY_BQ_KEY_HANDLE_NAME
+terraform import google_kms_key_handle.primary\[\"bq_dataset\"\] projects/"$AUTOKEY_BQ_KEY_HANDLE_PROJECT"/locations/"$AUTOKEY_BQ_KEY_HANDLE_LOCATION"/keyHandles/"$AUTOKEY_BQ_KEY_HANDLE_NAME"
 fi
 if [ -n "$AUTOKEY_DISK_KEY_HANDLE_NAME" ]; then
-terraform import google_kms_key_handle.primary[\"compute_disk\"] projects/$AUTOKEY_DISK_KEY_HANDLE_PROJECT/locations/$AUTOKEY_DISK_KEY_HANDLE_LOCATION/keyHandles/$AUTOKEY_DISK_KEY_HANDLE_NAME
+terraform import google_kms_key_handle.primary\[\"compute_disk\"\] projects/"$AUTOKEY_DISK_KEY_HANDLE_PROJECT"/locations/"$AUTOKEY_DISK_KEY_HANDLE_LOCATION"/keyHandles/"$AUTOKEY_DISK_KEY_HANDLE_NAME"
 fi
 if [ -n "$AUTOKEY_DISK_KEY_HANDLE_NAME" ]; then
-terraform import google_kms_key_handle.primary[\"gcs_bucket\"] projects/$AUTOKEY_GCS_KEY_HANDLE_PROJECT/locations/$AUTOKEY_GCS_KEY_HANDLE_LOCATION/keyHandles/$AUTOKEY_GCS_KEY_HANDLE_NAME
+terraform import google_kms_key_handle.primary\[\"gcs_bucket\"\] projects/"$AUTOKEY_GCS_KEY_HANDLE_PROJECT"/locations/"$AUTOKEY_GCS_KEY_HANDLE_LOCATION"/keyHandles/"$AUTOKEY_GCS_KEY_HANDLE_NAME"
 fi
 
 echo ----------------------------------------------

@@ -17,34 +17,45 @@
 echo ----------------------------------------------
 echo Getting Autokey config and project
 echo ----------------------------------------------
-export AUTOKEY_FOLDER_NUMBER=$(terraform output -raw autokey_config | cut -d'/' -f2)
-export AUTOKEY_KMS_PROJECT_ID=$(echo "module.autokey.key_project_id" | terraform console)
-echo AUTOKEY_FOLDER_NUMBER: $AUTOKEY_FOLDER_NUMBER
-echo AUTOKEY_KMS_PROJECT_ID: $AUTOKEY_KMS_PROJECT_ID
+AUTOKEY_FOLDER_NUMBER=$(terraform output -raw autokey_config | cut -d'/' -f2)
+export AUTOKEY_FOLDER_NUMBER
+AUTOKEY_KMS_PROJECT_ID=$(echo "module.autokey.key_project_id" | terraform console)
+export AUTOKEY_KMS_PROJECT_ID
+echo AUTOKEY_FOLDER_NUMBER: "$AUTOKEY_FOLDER_NUMBER"
+echo AUTOKEY_KMS_PROJECT_ID: "$AUTOKEY_KMS_PROJECT_ID"
 echo ----------------------------------------------
 echo Getting Bigquery Dataset KeyHandle
 echo ----------------------------------------------
-export AUTOKEY_BQ_KEY_HANDLE_PROJECT=$(terraform output -raw bq_key_handle | cut -d'/' -f2)
-export AUTOKEY_BQ_KEY_HANDLE_LOCATION=$(terraform output -raw bq_key_handle | cut -d'/' -f4)
-export AUTOKEY_BQ_KEY_HANDLE_NAME=$(terraform output -raw bq_key_handle | cut -d'/' -f6)
-echo AUTOKEY_BQ_KEY_HANDLE_PROJECT: $AUTOKEY_BQ_KEY_HANDLE_PROJECT
-echo AUTOKEY_BQ_KEY_HANDLE_LOCATION: $AUTOKEY_BQ_KEY_HANDLE_LOCATION
-echo AUTOKEY_BQ_KEY_HANDLE_NAME: $AUTOKEY_BQ_KEY_HANDLE_NAME
+AUTOKEY_BQ_KEY_HANDLE_PROJECT=$(terraform output -raw bq_key_handle | cut -d'/' -f2)
+export AUTOKEY_BQ_KEY_HANDLE_PROJECT
+AUTOKEY_BQ_KEY_HANDLE_LOCATION=$(terraform output -raw bq_key_handle | cut -d'/' -f4)
+export AUTOKEY_BQ_KEY_HANDLE_LOCATION
+AUTOKEY_BQ_KEY_HANDLE_NAME=$(terraform output -raw bq_key_handle | cut -d'/' -f6)
+export AUTOKEY_BQ_KEY_HANDLE_NAME
+echo AUTOKEY_BQ_KEY_HANDLE_PROJECT: "$AUTOKEY_BQ_KEY_HANDLE_PROJECT"
+echo AUTOKEY_BQ_KEY_HANDLE_LOCATION: "$AUTOKEY_BQ_KEY_HANDLE_LOCATION"
+echo AUTOKEY_BQ_KEY_HANDLE_NAME: "$AUTOKEY_BQ_KEY_HANDLE_NAME"
 echo ----------------------------------------------
 echo Getting Compute Disk KeyHandle
 echo ----------------------------------------------
-export AUTOKEY_DISK_KEY_HANDLE_PROJECT=$(terraform output -raw disk_key_handle | cut -d'/' -f2)
-export AUTOKEY_DISK_KEY_HANDLE_LOCATION=$(terraform output -raw disk_key_handle | cut -d'/' -f4)
-export AUTOKEY_DISK_KEY_HANDLE_NAME=$(terraform output -raw disk_key_handle | cut -d'/' -f6)
-echo AUTOKEY_DISK_KEY_HANDLE_PROJECT: $AUTOKEY_DISK_KEY_HANDLE_PROJECT
-echo AUTOKEY_DISK_KEY_HANDLE_LOCATION: $AUTOKEY_DISK_KEY_HANDLE_LOCATION
-echo AUTOKEY_DISK_KEY_HANDLE_NAME: $AUTOKEY_DISK_KEY_HANDLE_NAME
+AUTOKEY_DISK_KEY_HANDLE_PROJECT=$(terraform output -raw disk_key_handle | cut -d'/' -f2)
+export AUTOKEY_DISK_KEY_HANDLE_PROJECT
+AUTOKEY_DISK_KEY_HANDLE_LOCATION=$(terraform output -raw disk_key_handle | cut -d'/' -f4)
+export AUTOKEY_DISK_KEY_HANDLE_LOCATION
+AUTOKEY_DISK_KEY_HANDLE_NAME=$(terraform output -raw disk_key_handle | cut -d'/' -f6)
+export AUTOKEY_DISK_KEY_HANDLE_NAME
+echo AUTOKEY_DISK_KEY_HANDLE_PROJECT: "$AUTOKEY_DISK_KEY_HANDLE_PROJECT"
+echo AUTOKEY_DISK_KEY_HANDLE_LOCATION: "$AUTOKEY_DISK_KEY_HANDLE_LOCATION"
+echo AUTOKEY_DISK_KEY_HANDLE_NAME: "$AUTOKEY_DISK_KEY_HANDLE_NAME"
 echo ----------------------------------------------
 echo Getting Storage Bucket KeyHandle
 echo ----------------------------------------------
-export AUTOKEY_GCS_KEY_HANDLE_PROJECT=$(terraform output -raw gcs_key_handle | cut -d'/' -f2)
-export AUTOKEY_GCS_KEY_HANDLE_LOCATION=$(terraform output -raw gcs_key_handle | cut -d'/' -f4)
-export AUTOKEY_GCS_KEY_HANDLE_NAME=$(terraform output -raw gcs_key_handle | cut -d'/' -f6)
-echo AUTOKEY_GCS_KEY_HANDLE_PROJECT: $AUTOKEY_GCS_KEY_HANDLE_PROJECT
-echo AUTOKEY_GCS_KEY_HANDLE_LOCATION: $AUTOKEY_GCS_KEY_HANDLE_LOCATION
-echo AUTOKEY_GCS_KEY_HANDLE_NAME: $AUTOKEY_GCS_KEY_HANDLE_NAME
+AUTOKEY_GCS_KEY_HANDLE_PROJECT=$(terraform output -raw gcs_key_handle | cut -d'/' -f2)
+export AUTOKEY_GCS_KEY_HANDLE_PROJECT
+AUTOKEY_GCS_KEY_HANDLE_LOCATION=$(terraform output -raw gcs_key_handle | cut -d'/' -f4)
+export AUTOKEY_GCS_KEY_HANDLE_LOCATION
+AUTOKEY_GCS_KEY_HANDLE_NAME=$(terraform output -raw gcs_key_handle | cut -d'/' -f6)
+export AUTOKEY_GCS_KEY_HANDLE_NAME
+echo AUTOKEY_GCS_KEY_HANDLE_PROJECT: "$AUTOKEY_GCS_KEY_HANDLE_PROJECT"
+echo AUTOKEY_GCS_KEY_HANDLE_LOCATION: "$AUTOKEY_GCS_KEY_HANDLE_LOCATION"
+echo AUTOKEY_GCS_KEY_HANDLE_NAME: "$AUTOKEY_GCS_KEY_HANDLE_NAME"

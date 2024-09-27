@@ -19,8 +19,8 @@ echo Starting terraform.tfvars file creation
 echo ----------------------------------------------
 
 echo "
-project_id            = "$AUTOKEY_KMS_PROJECT_ID"
-autokey_folder_number = "$AUTOKEY_FOLDER_NUMBER"
+project_id            = $AUTOKEY_KMS_PROJECT_ID
+autokey_folder_number = \"$AUTOKEY_FOLDER_NUMBER\"
 autokey_handles = {
 " > terraform.tfvars
 

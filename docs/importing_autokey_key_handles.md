@@ -15,7 +15,7 @@ If you have any existing [Autokey Key Handles](https://cloud.google.com/kms/docs
     ```shell
     cp ../../../terraform-google-kms/scripts/export_autokey_env_vars.sh .
     chmod +x export_autokey_env_vars.sh
-    ./export_autokey_env_vars.sh
+    source ./export_autokey_env_vars.sh
     ```
     **Note:** You must see values set for echos: `AUTOKEY_FOLDER_NUMBER` and `AUTOKEY_KMS_PROJECT_ID`.
 
