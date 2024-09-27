@@ -25,7 +25,6 @@ autokey_handles = {
 " > terraform.tfvars
 
 if [ -n "$AUTOKEY_BQ_KEY_HANDLE_NAME" ]; then
-  # Your block of code here
   echo "
     bq_dataset = {
         name                   = \"$AUTOKEY_BQ_KEY_HANDLE_NAME\",
@@ -36,7 +35,6 @@ if [ -n "$AUTOKEY_BQ_KEY_HANDLE_NAME" ]; then
 " >> terraform.tfvars
 fi
 if [ -n "$AUTOKEY_DISK_KEY_HANDLE_NAME" ]; then
-  # Your block of code here
   echo "
     compute_disk = {
         name                   = \"$AUTOKEY_DISK_KEY_HANDLE_NAME\",
@@ -47,7 +45,6 @@ if [ -n "$AUTOKEY_DISK_KEY_HANDLE_NAME" ]; then
 " >> terraform.tfvars
 fi
 if [ -n "$AUTOKEY_DISK_KEY_HANDLE_NAME" ]; then
-  # Your block of code here
   echo "
     gcs_bucket = {
         name                   = \"$AUTOKEY_GCS_KEY_HANDLE_NAME\",
