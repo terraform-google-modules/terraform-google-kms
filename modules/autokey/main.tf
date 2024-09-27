@@ -41,5 +41,9 @@ resource "google_kms_key_handle" "primary" {
   location               = each.value.location
   resource_type_selector = each.value.resource_type_selector
 
+  lifecycle {
+    ignore_changes = [name]
+  }
+
   depends_on = [time_sleep.wait_srv_acc_permissions]
 }
