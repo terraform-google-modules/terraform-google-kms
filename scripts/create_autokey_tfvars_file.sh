@@ -44,7 +44,7 @@ if [ -n "$AUTOKEY_DISK_KEY_HANDLE_NAME" ]; then
     },
 " >> terraform.tfvars
 fi
-if [ -n "$AUTOKEY_DISK_KEY_HANDLE_NAME" ]; then
+if [ -n "$AUTOKEY_GCS_KEY_HANDLE_NAME" ]; then
   echo "
     gcs_bucket = {
         name                   = \"$AUTOKEY_GCS_KEY_HANDLE_NAME\",
