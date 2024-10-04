@@ -17,5 +17,6 @@ This is a submodule built to make [KMS Autokey](https://cloud.google.com/kms/doc
 |------|-------------|
 | autokey\_config\_id | An Autokey configuration identifier. |
 | autokey\_keyhandles | A map of KeyHandles created. |
+| random\_suffix | Random 4 digits suffix used in Autokey submodule. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

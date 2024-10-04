@@ -15,7 +15,8 @@
  */
 
 module "autokey" {
-  source = "terraform-google-modules/kms/google//modules/autokey"
+  source  = "terraform-google-modules/kms/google//modules/autokey"
+  version = "3.1.0"
 
   project_id            = var.project_id
   autokey_folder_number = var.folder_id

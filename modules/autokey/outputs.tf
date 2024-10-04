@@ -23,3 +23,8 @@ output "autokey_keyhandles" {
   description = "A map of KeyHandles created."
   value       = local.create_autokey_key_handles ? google_kms_key_handle.primary : {}
 }
+
+output "random_suffix" {
+  description = "Random 4 digits suffix used in Autokey submodule."
+  value       = random_string.suffix.result
+}
