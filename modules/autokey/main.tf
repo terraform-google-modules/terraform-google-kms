@@ -27,8 +27,6 @@ resource "google_kms_autokey_config" "primary" {
 }
 
 resource "random_string" "suffix" {
-  count = local.create_autokey_key_handles ? 1 : 0
-
   length  = 4
   special = false
   upper   = false
@@ -39,9 +37,13 @@ resource "google_kms_key_handle" "primary" {
   provider = google-beta
 
   project                = each.value.project
-  name                   = "${each.value.name}-${random_string.suffix[0].result}"
+  name                   = "${each.value.name}-${random_string.suffix.result}"
   location               = each.value.location
   resource_type_selector = each.value.resource_type_selector
+
+  lifecycle {
+    ignore_changes = [name]
+  }
 
   depends_on = [time_sleep.wait_srv_acc_permissions]
 }
