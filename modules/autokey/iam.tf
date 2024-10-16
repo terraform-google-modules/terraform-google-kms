@@ -20,7 +20,7 @@ data "google_project" "kms_project" {
 
 #Create KMS Service Agent
 resource "google_project_service_identity" "kms_service_agent" {
-  count    = local.create_autokey_key_handles ? 1 : 0
+  count    = var.autokey_handles != null ? 1 : 0
   provider = google-beta
 
   service = "cloudkms.googleapis.com"
@@ -29,7 +29,7 @@ resource "google_project_service_identity" "kms_service_agent" {
 
 # Wait delay after creating service agent.
 resource "time_sleep" "wait_service_agent" {
-  count = local.create_autokey_key_handles ? 1 : 0
+  count = var.autokey_handles != null ? 1 : 0
 
   create_duration = "10s"
   depends_on      = [google_project_service_identity.kms_service_agent]
@@ -37,7 +37,7 @@ resource "time_sleep" "wait_service_agent" {
 
 #Grant the KMS Service Agent the Cloud KMS Admin role
 resource "google_project_iam_member" "autokey_project_admin" {
-  count    = local.create_autokey_key_handles ? 1 : 0
+  count    = var.autokey_handles != null ? 1 : 0
   provider = google-beta
 
   project    = var.project_id
@@ -48,7 +48,7 @@ resource "google_project_iam_member" "autokey_project_admin" {
 
 # Wait delay after granting IAM permissions
 resource "time_sleep" "wait_srv_acc_permissions" {
-  count = local.create_autokey_key_handles ? 1 : 0
+  count = var.autokey_handles != null ? 1 : 0
 
   create_duration = "10s"
   depends_on      = [google_project_iam_member.autokey_project_admin]

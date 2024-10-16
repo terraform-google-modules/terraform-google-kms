@@ -14,12 +14,7 @@
  * limitations under the License.
  */
 
-locals {
-  create_autokey_key_handles = var.autokey_folder_number != null && var.autokey_handles != null
-}
-
 resource "google_kms_autokey_config" "primary" {
-  count    = var.autokey_folder_number != null ? 1 : 0
   provider = google-beta
 
   folder      = var.autokey_folder_number
@@ -33,7 +28,7 @@ resource "random_string" "suffix" {
 }
 
 resource "google_kms_key_handle" "primary" {
-  for_each = local.create_autokey_key_handles ? var.autokey_handles : tomap({})
+  for_each = var.autokey_handles != null ? var.autokey_handles : tomap({})
   provider = google-beta
 
   project                = each.value.project
