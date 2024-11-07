@@ -7,6 +7,18 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v3.1.0...v3.2.0) (2024-10-16)
+
+
+### Features
+
+* add autokey plus migration ([#156](https://github.com/terraform-google-modules/terraform-google-kms/issues/156)) ([661c103](https://github.com/terraform-google-modules/terraform-google-kms/commit/661c103ee13bf95e88e36c8b9f047a84d20cb99d))
+
+
+### Bug Fixes
+
+* Remove non-needed counts on Autokey submodule ([#158](https://github.com/terraform-google-modules/terraform-google-kms/issues/158)) ([c50e2d5](https://github.com/terraform-google-modules/terraform-google-kms/commit/c50e2d514851938d328c1da4916249f2dca231b9))
+
 ## [3.1.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v3.0.0...v3.1.0) (2024-09-17)
 
 
