@@ -17,6 +17,7 @@ package monitoring_alert
 import (
 	"errors"
 	"fmt"
+	"os"
 	"strings"
 	"testing"
 	"time"
@@ -28,13 +29,16 @@ import (
 )
 
 func TestMonitoringAlertKeyVersion(t *testing.T) {
+	path, _ := os.Getwd()
 
 	emailAddresses := []string{"email@example.com", "email2@example.com"}
 
-	for _, monitor_all_keys_in_the_project := range []bool{
+	for index, monitor_all_keys_in_the_project := range []bool{
 		true,
 		false,
 	} {
+
+		statePath := fmt.Sprintf("%s/custom_backend_%d.tfstate", path, index)
 
 		vars := map[string]interface{}{
 			"monitor_all_keys_in_the_project": monitor_all_keys_in_the_project,
@@ -43,6 +47,9 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 
 		kmsAlertT := tft.NewTFBlueprintTest(t,
 			tft.WithVars(vars),
+			tft.WithBackendConfig(map[string]interface{}{
+				"path": statePath,
+			}),
 		)
 
 		kmsAlertT.DefineVerify(func(assert *assert.Assertions) {

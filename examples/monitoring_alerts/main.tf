@@ -19,6 +19,10 @@
  * If multiple key versions are deleted in less than 5 minutes a single notification will be sent.
  */
 
+terraform {
+  backend "local" {}
+}
+
 resource "random_string" "suffix" {
   length  = 4
   special = false
