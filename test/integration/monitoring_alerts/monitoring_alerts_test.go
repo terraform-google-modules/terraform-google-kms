@@ -33,10 +33,13 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 
 	emailAddresses := []string{"email@example.com", "email2@example.com"}
 
-	for index, monitor_all_keys_in_the_project := range []bool{
-		true,
-		false,
-	} {
+	TfInputs := map[string]bool{
+		"test1": true,
+		"test2": false,
+	}
+
+	index := 0
+	for _, monitor_all_keys_in_the_project := range TfInputs {
 
 		statePath := fmt.Sprintf("%s/custom_backend_%d.tfstate", path, index)
 
@@ -114,5 +117,7 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 
 		})
 		kmsAlertT.Test()
+
+		index++
 	}
 }
