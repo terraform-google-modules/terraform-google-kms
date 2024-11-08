@@ -14,16 +14,25 @@
  * limitations under the License.
  */
 
-# Send a warning email when a KMS key version is scheduled for destruction.
+/**
+ * Send a warning email when a KMS key version is scheduled for destruction.
+ * If multiple key versions are deleted in less than 5 minutes a single notification will be sent.
+ */
 
- module "kms" {
+resource "random_string" "suffix" {
+  length  = 4
+  special = false
+  upper   = false
+}
+
+module "kms" {
   source  = "terraform-google-modules/kms/google"
   version = "~> 3.2"
 
-  project_id = var.project_id
-  keyring    = "alert-keyring"
-  location   = "us-central1"
-  keys       = ["alert-key"]
+  project_id      = var.project_id
+  keyring         = "alert-keyring-${random_string.suffix.result}"
+  location        = "us-central1"
+  keys            = ["alert-key"]
   prevent_destroy = false
 }
 
@@ -56,7 +65,7 @@ resource "google_monitoring_alert_policy" "main" {
 }
 
 resource "google_monitoring_notification_channel" "email_channel" {
-  for_each     = toset(var.email_addresses_to_be_notified)
+  for_each = toset(var.email_addresses_to_be_notified)
 
   project      = var.project_id
   display_name = "KMS version scheduled for destruction alert channel"

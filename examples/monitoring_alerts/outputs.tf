@@ -14,24 +14,22 @@
  * limitations under the License.
  */
 
-resource "random_pet" "main" {
-  length    = 1
-  prefix    = "simple-example"
-  separator = "-"
+output "key" {
+  value       = values(module.kms.keys)[0]
+  description = "The version of the created KMS key."
 }
 
-module "kms" {
-  source = "romanini-ciandt/kms/google"
+output "keyring" {
+  value       = module.kms.keyring_name
+  description = "The keyring created."
+}
 
-  project_id = var.project_id
-  keyring    = random_pet.main.id
-  location   = "global"
-  keys       = ["one", "two"]
-  # keys can be destroyed by Terraform
-  prevent_destroy               = false
-  import_only                   = true
-  skip_initial_version_creation = true
-  key_rotation_period           = ""
-  purpose                       = "RAW_ENCRYPT_DECRYPT"
-  key_algorithm                 = "AES_256_GCM"
+output "project_id" {
+  value       = var.project_id
+  description = "GCP Project ID where key version was created."
+}
+
+output "notification_channel_names" {
+  value       = [for channel in google_monitoring_notification_channel.email_channel : channel.name]
+  description = "Notification channel names."
 }
