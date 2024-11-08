@@ -23,6 +23,11 @@ terraform {
   backend "local" {}
 }
 
+locals {
+  all_keys_filter   = "protoPayload.request.@type=\"type.googleapis.com/google.cloud.kms.v1.DestroyCryptoKeyVersionRequest\""
+  single_key_filter = "${local.all_keys_filter} AND protoPayload.request.name=~\"${values(module.kms.keys)[0]}/.*\""
+}
+
 resource "random_string" "suffix" {
   length  = 4
   special = false
@@ -50,10 +55,7 @@ resource "google_monitoring_alert_policy" "main" {
   conditions {
     display_name = "Destroy condition"
     condition_matched_log {
-      filter = join(" AND ", flatten([
-        "protoPayload.request.@type=\"type.googleapis.com/google.cloud.kms.v1.DestroyCryptoKeyVersionRequest\"",
-        var.monitor_all_keys_in_the_project ? [] : ["protoPayload.request.name=~\"${values(module.kms.keys)[0]}/.*\""]
-      ]))
+      filter = var.monitor_all_keys_in_the_project ? local.all_keys_filter : local.single_key_filter
     }
   }
 
