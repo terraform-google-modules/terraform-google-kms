@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-variable "autokey_kms_project_id" {
-  description = "The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys)."
+variable "kms_project_id" {
+  description = "The ID of the project in which Autokey resources (autokey keyring, keyHandle and kms keys) will be provisioned."
   type        = string
 }
 
-variable "autokey_folder_number" {
+variable "folder_id" {
   type        = string
-  description = "The Autokey folder number used by Autokey config resource. Required when using Autokey."
+  description = "The ID of the folder for which to enable and configure Autokey. Required when using Autokey."
 }
 

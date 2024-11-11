@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys)."
-  type        = string
+output "bucket_keyhandle" {
+  description = "An Autokey configuration identifier."
+  value       = resource.google_kms_key_handle.bucket_keyhandle
 }
 
-variable "autokey_resource_project_id" {
-  description = "The ID of the project for Autokey to be used (e.g: a storage project which expects to use Autokey as CMEK)."
-  type        = string
+output "bucket_name" {
+  description = "A map of KeyHandles created."
+  value       = module.bucket.name
 }
-
-variable "folder_id" {
-  type        = string
-  description = "The Autokey folder number used by Autokey config resource. Required when using Autokey."
-}
-

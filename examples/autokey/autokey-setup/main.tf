@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-variable "autokey_kms_project_id" {
-  description = "The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys)."
-  type        = string
-}
+module "autokey" {
+  //source  = "terraform-google-modules/kms/google//modules/autokey"
+  source  = "../../../modules/autokey"
+  //version = "3.1.0"
 
-variable "autokey_folder_number" {
-  type        = string
-  description = "The Autokey folder number used by Autokey config resource. Required when using Autokey."
+  autokey_kms_project_id = var.kms_project_id
+  autokey_folder_number = var.folder_id
 }
 

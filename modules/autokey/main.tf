@@ -18,27 +18,5 @@ resource "google_kms_autokey_config" "primary" {
   provider = google-beta
 
   folder      = var.autokey_folder_number
-  key_project = "projects/${var.project_id}"
-}
-
-resource "random_string" "suffix" {
-  length  = 4
-  special = false
-  upper   = false
-}
-
-resource "google_kms_key_handle" "primary" {
-  for_each = var.autokey_handles != null ? var.autokey_handles : tomap({})
-  provider = google-beta
-
-  project                = each.value.project
-  name                   = "${each.value.name}-${random_string.suffix.result}"
-  location               = each.value.location
-  resource_type_selector = each.value.resource_type_selector
-
-  lifecycle {
-    ignore_changes = [name]
-  }
-
-  depends_on = [time_sleep.wait_srv_acc_permissions]
+  key_project = "projects/${var.autokey_kms_project_id}"
 }

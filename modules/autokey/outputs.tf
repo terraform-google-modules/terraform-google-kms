@@ -18,13 +18,3 @@ output "autokey_config_id" {
   description = "An Autokey configuration identifier."
   value       = google_kms_autokey_config.primary.id
 }
-
-output "autokey_keyhandles" {
-  description = "A map of KeyHandles created."
-  value       = var.autokey_handles != null ? google_kms_key_handle.primary : {}
-}
-
-output "random_suffix" {
-  description = "Random 4 digits suffix used in Autokey submodule."
-  value       = random_string.suffix.result
-}

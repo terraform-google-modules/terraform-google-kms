@@ -14,13 +14,22 @@
  * limitations under the License.
  */
 
-variable "autokey_kms_project_id" {
-  description = "The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys)."
+variable "resource_project_id" {
+  description = "The ID of the project in which to provision resources (bucket, persistent disk, etc)"
   type        = string
 }
 
-variable "autokey_folder_number" {
+variable "bucket_name_prefix" {
   type        = string
-  description = "The Autokey folder number used by Autokey config resource. Required when using Autokey."
+  description = "The storage bucket created will have name {bucket_name_prefix}-{random-suffix}"
 }
 
+variable "resource_type_selector" {
+  type        = string
+  description = "The resource type selector for bucket"
+} 
+
+variable "bucket_location" {
+  type        = string
+  description = "The gcp location where storage bucket will be created" 
+}
