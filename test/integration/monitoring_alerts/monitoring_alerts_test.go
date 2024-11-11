@@ -38,10 +38,9 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 		"test2": false,
 	}
 
-	index := 0
-	for _, monitor_all_keys_in_the_project := range TfInputs {
+	for key, monitor_all_keys_in_the_project := range TfInputs {
 
-		statePath := fmt.Sprintf("%s/custom_backend_%d.tfstate", path, index)
+		statePath := fmt.Sprintf("%s/custom_backend_%d.tfstate", path, key)
 
 		vars := map[string]interface{}{
 			"monitor_all_keys_in_the_project": monitor_all_keys_in_the_project,
@@ -118,6 +117,5 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 		})
 		kmsAlertT.Test()
 
-		index++
 	}
 }
