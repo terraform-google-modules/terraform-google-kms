@@ -8,7 +8,7 @@ This example provides monitoring e-mail alerts for KMS key versions scheduled fo
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | email\_addresses\_to\_be\_notified | Email addresses used for sending notifications to. | `list(string)` | n/a | yes |
-| monitor\_all\_keys\_in\_the\_project | True for all KMS key versions under the same project to be monitored, false for only the KMS key version created in this example to be monitored. Default: false. | `bool` | `false` | no |
+| monitor\_all\_keys\_in\_the\_project | True for all KMS key versions under the same project to be monitored, false for only the KMS key version created in this example to be monitored. Default: false. | `bool` | n/a | yes |
 | project\_id | The ID of the project in which to provision resources. | `string` | n/a | yes |
 
 ## Outputs
