@@ -31,5 +31,5 @@ variable "resource_type_selector" {
 
 variable "bucket_location" {
   type        = string
-  description = "The gcp location where storage bucket will be created" 
+  description = "The gcp location where storage bucket will be created"
 }

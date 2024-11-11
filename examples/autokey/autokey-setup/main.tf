@@ -19,6 +19,6 @@ module "autokey" {
   version = "3.1.0"
 
   autokey_kms_project_id = var.kms_project_id
-  autokey_folder_number = var.folder_id
+  autokey_folder_number  = var.folder_id
 }
 
