@@ -7,17 +7,17 @@ This example illustrates how to use the `autokey` kms submodule for [KMS Autokey
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| autokey\_resource\_project\_id | The ID of the project for Autokey to be used (e.g: a storage project which expects to use Autokey as CMEK). | `string` | n/a | yes |
-| folder\_id | The Autokey folder number used by Autokey config resource. Required when using Autokey. | `string` | n/a | yes |
-| project\_id | The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys). | `string` | n/a | yes |
+| bucket\_location | The gcp location where storage bucket will be created | `string` | n/a | yes |
+| bucket\_name\_prefix | The storage bucket created will have name {bucket\_name\_prefix}-{random-suffix} | `string` | n/a | yes |
+| resource\_project\_id | The ID of the project in which to provision resources (bucket, persistent disk, etc) | `string` | n/a | yes |
+| resource\_type\_selector | The resource type selector for bucket | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| autokey\_config\_id | An Autokey configuration identifier. |
-| autokey\_keyhandles | A map of KeyHandles created. |
-| autokey\_project\_id | Project used for autokey. |
+| bucket\_keyhandle | An Autokey configuration identifier. |
+| bucket\_name | A map of KeyHandles created. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
