@@ -27,7 +27,7 @@ variable "bucket_name_prefix" {
 variable "resource_type_selector" {
   type        = string
   description = "The resource type selector for bucket"
-} 
+}
 
 variable "bucket_location" {
   type        = string

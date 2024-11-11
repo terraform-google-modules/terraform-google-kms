@@ -40,7 +40,7 @@ module "bucket" {
   version = "8.0"
 
   name       = "${var.bucket_name_prefix}-${random_string.suffix.result}"
-  project_id =  var.resource_project_id
+  project_id = var.resource_project_id
   location   = var.bucket_location
   encryption = {
     default_kms_key_name = resource.google_kms_key_handle.bucket_keyhandle.kms_key
