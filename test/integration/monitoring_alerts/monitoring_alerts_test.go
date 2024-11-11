@@ -40,7 +40,7 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 
 	for key, monitor_all_keys_in_the_project := range TfInputs {
 
-		statePath := fmt.Sprintf("%s/custom_backend_%d.tfstate", path, key)
+		statePath := fmt.Sprintf("%s/custom_backend_%s.tfstate", path, key)
 
 		vars := map[string]interface{}{
 			"monitor_all_keys_in_the_project": monitor_all_keys_in_the_project,
