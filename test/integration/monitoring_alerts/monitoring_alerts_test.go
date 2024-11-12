@@ -17,7 +17,6 @@ package monitoring_alert
 import (
 	"errors"
 	"fmt"
-	"os"
 	"strings"
 	"testing"
 	"time"
@@ -29,29 +28,16 @@ import (
 )
 
 func TestMonitoringAlertKeyVersion(t *testing.T) {
-	path, _ := os.Getwd()
 
-	emailAddresses := []string{"email@example.com", "email2@example.com"}
-
-	TfInputs := map[string]bool{
-		"test1": true,
-		"test2": false,
+	TfInputs := map[bool]string{
+		true:  "../../fixtures/monitoring_alerts_on_project",
+		false: "../../fixtures/monitoring_alerts_specific_key",
 	}
 
-	for key, monitor_all_keys_in_the_project := range TfInputs {
-
-		statePath := fmt.Sprintf("%s/custom_backend_%s.tfstate", path, key)
-
-		vars := map[string]interface{}{
-			"monitor_all_keys_in_the_project": monitor_all_keys_in_the_project,
-			"email_addresses_to_be_notified":  emailAddresses,
-		}
+	for monitor_all_keys_in_the_project, fixture_path := range TfInputs {
 
 		kmsAlertT := tft.NewTFBlueprintTest(t,
-			tft.WithVars(vars),
-			tft.WithBackendConfig(map[string]interface{}{
-				"path": statePath,
-			}),
+			tft.WithTFDir(fixture_path),
 		)
 
 		kmsAlertT.DefineVerify(func(assert *assert.Assertions) {
@@ -62,7 +48,7 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 			keyring := kmsAlertT.GetStringOutput("keyring")
 			notificationChannelNames := kmsAlertT.GetJsonOutput("notification_channel_names").Array()
 
-			assert.Len(notificationChannelNames, len(emailAddresses))
+			assert.Len(notificationChannelNames, 2)
 			notificationChannelEmailAddresses := []string{}
 			notificationChannelStringNames := []string{}
 			for _, notificationChannelName := range notificationChannelNames {
@@ -71,7 +57,7 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 				assert.Len(monitoringChannel, 1)
 				notificationChannelEmailAddresses = append(notificationChannelEmailAddresses, monitoringChannel[0].Get("labels.email_address").String())
 			}
-			assert.ElementsMatch(emailAddresses, notificationChannelEmailAddresses)
+			assert.ElementsMatch([]string{"email@example.com", "email2@example.com"}, notificationChannelEmailAddresses)
 
 			monitoringAlerts := gcloud.Runf(t, "alpha monitoring policies list --project %s", projectId).Array()
 			assert.Len(monitoringAlerts, 1)

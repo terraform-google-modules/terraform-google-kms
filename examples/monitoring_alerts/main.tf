@@ -19,10 +19,6 @@
  * If multiple key versions are deleted in less than 5 minutes a single notification will be sent.
  */
 
-terraform {
-  backend "local" {}
-}
-
 locals {
   all_keys_filter   = "protoPayload.request.@type=\"type.googleapis.com/google.cloud.kms.v1.DestroyCryptoKeyVersionRequest\""
   single_key_filter = "${local.all_keys_filter} AND protoPayload.request.name=~\"${values(module.kms.keys)[0]}/.*\""

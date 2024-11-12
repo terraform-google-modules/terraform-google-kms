@@ -14,17 +14,22 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision resources."
-  type        = string
+output "key" {
+  value       = module.monitoring_alert_specific_key.key
+  description = "The version of the created KMS key."
 }
 
-variable "monitor_all_keys_in_the_project" {
-  type        = bool
-  description = "True for all KMS key versions under the same project to be monitored, false for only the KMS key version created in this example to be monitored. Default: false."
+output "keyring" {
+  value       = module.monitoring_alert_specific_key.keyring
+  description = "The keyring created."
 }
 
-variable "email_addresses_to_be_notified" {
-  type        = list(string)
-  description = "Email addresses used for sending notifications to."
+output "project_id" {
+  value       = module.monitoring_alert_specific_key.project_id
+  description = "GCP Project ID where key version was created."
+}
+
+output "notification_channel_names" {
+  value       = module.monitoring_alert_specific_key.notification_channel_names
+  description = "Notification channel names."
 }

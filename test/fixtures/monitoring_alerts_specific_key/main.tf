@@ -14,17 +14,10 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision resources."
-  type        = string
-}
+module "monitoring_alert_specific_key" {
+  source = "../../../examples/monitoring_alerts"
 
-variable "monitor_all_keys_in_the_project" {
-  type        = bool
-  description = "True for all KMS key versions under the same project to be monitored, false for only the KMS key version created in this example to be monitored. Default: false."
-}
-
-variable "email_addresses_to_be_notified" {
-  type        = list(string)
-  description = "Email addresses used for sending notifications to."
+  monitor_all_keys_in_the_project = false
+  project_id                      = var.project_id
+  email_addresses_to_be_notified  = ["email@example.com", "email2@example.com"]
 }
