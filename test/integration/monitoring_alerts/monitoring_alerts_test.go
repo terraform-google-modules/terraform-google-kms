@@ -92,7 +92,7 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 				// Deleting a key will be tested just for a specific key use case in order
 				// to avoid increasing too much the testing runtime.
 
-				gcloud.Runf(t, fmt.Sprintf("kms keys versions destroy 1 --location us-central1 --keyring %s --key alert-key", keyring))
+				gcloud.Runf(t, fmt.Sprintf("kms keys versions destroy 1 --location us-central1 --keyring %s --key alert-key --project %s", keyring, projectId))
 				utils.Poll(t, func() (bool, error) {
 					alertingLogs := gcloud.Runf(t, "logging read logName:\"projects/%s/logs/monitoring.googleapis.com\" --freshness=2m --project %s", projectId, projectId).Array()
 					for _, log := range alertingLogs {
