@@ -25,6 +25,7 @@ import (
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/utils"
 	"github.com/stretchr/testify/assert"
+	"github.com/tidwall/gjson"
 )
 
 func TestMonitoringAlertKeyVersion(t *testing.T) {
@@ -59,20 +60,37 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 			}
 			assert.ElementsMatch([]string{"email@example.com", "email2@example.com"}, notificationChannelEmailAddresses)
 
-			monitoringAlerts := gcloud.Runf(t, "alpha monitoring policies list --project %s", projectId).Array()
-			assert.Len(monitoringAlerts, 1)
-			monitoringAlert := monitoringAlerts[0]
-			alertCondition := monitoringAlerts[0].Get("conditions").Array()
-			assert.Len(alertCondition, 1)
+			var expectedFilter string
+			if monitor_all_keys_in_the_project {
+				expectedFilter = fmt.Sprintf("protoPayload.request.@type=\"type.googleapis.com/google.cloud.kms.v1.DestroyCryptoKeyVersionRequest\"")
+			} else {
+				expectedFilter = fmt.Sprintf("protoPayload.request.@type=\"type.googleapis.com/google.cloud.kms.v1.DestroyCryptoKeyVersionRequest\" AND protoPayload.request.name=~\"%s/.*\"", keyVersion)
+			}
 
+			monitoringAlerts := gcloud.Runf(t, "alpha monitoring policies list --project %s", projectId).Array()
+			var monitoringAlert gjson.Result
+			for _, monitoringAlertLoop := range monitoringAlerts {
+				conditions := monitoringAlertLoop.Get("conditions").Array()
+				if len(conditions) > 0 && conditions[0].Get("conditionMatchedLog.filter").String() == expectedFilter {
+					monitoringAlert = monitoringAlertLoop
+					break
+				}
+			}
+			alertCondition := monitoringAlert.Get("conditions").Array()
+			assert.Len(alertCondition, 1)
+			assert.Equal(expectedFilter, alertCondition[0].Get("conditionMatchedLog.filter").String())
+			notificationChannels := monitoringAlert.Get("notificationChannels").Array()
+			for _, notificationChannel := range notificationChannels {
+				assert.Contains(notificationChannelStringNames, notificationChannel.String())
+			}
 			assert.Equal("WARNING", monitoringAlert.Get("severity").String())
 			assert.Equal("300s", monitoringAlert.Get("alertStrategy.notificationRateLimit.period").String())
 			assert.True(monitoringAlert.Get("enabled").Bool())
 
 			if !monitor_all_keys_in_the_project {
 				time.Sleep(1 * time.Minute)
-				expectedFilter := fmt.Sprintf("protoPayload.request.@type=\"type.googleapis.com/google.cloud.kms.v1.DestroyCryptoKeyVersionRequest\" AND protoPayload.request.name=~\"%s/.*\"", keyVersion)
-				assert.Equal(expectedFilter, alertCondition[0].Get("conditionMatchedLog.filter").String())
+				// Deleting a key will be tested just for a specific key use case in order
+				// to avoid increasing too much the testing runtime.
 
 				gcloud.Runf(t, fmt.Sprintf("kms keys versions destroy 1 --location us-central1 --keyring %s --key alert-key", keyring))
 				utils.Poll(t, func() (bool, error) {
@@ -93,13 +111,7 @@ func TestMonitoringAlertKeyVersion(t *testing.T) {
 					// Timeout will occour after 20 retries of 10 seconds
 					20,
 					10*time.Second)
-			} else {
-				// Will test just the filter string when monitor_all_keys_in_the_project is true
-				// in order to avoid increasing too much the test runtime
-				expectedFilter := fmt.Sprintf("protoPayload.request.@type=\"type.googleapis.com/google.cloud.kms.v1.DestroyCryptoKeyVersionRequest\"")
-				assert.Equal(expectedFilter, alertCondition[0].Get("conditionMatchedLog.filter").String())
 			}
-
 		})
 		kmsAlertT.Test()
 
