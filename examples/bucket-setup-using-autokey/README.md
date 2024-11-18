@@ -9,8 +9,8 @@ This example illustrates how to use the `autokey` kms submodule for [KMS Autokey
 |------|-------------|------|---------|:--------:|
 | bucket\_location | The gcp location where storage bucket will be created | `string` | n/a | yes |
 | bucket\_name\_prefix | The storage bucket created will have name {bucket\_name\_prefix}-{random-suffix} | `string` | n/a | yes |
+| bucket\_resource\_type\_selector | The resource type selector for bucket | `string` | n/a | yes |
 | resource\_project\_id | The ID of the project in which to provision resources (bucket, persistent disk, etc) | `string` | n/a | yes |
-| resource\_type\_selector | The resource type selector for bucket | `string` | n/a | yes |
 
 ## Outputs
 
