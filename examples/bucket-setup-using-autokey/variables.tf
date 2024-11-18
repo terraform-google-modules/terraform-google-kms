@@ -24,7 +24,7 @@ variable "bucket_name_prefix" {
   description = "The storage bucket created will have name {bucket_name_prefix}-{random-suffix}"
 }
 
-variable "resource_type_selector" {
+variable "bucket_resource_type_selector" {
   type        = string
   description = "The resource type selector for bucket"
 }

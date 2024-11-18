@@ -14,16 +14,28 @@
  * limitations under the License.
  */
 
-output "project_id" {
+output "kms_project_id" {
   value = module.project_ci_kms.project_id
 }
 
-output "autokey_resource_project_id" {
+output "resource_project_id" {
   value = module.autokey_resource_project.project_id
 }
 
-output "autokey_resource_project_number" {
+output "resource_project_number" {
   value = module.autokey_resource_project.project_number
+}
+
+output "bucket_name_prefix" {
+  value = "ci-kms-bucket"
+}
+
+output "bucket_resource_type_selector" {
+  value = "storage.googleapis.com/Bucket"
+}
+
+output "bucket_location" {
+  value = "us-central1"
 }
 
 output "sa_key" {

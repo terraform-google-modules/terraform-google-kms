@@ -28,7 +28,7 @@ resource "google_kms_key_handle" "bucket_keyhandle" {
   project                = var.resource_project_id
   name                   = "${var.bucket_name_prefix}-${random_string.suffix.result}"
   location               = var.bucket_location
-  resource_type_selector = var.resource_type_selector
+  resource_type_selector = var.bucket_resource_type_selector
 
   lifecycle {
     ignore_changes = [name]
