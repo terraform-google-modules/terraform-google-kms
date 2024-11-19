@@ -29,11 +29,11 @@ resource "random_string" "suffix" {
 }
 
 resource "google_kms_key_handle" "bucket_keyhandle" {
-  provider = google-beta
-
+  provider               = google-beta
+  name                   = "${var.resource_project_id}-keyhandle-${random_string.suffix.result}"
   project                = var.resource_project_id
   location               = var.bucket_location
-  resource_type_selector = "storage.googleapis.com/Bucket" 
+  resource_type_selector = "storage.googleapis.com/Bucket"
 
   lifecycle {
     ignore_changes = [name]
@@ -44,7 +44,7 @@ module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
   version = "8.0"
 
-  name    = "${var.resource_project_id}-keyhandle-${random_string.suffix.result}"
+  name       = "${var.resource_project_id}-bucket-${random_string.suffix.result}"
   project_id = var.resource_project_id
   location   = var.bucket_location
   encryption = {
