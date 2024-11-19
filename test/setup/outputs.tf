@@ -18,6 +18,10 @@ output "kms_project_id" {
   value = module.project_ci_kms.project_id
 }
 
+output "project_id" {
+  value = module.project_ci_kms.project_id
+}
+
 output "resource_project_id" {
   value = module.autokey_resource_project.project_id
 }

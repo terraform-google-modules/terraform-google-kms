@@ -32,4 +32,5 @@ variable "resource_project_id" {
 variable "bucket_location" {
   type        = string
   description = "The gcp location where storage bucket will be created"
+  default     = "us-central1"
 }

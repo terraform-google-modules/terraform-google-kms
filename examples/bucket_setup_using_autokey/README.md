@@ -7,7 +7,7 @@ This example illustrates how to use the `autokey` kms submodule for [KMS Autokey
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| bucket\_location | The gcp location where storage bucket will be created | `string` | n/a | yes |
+| bucket\_location | The gcp location where storage bucket will be created | `string` | `"us-central1"` | no |
 | folder\_id | The ID of the folder for which to configure and enable Autokey feature. Required when using Autokey. | `string` | n/a | yes |
 | kms\_project\_id | The ID of the project in which kms keyring and kms keys will be provisioned by autokey. | `string` | n/a | yes |
 | resource\_project\_id | The ID of the project in which to provision resources (bucket, persistent disk, etc) | `string` | n/a | yes |
