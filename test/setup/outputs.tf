@@ -26,18 +26,6 @@ output "resource_project_number" {
   value = module.autokey_resource_project.project_number
 }
 
-output "bucket_name_prefix" {
-  value = "ci-kms-bucket"
-}
-
-output "bucket_resource_type_selector" {
-  value = "storage.googleapis.com/Bucket"
-}
-
-output "bucket_location" {
-  value = "us-central1"
-}
-
 output "sa_key" {
   value     = google_service_account_key.int_test.private_key
   sensitive = true

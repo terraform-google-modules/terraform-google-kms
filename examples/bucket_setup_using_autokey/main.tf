@@ -26,9 +26,9 @@ resource "google_kms_key_handle" "bucket_keyhandle" {
   provider = google-beta
 
   project                = var.resource_project_id
-  name                   = "${var.bucket_name_prefix}-${random_string.suffix.result}"
+  name                   = "${var.resource_project_id}-bucket-${random_string.suffix.result}"
   location               = var.bucket_location
-  resource_type_selector = var.bucket_resource_type_selector
+  resource_type_selector = "storage.googleapis.com/Bucket" 
 
   lifecycle {
     ignore_changes = [name]

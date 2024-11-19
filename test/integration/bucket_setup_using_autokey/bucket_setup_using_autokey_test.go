@@ -41,7 +41,7 @@ func TestAutokeyExample(t *testing.T) {
 
 		projectId := bpt.GetStringOutput("autokey_project_id")
 		autokeyConfig := bpt.GetStringOutput("autokey_config_id")
-		autokeyResourceProjectNumber := bpt.GetTFSetupJsonOutput("autokey_resource_project_number")
+		autokeyResourceProjectNumber := bpt.GetTFSetupJsonOutput("resource_project_number")
 
 		// Autokey config doesn't have a gcloud command yet. That's why we need to hit the API.
 		autokeyConfigUrl := fmt.Sprintf("https://cloudkms.googleapis.com/v1/%s", autokeyConfig)
@@ -65,7 +65,7 @@ func TestAutokeyExample(t *testing.T) {
 
 		result := utils.ParseJSONResult(t, string(body))
 
-		// Asserting if Autokey configuration was created
+		// Asserting if Autokey configuration was enabled with correct kms project id
 		autokeyConfigProject := result.Get("keyProject").String()
 		assert.Equal(autokeyConfigProject, fmt.Sprintf("projects/%s", projectId), "autokey expected for project %s", projectId)
 

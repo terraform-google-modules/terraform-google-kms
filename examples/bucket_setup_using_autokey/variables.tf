@@ -19,16 +19,6 @@ variable "resource_project_id" {
   type        = string
 }
 
-variable "bucket_name_prefix" {
-  type        = string
-  description = "The storage bucket created will have name {bucket_name_prefix}-{random-suffix}"
-}
-
-variable "bucket_resource_type_selector" {
-  type        = string
-  description = "The resource type selector for bucket"
-}
-
 variable "bucket_location" {
   type        = string
   description = "The gcp location where storage bucket will be created"
