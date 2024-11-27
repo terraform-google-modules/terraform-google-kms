@@ -23,6 +23,7 @@
 locals {
   all_keys_filter   = "protoPayload.request.@type=\"type.googleapis.com/google.cloud.kms.v1.DestroyCryptoKeyVersionRequest\""
   single_key_filter = "${local.all_keys_filter} AND protoPayload.request.name=~\"${values(module.kms.keys)[0]}/.*\""
+  # It's possible to replace "${values(module.kms.keys)[0]}" with your own existing KMS key's name. It's not required to create a new KMS key to take leverage from this example.
 }
 
 resource "random_string" "suffix" {
