@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.3.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v3.2.0...v3.3.0) (2024-11-27)
+
+
+### Features
+
+* Add usage example for monitoring alerts on KMS key versions ([#162](https://github.com/terraform-google-modules/terraform-google-kms/issues/162)) ([f863889](https://github.com/terraform-google-modules/terraform-google-kms/commit/f86388977ca7b32f3a1789de5084c3572a1576ac))
+
 ## [3.2.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v3.1.0...v3.2.0) (2024-10-16)
 
 
