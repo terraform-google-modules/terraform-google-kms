@@ -39,6 +39,8 @@ module "project_ci_kms" {
     "cloudkms.googleapis.com",
     "serviceusage.googleapis.com",
     "cloudresourcemanager.googleapis.com",
+    "monitoring.googleapis.com",
+    "logging.googleapis.com"
   ]
 
   activate_api_identities = [{
