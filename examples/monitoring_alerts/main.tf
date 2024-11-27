@@ -16,9 +16,10 @@
 
 /**
  * Send a warning email when a KMS key version is scheduled for destruction.
- * If multiple key versions are deleted in less than 5 minutes a single notification will be sent.
+ * If multiple key versions are deleted in less than 5 minutes, a single notification will be sent.
  */
 
+# See all the request types available for google.cloud.kms.v1 here: https://cloud.google.com/kms/docs/reference/rpc/google.cloud.kms.v1. For this example specifically we are monitoring and alerting DestroyCryptoKeyVersionRequest.
 locals {
   all_keys_filter   = "protoPayload.request.@type=\"type.googleapis.com/google.cloud.kms.v1.DestroyCryptoKeyVersionRequest\""
   single_key_filter = "${local.all_keys_filter} AND protoPayload.request.name=~\"${values(module.kms.keys)[0]}/.*\""
@@ -36,7 +37,7 @@ module "kms" {
 
   project_id      = var.project_id
   keyring         = "alert-keyring-${random_string.suffix.result}"
-  location        = "us-central1"
+  location        = var.location
   keys            = ["alert-key"]
   prevent_destroy = false
 }

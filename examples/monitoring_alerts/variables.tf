@@ -28,3 +28,9 @@ variable "email_addresses_to_be_notified" {
   type        = list(string)
   description = "Email addresses used for sending notifications to."
 }
+
+variable "location" {
+  type        = string
+  description = "Location to create the KMS key and keyring."
+  default     = "us-central1"
+}

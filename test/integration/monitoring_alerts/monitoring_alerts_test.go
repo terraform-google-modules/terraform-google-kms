@@ -30,6 +30,14 @@ import (
 
 func TestMonitoringAlertKeyVersion(t *testing.T) {
 
+	// This test will run 2 iterations based on the following TfInputs variable.
+	// Map's key (monitor_all_keys_in_the_project):
+	//     - "true" means we are testing the use case where we monitor all the KMS keys in the project.
+	//	   - "false" means we are testing the use case where we monitor a single KMS key in the project.
+	// Map's values (fixture_path):
+	//     We are loading the fixture instead of the example directly because we need to pass the mentioned
+	//     above's boolean to terraform input in order to have the described behavior.
+
 	TfInputs := map[bool]string{
 		true:  "../../fixtures/monitoring_alerts_on_project",
 		false: "../../fixtures/monitoring_alerts_specific_key",
