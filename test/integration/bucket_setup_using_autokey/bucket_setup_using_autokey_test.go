@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package autokey_example
+package bucket_setup_using_autokey
 
 import (
 	"context"
@@ -34,7 +34,7 @@ func validateKeyHandleVersion(input string, projectId string, autokeyResource st
 	return regex.MatchString(input)
 }
 
-func TestAutokeyExample(t *testing.T) {
+func TestBucketSetupUsingAutokey(t *testing.T) {
 	bpt := tft.NewTFBlueprintTest(t)
 	bpt.DefineVerify(func(assert *assert.Assertions) {
 		bpt.DefaultVerify(assert)
