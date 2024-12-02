@@ -39,7 +39,7 @@ func TestBucketSetupUsingAutokey(t *testing.T) {
 	bpt.DefineVerify(func(assert *assert.Assertions) {
 		bpt.DefaultVerify(assert)
 
-		projectId := bpt.GetStringOutput("autokey_project_id")
+		projectId := bpt.GetStringOutput("kms_project_id")
 		autokeyConfig := bpt.GetStringOutput("autokey_config_id")
 		autokeyResourceProjectNumber := bpt.GetTFSetupJsonOutput("resource_project_number")
 
