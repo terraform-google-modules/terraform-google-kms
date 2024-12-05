@@ -14,17 +14,12 @@
  * limitations under the License.
  */
 
-output "autokey_config_id" {
+output "bucket_keyhandle" {
   description = "An Autokey configuration identifier."
-  value       = module.autokey.autokey_config_id != null ? module.autokey.autokey_config_id : ""
+  value       = resource.google_kms_key_handle.bucket_keyhandle
 }
 
-output "autokey_keyhandles" {
+output "bucket_name" {
   description = "A map of KeyHandles created."
-  value       = module.autokey.autokey_keyhandles != null ? module.autokey.autokey_keyhandles : {}
-}
-
-output "autokey_project_id" {
-  description = "Project used for autokey."
-  value       = var.project_id
+  value       = module.bucket.name
 }

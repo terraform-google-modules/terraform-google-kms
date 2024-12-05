@@ -14,18 +14,10 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys)."
-  type        = string
-}
+module "autokey" {
+  source = "../../modules/autokey"
 
-variable "autokey_resource_project_id" {
-  description = "The ID of the project for Autokey to be used (e.g: a storage project which expects to use Autokey as CMEK)."
-  type        = string
-}
-
-variable "folder_id" {
-  type        = string
-  description = "The Autokey folder number used by Autokey config resource. Required when using Autokey."
+  autokey_kms_project_id = var.kms_project_id
+  autokey_folder_number  = var.folder_id
 }
 

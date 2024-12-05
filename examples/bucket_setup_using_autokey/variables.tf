@@ -14,13 +14,23 @@
  * limitations under the License.
  */
 
-variable "autokey_kms_project_id" {
-  description = "The ID of the project in which kms keyrings and keys will be provisioned by the Autokey."
+variable "kms_project_id" {
+  description = "The ID of the project in which kms keyring and kms keys will be provisioned by autokey."
   type        = string
 }
 
-variable "autokey_folder_number" {
+variable "folder_id" {
   type        = string
-  description = "The folder number on which autokey will be configured and enabled. Required when using Autokey."
+  description = "The ID of the folder for which to configure and enable Autokey feature. Required when using Autokey."
 }
 
+variable "resource_project_id" {
+  description = "The ID of the project in which to provision resources (bucket, persistent disk, etc)"
+  type        = string
+}
+
+variable "bucket_location" {
+  type        = string
+  description = "The gcp location where storage bucket will be created"
+  default     = "us-central1"
+}
