@@ -21,6 +21,12 @@ module "autokey" {
   autokey_folder_number  = var.folder_id
 }
 
+# Wait delay for autokey configuration.
+resource "time_sleep" "wait_autokey_config" {
+  create_duration = "20s"
+  depends_on      = [module.autokey]
+}
+
 resource "random_string" "suffix" {
   length  = 4
   special = false
@@ -37,6 +43,7 @@ resource "google_kms_key_handle" "bucket_keyhandle" {
   lifecycle {
     ignore_changes = [name]
   }
+  depends_on = [time_sleep.wait_autokey_config]
 }
 
 module "bucket" {

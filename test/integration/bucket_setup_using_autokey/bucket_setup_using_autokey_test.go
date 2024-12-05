@@ -15,17 +15,13 @@
 package bucket_setup_using_autokey
 
 import (
-	"context"
 	"fmt"
-	"io"
 	"regexp"
 	"testing"
 
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
-	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/utils"
 	"github.com/stretchr/testify/assert"
-	"golang.org/x/oauth2/google"
 )
 
 func validateKeyHandleVersion(input string, projectId string, autokeyResource string) bool {
@@ -39,45 +35,14 @@ func TestBucketSetupUsingAutokey(t *testing.T) {
 	bpt.DefineVerify(func(assert *assert.Assertions) {
 		bpt.DefaultVerify(assert)
 
-		projectId := bpt.GetStringOutput("kms_project_id")
-		autokeyConfig := bpt.GetStringOutput("autokey_config_id")
-		autokeyResourceProjectNumber := bpt.GetTFSetupJsonOutput("resource_project_number")
+		bucketKeyHandle := bpt.GetJsonOutput("bucket_keyhandle")
+		bucketName := bpt.GetStringOutput("bucket_name")
 
-		// Autokey config doesn't have a gcloud command yet. That's why we need to hit the API.
-		autokeyConfigUrl := fmt.Sprintf("https://cloudkms.googleapis.com/v1/%s", autokeyConfig)
-
-		httpClient, err := google.DefaultClient(context.Background(), "https://www.googleapis.com/auth/cloud-platform")
-
-		if err != nil {
-			t.Fatal(err.Error())
-		}
-
-		resp, err := httpClient.Get(autokeyConfigUrl)
-		if err != nil {
-			t.Fatal(err.Error())
-		}
-
-		defer resp.Body.Close()
-		body, err := io.ReadAll(resp.Body)
-		if err != nil {
-			t.Fatal(err.Error())
-		}
-
-		result := utils.ParseJSONResult(t, string(body))
-
-		// Asserting if Autokey configuration was enabled with correct kms project id
-		autokeyConfigProject := result.Get("keyProject").String()
-		assert.Equal(autokeyConfigProject, fmt.Sprintf("projects/%s", projectId), "autokey expected for project %s", projectId)
-
-		// Asserting if Autokey keyring was created
-		op := gcloud.Runf(t, "--project=%s kms keyrings list --location us-central1 --filter name:autokey", projectId).Array()[0].Get("name")
-		assert.Contains(op.String(), fmt.Sprintf("projects/%s/locations/us-central1/keyRings/autokey", projectId), "Contains Autokey KeyRing")
-
-		// Asserting if Autokey keyHandles were created
-		op1 := gcloud.Runf(t, "kms keys list --project=%s --keyring autokey --location us-central1", projectId).Array()
-		for _, element := range op1 {
-			assert.True(validateKeyHandleVersion(element.Get("primary").Map()["name"].Str, projectId, autokeyResourceProjectNumber.Str), "Contains KeyHandles")
-		}
+		keyHandleKmsKey := bucketKeyHandle.Get("kms_key").String()
+		op1 := gcloud.Runf(t, "storage buckets describe gs://%s", bucketName).Array()
+		bucketKmsKey := op1[0].Map()["default_kms_key"].Str
+		assert.True(keyHandleKmsKey != "", "Invalid KMS Key generated for bucket keyhandle")
+		assert.True(bucketKmsKey == keyHandleKmsKey, "KMS Key generated for bucket keyhandle %s is not matching with kms key used in bucket %s", keyHandleKmsKey, bucketKmsKey)
 	})
 
 	bpt.Test()
