@@ -15,6 +15,7 @@ This example illustrates how to setup the `autokey` kms submodule for [KMS Autok
 | Name | Description |
 |------|-------------|
 | autokey\_config\_id | An Autokey configuration identifier. |
+| kms\_project\_id | The ID of the project in which kms keyring and kms keys will be provisioned by autokey. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
