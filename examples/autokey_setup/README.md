@@ -7,8 +7,8 @@ This example illustrates how to setup the `autokey` kms submodule for [KMS Autok
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| folder\_id | The ID of the folder for which to configure and enable Autokey feature. Required when using Autokey. | `string` | n/a | yes |
-| kms\_project\_id | The ID of the project in which kms keyring and kms keys will be provisioned by autokey. | `string` | n/a | yes |
+| folder\_id | The ID of the folder for which to configure and enable Autokey feature. | `string` | n/a | yes |
+| kms\_project\_id | The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey. | `string` | n/a | yes |
 
 ## Outputs
 

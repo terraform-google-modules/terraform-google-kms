@@ -20,7 +20,7 @@ variable "project_id" {
 }
 
 variable "folder_id" {
-   description = "The ID of the folder for which to configure and enable Autokey feature."
+  description = "The ID of the folder for which to configure and enable Autokey feature."
   type        = string
 
 }
