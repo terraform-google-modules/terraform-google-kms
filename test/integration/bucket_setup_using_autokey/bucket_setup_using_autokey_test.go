@@ -31,7 +31,7 @@ func validateKeyHandleVersion(input string, projectId string, autokeyResource st
 }
 
 func TestBucketSetupUsingAutokey(t *testing.T) {
-	bpt := tft.NewTFBlueprintTest(t)
+	bpt := tft.NewTFBlueprintTest(t, tft.WithTFDir("../../fixtures/bucket_setup_using_autokey_fixture"),)
 	bpt.DefineVerify(func(assert *assert.Assertions) {
 		bpt.DefaultVerify(assert)
 
