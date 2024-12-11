@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +14,12 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project_ci_kms.project_id
+output "bucket_keyhandle" {
+  description = "Keyhandle configuration created for the bucket."
+  value       = module.bucket_setup_using_autokey_fixture.bucket_keyhandle
 }
 
-output "resource_project_id" {
-  value = module.autokey_resource_project.project_id
-}
-
-output "resource_project_number" {
-  value = module.autokey_resource_project.project_number
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
-}
-
-output "folder_id" {
-  value = split("/", google_folder.test_folder.id)[1]
+output "bucket_name" {
+  description = "Name of the bucket created."
+  value       = module.bucket_setup_using_autokey_fixture.bucket_name
 }

@@ -15,12 +15,12 @@
  */
 
 variable "kms_project_id" {
-  description = "The ID of the project in which kms keyring and kms keys will be provisioned by autokey."
+  description = "The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey."
   type        = string
 }
 
 variable "folder_id" {
   type        = string
-  description = "The ID of the folder for which to configure and enable Autokey feature. Required when using Autokey."
+  description = "The ID of the folder for which to configure and enable Autokey feature."
 }
 

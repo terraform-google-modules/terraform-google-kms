@@ -15,11 +15,11 @@
  */
 
 output "bucket_keyhandle" {
-  description = "An Autokey configuration identifier."
+  description = "Keyhandle configuration created for the bucket."
   value       = resource.google_kms_key_handle.bucket_keyhandle
 }
 
 output "bucket_name" {
-  description = "A map of KeyHandles created."
+  description = "Name of the bucket created."
   value       = module.bucket.name
 }

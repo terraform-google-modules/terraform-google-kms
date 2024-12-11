@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-variable "kms_project_id" {
+variable "project_id" {
   description = "The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey."
   type        = string
 }
@@ -25,7 +25,7 @@ variable "folder_id" {
 }
 
 variable "resource_project_id" {
-  description = "The ID of the project in which to provision cloud storage bucket resource."
+  description = "The ID of the project in which to provision cloud storage bucket resources."
   type        = string
 }
 
