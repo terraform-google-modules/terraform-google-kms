@@ -15,7 +15,8 @@
  */
 
 module "autokey" {
-  source = "../../modules/autokey"
+  source = "terraform-google-modules/terraform-google-kms/google//modules/autokey"
+  version = "~> 4.0"
 
   autokey_kms_project_id = var.kms_project_id
   autokey_folder_number  = var.folder_id
@@ -48,7 +49,7 @@ resource "google_kms_key_handle" "bucket_keyhandle" {
 
 module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "~> 8.0.3"
+  version = "~> 9.0"
 
   name       = "${var.resource_project_id}-bucket-${random_string.suffix.result}"
   project_id = var.resource_project_id
