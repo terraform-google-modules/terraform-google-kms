@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-variable "autokey_kms_project_id" {
-  description = "The ID of the project in which kms keyrings and keys will be provisioned by the Autokey."
-  type        = string
+output "autokey_config_id" {
+  description = "An Autokey configuration identifier."
+  value       = module.autokey.autokey_config_id
 }
 
-variable "autokey_folder_number" {
-  type        = string
-  description = "The folder number on which autokey will be configured and enabled. Required when using Autokey."
+output "kms_project_id" {
+  description = "The ID of the project in which kms keyring and kms keys will be provisioned by autokey."
+  value       = var.kms_project_id
 }
-

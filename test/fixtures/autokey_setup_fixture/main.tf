@@ -13,18 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-output "autokey_config_id" {
-  description = "An Autokey configuration identifier."
-  value       = module.autokey.autokey_config_id != null ? module.autokey.autokey_config_id : ""
-}
-
-output "autokey_keyhandles" {
-  description = "A map of KeyHandles created."
-  value       = module.autokey.autokey_keyhandles != null ? module.autokey.autokey_keyhandles : {}
-}
-
-output "autokey_project_id" {
-  description = "Project used for autokey."
-  value       = var.project_id
+module "autokey_setup_fixture" {
+  source         = "../../../examples/autokey_setup"
+  kms_project_id = var.project_id
+  folder_id      = var.folder_id
 }

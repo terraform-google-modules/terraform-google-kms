@@ -15,17 +15,12 @@
  */
 
 variable "project_id" {
-  description = "The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys)."
-  type        = string
-}
-
-variable "autokey_resource_project_id" {
-  description = "The ID of the project for Autokey to be used (e.g: a storage project which expects to use Autokey as CMEK)."
+  description = "The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey."
   type        = string
 }
 
 variable "folder_id" {
+  description = "The ID of the folder for which to configure and enable Autokey feature."
   type        = string
-  description = "The Autokey folder number used by Autokey config resource. Required when using Autokey."
-}
 
+}

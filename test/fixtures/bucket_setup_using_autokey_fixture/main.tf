@@ -13,14 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-variable "autokey_kms_project_id" {
-  description = "The ID of the project in which kms keyrings and keys will be provisioned by the Autokey."
-  type        = string
+module "bucket_setup_using_autokey_fixture" {
+  source              = "../../../examples/bucket_setup_using_autokey"
+  kms_project_id      = var.project_id
+  folder_id           = var.folder_id
+  resource_project_id = var.resource_project_id
+  bucket_location     = var.bucket_location
 }
-
-variable "autokey_folder_number" {
-  type        = string
-  description = "The folder number on which autokey will be configured and enabled. Required when using Autokey."
-}
-

@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-variable "autokey_kms_project_id" {
-  description = "The ID of the project in which kms keyrings and keys will be provisioned by the Autokey."
-  type        = string
+output "bucket_keyhandle" {
+  description = "Keyhandle configuration created for the bucket."
+  value       = resource.google_kms_key_handle.bucket_keyhandle
 }
 
-variable "autokey_folder_number" {
-  type        = string
-  description = "The folder number on which autokey will be configured and enabled. Required when using Autokey."
+output "bucket_name" {
+  description = "Name of the bucket created."
+  value       = module.bucket.name
 }
-
