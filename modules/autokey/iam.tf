@@ -15,7 +15,7 @@
  */
 
 data "google_project" "kms_project" {
-  project_id = var.autokey_kms_project_id
+  project_id = var.key_project_id
 }
 
 #Create KMS Service Agent
@@ -36,7 +36,7 @@ resource "time_sleep" "wait_service_agent" {
 resource "google_project_iam_member" "autokey_project_admin" {
   provider = google-beta
 
-  project    = var.autokey_kms_project_id
+  project    = var.key_project_id
   role       = "roles/cloudkms.admin"
   member     = "serviceAccount:service-${data.google_project.kms_project.number}@gcp-sa-cloudkms.iam.gserviceaccount.com"
   depends_on = [time_sleep.wait_service_agent]

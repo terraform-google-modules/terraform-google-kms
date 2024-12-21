@@ -18,6 +18,6 @@ resource "google_kms_autokey_config" "primary" {
   provider = google-beta
 
   folder      = var.autokey_folder_number
-  key_project = "projects/${var.autokey_kms_project_id}"
+  key_project = "projects/${var.key_project_id}"
   depends_on  = [time_sleep.wait_srv_acc_permissions]
 }
