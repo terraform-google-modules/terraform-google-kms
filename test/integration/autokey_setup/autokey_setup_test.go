@@ -34,11 +34,11 @@ func validateKeyHandleVersion(input string, projectId string, autokeyResource st
 }
 
 func TestAutokeySetup(t *testing.T) {
-	bpt := tft.NewTFBlueprintTest(t, tft.WithTFDir("../../fixtures/autokey_setup_fixture"),)
+	bpt := tft.NewTFBlueprintTest(t, tft.WithTFDir("../../fixtures/autokey_setup_fixture"))
 	bpt.DefineVerify(func(assert *assert.Assertions) {
 		bpt.DefaultVerify(assert)
 
-		kmsProjectId := bpt.GetStringOutput("kms_project_id")
+		kmsProjectId := bpt.GetStringOutput("key_project_id")
 		autokeyConfig := bpt.GetStringOutput("autokey_config_id")
 
 		// Autokey config doesn't have a gcloud command yet. That's why we need to hit the API.

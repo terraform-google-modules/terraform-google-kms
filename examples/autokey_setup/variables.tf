@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-variable "kms_project_id" {
+variable "key_project_id" {
   description = "The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey."
   type        = string
 }

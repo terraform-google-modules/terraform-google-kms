@@ -19,7 +19,7 @@ output "autokey_config_id" {
   value       = module.autokey_setup_fixture.autokey_config_id
 }
 
-output "kms_project_id" {
+output "key_project_id" {
   description = "The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey."
   value       = var.project_id
 }

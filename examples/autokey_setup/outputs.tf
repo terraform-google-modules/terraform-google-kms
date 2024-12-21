@@ -19,7 +19,7 @@ output "autokey_config_id" {
   value       = module.autokey.autokey_config_id
 }
 
-output "kms_project_id" {
+output "key_project_id" {
   description = "The ID of the project in which kms keyring and kms keys will be provisioned by autokey."
-  value       = var.kms_project_id
+  value       = var.key_project_id
 }
