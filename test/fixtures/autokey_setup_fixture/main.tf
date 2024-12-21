@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-output "autokey_config_id" {
-  description = "An Autokey configuration identifier."
-  value       = google_kms_autokey_config.primary.id
+module "autokey_setup_fixture" {
+  source         = "../../../examples/autokey_setup"
+  key_project_id = var.project_id
+  folder_id      = var.folder_id
 }

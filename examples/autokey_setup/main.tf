@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-output "autokey_config_id" {
-  description = "An Autokey configuration identifier."
-  value       = google_kms_autokey_config.primary.id
+module "autokey" {
+  source  = "terraform-google-modules/kms/google//modules/autokey"
+  version = "~> 4.0"
+
+  key_project_id        = var.key_project_id
+  autokey_folder_number = var.folder_id
 }
+

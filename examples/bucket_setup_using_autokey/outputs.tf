@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
-output "autokey_config_id" {
-  description = "An Autokey configuration identifier."
-  value       = google_kms_autokey_config.primary.id
+output "bucket_keyhandle" {
+  description = "Keyhandle configuration created for the bucket."
+  value       = resource.google_kms_key_handle.bucket_keyhandle
+}
+
+output "bucket_name" {
+  description = "Name of the bucket created."
+  value       = module.bucket.name
 }

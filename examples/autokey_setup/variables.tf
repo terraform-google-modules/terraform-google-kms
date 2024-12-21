@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
-output "autokey_config_id" {
-  description = "An Autokey configuration identifier."
-  value       = google_kms_autokey_config.primary.id
+variable "key_project_id" {
+  description = "The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey."
+  type        = string
 }
+
+variable "folder_id" {
+  type        = string
+  description = "The ID of the folder for which to configure and enable Autokey feature."
+}
+
