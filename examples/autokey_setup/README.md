@@ -8,14 +8,14 @@ This example illustrates how to setup the `autokey` kms submodule for [KMS Autok
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | folder\_id | The ID of the folder for which to configure and enable Autokey feature. | `string` | n/a | yes |
-| kms\_project\_id | The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey. | `string` | n/a | yes |
+| key\_project\_id | The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey. | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | autokey\_config\_id | An Autokey configuration identifier. |
-| kms\_project\_id | The ID of the project in which kms keyring and kms keys will be provisioned by autokey. |
+| key\_project\_id | The ID of the project in which kms keyring and kms keys will be provisioned by autokey. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

@@ -7,7 +7,7 @@ This is a submodule built to make [KMS Autokey](https://cloud.google.com/kms/doc
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | autokey\_folder\_number | The folder number on which autokey will be configured and enabled. Required when using Autokey. | `string` | n/a | yes |
-| autokey\_kms\_project\_id | The ID of the project in which kms keyrings and keys will be provisioned by the Autokey. | `string` | n/a | yes |
+| key\_project\_id | The ID of the project in which kms keyrings and keys will be provisioned by the Autokey. | `string` | n/a | yes |
 
 ## Outputs
 
