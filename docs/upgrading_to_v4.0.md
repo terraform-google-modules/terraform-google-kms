@@ -12,3 +12,4 @@ The current users of Autokey submodules needs to
 1. Retrieve the autokey config id: Run `terraform state show module.autokey.google_kms_autokey_config.primary` and copy the resulting `id` field from the cli output to notepad
 2. Delete autokey config from the state: run `terraform state rm module.autokey.google_kms_autokey_config.primary`
 3. Import the autokey config id: Run `terraform  import  module.autokey.google_kms_autokey_config.primary "<paste id copied in step 1>"`
+
