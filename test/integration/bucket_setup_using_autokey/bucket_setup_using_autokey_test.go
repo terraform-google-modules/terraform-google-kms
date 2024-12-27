@@ -15,8 +15,6 @@
 package bucket_setup_using_autokey
 
 import (
-	"fmt"
-	"regexp"
 	"testing"
 
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
@@ -24,14 +22,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func validateKeyHandleVersion(input string, projectId string, autokeyResource string) bool {
-	pattern := fmt.Sprintf(`^projects/%s/locations/us-central1/keyRings/autokey/cryptoKeys/%s-(bigquery-dataset|compute-disk|storage-bucket)-.*?/cryptoKeyVersions/1$`, projectId, autokeyResource)
-	regex := regexp.MustCompile(pattern)
-	return regex.MatchString(input)
-}
-
 func TestBucketSetupUsingAutokey(t *testing.T) {
-	bpt := tft.NewTFBlueprintTest(t, tft.WithTFDir("../../fixtures/bucket_setup_using_autokey_fixture"),)
+	bpt := tft.NewTFBlueprintTest(t, tft.WithTFDir("../../fixtures/bucket_setup_using_autokey_fixture"))
 	bpt.DefineVerify(func(assert *assert.Assertions) {
 		bpt.DefaultVerify(assert)
 
