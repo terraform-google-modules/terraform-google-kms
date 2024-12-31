@@ -13,8 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-output "autokey_config_id" {
-  description = "An Autokey configuration identifier."
-  value       = google_kms_autokey_config.primary.id
+module "bucket_setup_using_autokey_fixture" {
+  source              = "../../../examples/bucket_setup_using_autokey"
+  key_project_id      = var.project_id
+  folder_id           = var.folder_id
+  resource_project_id = var.resource_project_id
+  bucket_location     = var.bucket_location
 }

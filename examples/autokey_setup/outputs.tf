@@ -16,5 +16,10 @@
 
 output "autokey_config_id" {
   description = "An Autokey configuration identifier."
-  value       = google_kms_autokey_config.primary.id
+  value       = module.autokey.autokey_config_id
+}
+
+output "key_project_id" {
+  description = "The ID of the project in which kms keyring and kms keys will be provisioned by autokey."
+  value       = var.key_project_id
 }

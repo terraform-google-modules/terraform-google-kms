@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision Autokey resources (autokey keyring and keyHandle keys)."
-  type        = string
+output "autokey_config_id" {
+  description = "An Autokey configuration identifier."
+  value       = module.autokey_setup_fixture.autokey_config_id
 }
 
-variable "autokey_resource_project_id" {
-  description = "The ID of the project for Autokey to be used (e.g: a storage project which expects to use Autokey as CMEK)."
-  type        = string
+output "key_project_id" {
+  description = "The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey."
+  value       = var.project_id
 }
-
-variable "folder_id" {
-  type        = string
-  description = "The Autokey folder number used by Autokey config resource. Required when using Autokey."
-}
-

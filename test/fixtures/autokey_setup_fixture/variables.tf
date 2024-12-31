@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-output "autokey_config_id" {
-  description = "An Autokey configuration identifier."
-  value       = module.autokey.autokey_config_id != null ? module.autokey.autokey_config_id : ""
+variable "project_id" {
+  description = "The ID of the project in which KMS keyring and KMS keys will be provisioned by autokey."
+  type        = string
 }
 
-output "autokey_keyhandles" {
-  description = "A map of KeyHandles created."
-  value       = module.autokey.autokey_keyhandles != null ? module.autokey.autokey_keyhandles : {}
-}
+variable "folder_id" {
+  description = "The ID of the folder for which to configure and enable Autokey feature."
+  type        = string
 
-output "autokey_project_id" {
-  description = "Project used for autokey."
-  value       = var.project_id
 }
