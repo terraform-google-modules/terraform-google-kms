@@ -9,7 +9,7 @@ The resources/services/activations/deletions that this module will create/trigge
 - Create IAM role bindings for owners, encrypters, decrypters
 
 ## Compatibility
-This module is meant for use with Terraform 0.13+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=0.13, please open an issue.
+This module is meant for use with Terraform v1.3+ and tested using Terraform v1.10+.
  If you haven't
 [upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
 0.12.x-compatible version of this module, the last released version
@@ -84,8 +84,8 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform](https://www.terraform.io/downloads.html) >= 0.13.0
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.0
+- [Terraform](https://www.terraform.io/downloads.html) >= 1.3
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin >= v5.31
 
 ### Service Account
 
