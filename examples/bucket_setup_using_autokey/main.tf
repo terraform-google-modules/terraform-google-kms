@@ -49,7 +49,7 @@ resource "google_kms_key_handle" "bucket_keyhandle" {
 
 module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "~> 9.0"
+  version = "~> 10.0"
 
   name       = "${var.resource_project_id}-bucket-${random_string.suffix.result}"
   project_id = var.resource_project_id
