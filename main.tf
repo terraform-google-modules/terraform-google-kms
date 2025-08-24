@@ -15,7 +15,7 @@
  */
 
 locals {
-  keys_by_name = zipmap(var.keys, var.prevent_destroy ? slice(google_kms_crypto_key.key[*].id, 0, length(var.keys)) : slice(google_kms_crypto_key.key_ephemeral[*].id, 0, length(var.keys)))
+  keys_by_name = zipmap(var.keys, [for k in var.keys : "${google_kms_key_ring.key_ring.id}/cryptoKeys/${k}"])
 }
 
 resource "google_kms_key_ring" "key_ring" {
