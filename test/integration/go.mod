@@ -8,7 +8,7 @@ require (
 	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.17.5
 	github.com/stretchr/testify v1.10.0
 	github.com/tidwall/gjson v1.18.0
-	golang.org/x/oauth2 v0.25.0
+	golang.org/x/oauth2 v0.27.0
 )
 
 require (
