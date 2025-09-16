@@ -22,7 +22,7 @@ resource "random_pet" "main" {
 
 module "kms" {
   source  = "terraform-google-modules/kms/google"
-  version = "~> 3.2"
+  version = "~> 4.0"
 
   project_id = var.project_id
   keyring    = random_pet.main.id

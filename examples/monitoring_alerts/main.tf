@@ -34,7 +34,7 @@ resource "random_string" "suffix" {
 
 module "kms" {
   source  = "terraform-google-modules/kms/google"
-  version = "~> 3.2"
+  version = "~> 4.0"
 
   project_id      = var.project_id
   keyring         = "alert-keyring-${random_string.suffix.result}"
