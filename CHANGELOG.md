@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v4.0.0...v4.1.0) (2025-09-17)
+
+
+### Features
+
+* **deps:** Update Terraform google to v7 ([#179](https://github.com/terraform-google-modules/terraform-google-kms/issues/179)) ([81f3714](https://github.com/terraform-google-modules/terraform-google-kms/commit/81f37146458bbd588cac2ff2dfde317033cba265))
+
 ## [4.0.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v3.2.0...v4.0.0) (2025-02-05)
 
 

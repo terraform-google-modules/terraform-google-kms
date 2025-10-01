@@ -20,12 +20,12 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 5.31.0, < 7"
+      version = ">= 5.31.0, < 8"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-kms/v4.0.0"
+    module_name = "blueprints/terraform/terraform-google-kms/v4.1.0"
   }
 
 }
