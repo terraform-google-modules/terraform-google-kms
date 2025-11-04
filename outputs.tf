@@ -61,3 +61,8 @@ output "keyring_name" {
     google_kms_crypto_key_iam_binding.encrypters,
   ]
 }
+
+output "key_id_list" {
+  description = "The list of the crypto key IDs."
+  value       = concat(google_kms_crypto_key.key[*].id, google_kms_crypto_key.key_ephemeral[*].id)
+}

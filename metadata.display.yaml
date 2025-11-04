@@ -1,0 +1,208 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-kms-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Google KMS Terraform Module
+    source:
+      repo: https://github.com/anshukaira/terraform-google-kms.git
+      sourceType: git
+  ui:
+    input:
+      variables:
+        crypto_key_backend:
+          name: crypto_key_backend
+          title: Crypto Key Backend
+        decrypters:
+          name: decrypters
+          title: Decrypters
+        encrypters:
+          name: encrypters
+          title: Encrypters
+        import_only:
+          name: import_only
+          title: Import Only
+          level: 1
+        key_algorithm:
+          name: key_algorithm
+          title: Key Algorithm
+          enumValueLabels:
+            - label: CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED
+              value: CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED
+            - label: GOOGLE_SYMMETRIC_ENCRYPTION
+              value: GOOGLE_SYMMETRIC_ENCRYPTION
+            - label: AES_128_GCM
+              value: AES_128_GCM
+            - label: AES_256_GCM
+              value: AES_256_GCM
+            - label: AES_128_CBC
+              value: AES_128_CBC
+            - label: AES_256_CBC
+              value: AES_256_CBC
+            - label: AES_128_CTR
+              value: AES_128_CTR
+            - label: AES_256_CTR
+              value: AES_256_CTR
+            - label: RSA_SIGN_PSS_2048_SHA256
+              value: RSA_SIGN_PSS_2048_SHA256
+            - label: RSA_SIGN_PSS_3072_SHA256
+              value: RSA_SIGN_PSS_3072_SHA256
+            - label: RSA_SIGN_PSS_4096_SHA256
+              value: RSA_SIGN_PSS_4096_SHA256
+            - label: RSA_SIGN_PSS_4096_SHA512
+              value: RSA_SIGN_PSS_4096_SHA512
+            - label: RSA_SIGN_PKCS1_2048_SHA256
+              value: RSA_SIGN_PKCS1_2048_SHA256
+            - label: RSA_SIGN_PKCS1_3072_SHA256
+              value: RSA_SIGN_PKCS1_3072_SHA256
+            - label: RSA_SIGN_PKCS1_4096_SHA256
+              value: RSA_SIGN_PKCS1_4096_SHA256
+            - label: RSA_SIGN_PKCS1_4096_SHA512
+              value: RSA_SIGN_PKCS1_4096_SHA512
+            - label: RSA_SIGN_RAW_PKCS1_2048
+              value: RSA_SIGN_RAW_PKCS1_2048
+            - label: RSA_SIGN_RAW_PKCS1_3072
+              value: RSA_SIGN_RAW_PKCS1_3072
+            - label: RSA_SIGN_RAW_PKCS1_4096
+              value: RSA_SIGN_RAW_PKCS1_4096
+            - label: RSA_DECRYPT_OAEP_2048_SHA256
+              value: RSA_DECRYPT_OAEP_2048_SHA256
+            - label: RSA_DECRYPT_OAEP_3072_SHA256
+              value: RSA_DECRYPT_OAEP_3072_SHA256
+            - label: RSA_DECRYPT_OAEP_4096_SHA256
+              value: RSA_DECRYPT_OAEP_4096_SHA256
+            - label: RSA_DECRYPT_OAEP_4096_SHA512
+              value: RSA_DECRYPT_OAEP_4096_SHA512
+            - label: RSA_DECRYPT_OAEP_2048_SHA1
+              value: RSA_DECRYPT_OAEP_2048_SHA1
+            - label: RSA_DECRYPT_OAEP_3072_SHA1
+              value: RSA_DECRYPT_OAEP_3072_SHA1
+            - label: RSA_DECRYPT_OAEP_4096_SHA1
+              value: RSA_DECRYPT_OAEP_4096_SHA1
+            - label: EC_SIGN_P256_SHA256
+              value: EC_SIGN_P256_SHA256
+            - label: EC_SIGN_P384_SHA384
+              value: EC_SIGN_P384_SHA384
+            - label: EC_SIGN_SECP256K1_SHA256
+              value: EC_SIGN_SECP256K1_SHA256
+            - label: EC_SIGN_ED25519
+              value: EC_SIGN_ED25519
+            - label: HMAC_SHA256
+              value: HMAC_SHA256
+            - label: HMAC_SHA1
+              value: HMAC_SHA1
+            - label: HMAC_SHA384
+              value: HMAC_SHA384
+            - label: HMAC_SHA512
+              value: HMAC_SHA512
+            - label: HMAC_SHA224
+              value: HMAC_SHA224
+            - label: EXTERNAL_SYMMETRIC_ENCRYPTION
+              value: EXTERNAL_SYMMETRIC_ENCRYPTION
+            - label: ML_KEM_768
+              value: ML_KEM_768
+            - label: ML_KEM_1024
+              value: ML_KEM_1024
+            - label: KEM_XWING
+              value: KEM_XWING
+            - label: PQ_SIGN_ML_DSA_65
+              value: PQ_SIGN_ML_DSA_65
+            - label: PQ_SIGN_SLH_DSA_SHA2_128S
+              value: PQ_SIGN_SLH_DSA_SHA2_128S
+            - label: PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256
+              value: PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256
+          level: 1
+        key_destroy_scheduled_duration:
+          name: key_destroy_scheduled_duration
+          title: Key Destroy Scheduled Duration
+          level: 1
+        key_protection_level:
+          name: key_protection_level
+          title: Key Protection Level
+          enumValueLabels:
+            - label: SOFTWARE
+              value: SOFTWARE
+            - label: HSM
+              value: HSM
+            - label: EXTERNAL
+              value: EXTERNAL
+            - label: EXTERNAL_VPC
+              value: EXTERNAL_VPC
+        key_rotation_period:
+          name: key_rotation_period
+          title: Key Rotation Period
+        keyring:
+          name: keyring
+          title: Keyring
+          level: 1
+        keys:
+          name: keys
+          title: Keys
+          regexValidation: ^[a-zA-Z0-9_-]{1,63}$
+          validation: Keyring name must be 1-63 characters and can only contain letters, numbers, underscores, and hyphens.
+          level: 1
+        labels:
+          name: labels
+          title: Labels
+        location:
+          name: location
+          title: Location
+        owners:
+          name: owners
+          title: Owners
+        prevent_destroy:
+          name: prevent_destroy
+          title: Prevent Destroy
+          level: 1
+        project_id:
+          name: project_id
+          title: Project Id
+          level: 1
+        purpose:
+          name: purpose
+          title: Purpose
+          enumValueLabels:
+            - label: CRYPTO_KEY_PURPOSE_UNSPECIFIED
+              value: CRYPTO_KEY_PURPOSE_UNSPECIFIED
+            - label: ENCRYPT_DECRYPT
+              value: ENCRYPT_DECRYPT
+            - label: ASYMMETRIC_SIGN
+              value: ASYMMETRIC_SIGN
+            - label: ASYMMETRIC_DECRYPT
+              value: ASYMMETRIC_DECRYPT
+            - label: RAW_ENCRYPT_DECRYPT
+              value: RAW_ENCRYPT_DECRYPT
+            - label: MAC
+              value: MAC
+            - label: KEY_ENCAPSULATION
+              value: KEY_ENCAPSULATION
+        set_decrypters_for:
+          name: set_decrypters_for
+          title: Set Decrypters For
+          level: 1
+        set_encrypters_for:
+          name: set_encrypters_for
+          title: Set Encrypters For
+        set_owners_for:
+          name: set_owners_for
+          title: Set Owners For
+        skip_initial_version_creation:
+          name: skip_initial_version_creation
+          title: Skip Initial Version Creation
