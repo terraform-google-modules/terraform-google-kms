@@ -22,7 +22,7 @@ spec:
   info:
     title: Autokey submodule
     source:
-      repo: https://github.com/anshukaira/terraform-google-kms.git
+      repo: https://github.com/terraform-google-modules/terraform-google-kms.git
       sourceType: git
       dir: /modules/autokey
     version: 4.1.0
