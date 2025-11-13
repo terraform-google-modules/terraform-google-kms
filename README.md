@@ -69,6 +69,7 @@ Functional examples are included in the
 
 | Name | Description |
 |------|-------------|
+| key\_id\_list | The list of the crypto key IDs. |
 | keyring | Self link of the keyring. |
 | keyring\_name | Name of the keyring. |
 | keyring\_resource | Keyring resource. |
