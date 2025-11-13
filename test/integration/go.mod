@@ -1,14 +1,14 @@
 module github.com/terraform-google-modules/terraform-google-kms/test/integration
 
-go 1.23.0
+go 1.24.0
 
-toolchain go1.24.7
+toolchain go1.24.10
 
 require (
 	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.17.9
 	github.com/stretchr/testify v1.11.1
 	github.com/tidwall/gjson v1.18.0
-	golang.org/x/oauth2 v0.27.0
+	golang.org/x/oauth2 v0.33.0
 )
 
 require (
@@ -64,5 +64,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20241212222426-2c72e554b1e7 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.20.1 // indirect
-	sigs.k8s.io/yaml v1.5.0 // indirect
 )
