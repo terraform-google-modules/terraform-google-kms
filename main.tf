@@ -15,7 +15,7 @@
  */
 
 locals {
-  keys_by_name = zipmap(var.keys, var.prevent_destroy ? slice(google_kms_crypto_key.key[*].id, 0, length(var.keys)) : slice(google_kms_crypto_key.key_ephemeral[*].id, 0, length(var.keys)))
+  keys_by_name = zipmap(var.keys, [for k in var.keys : "${google_kms_key_ring.key_ring.id}/cryptoKeys/${k}"])
 }
 
 resource "google_kms_key_ring" "key_ring" {
@@ -25,8 +25,8 @@ resource "google_kms_key_ring" "key_ring" {
 }
 
 resource "google_kms_crypto_key" "key" {
-  count                         = var.prevent_destroy ? length(var.keys) : 0
-  name                          = var.keys[count.index]
+  for_each                      = var.prevent_destroy ? { for key in var.keys : key => key } : {}
+  name                          = each.key
   key_ring                      = google_kms_key_ring.key_ring.id
   rotation_period               = var.key_rotation_period
   purpose                       = var.purpose
@@ -49,8 +49,8 @@ resource "google_kms_crypto_key" "key" {
 }
 
 resource "google_kms_crypto_key" "key_ephemeral" {
-  count                         = var.prevent_destroy ? 0 : length(var.keys)
-  name                          = var.keys[count.index]
+  for_each                      = var.prevent_destroy ? {} : { for key in var.keys : key => key }
+  name                          = each.key
   key_ring                      = google_kms_key_ring.key_ring.id
   rotation_period               = var.key_rotation_period
   purpose                       = var.purpose
@@ -73,22 +73,22 @@ resource "google_kms_crypto_key" "key_ephemeral" {
 }
 
 resource "google_kms_crypto_key_iam_binding" "owners" {
-  count         = length(var.set_owners_for)
+  for_each      = toset(var.set_owners_for)
   role          = "roles/owner"
-  crypto_key_id = local.keys_by_name[var.set_owners_for[count.index]]
-  members       = compact(split(",", var.owners[count.index]))
+  crypto_key_id = local.keys_by_name[each.key]
+  members       = compact(split(",", var.owners[index(var.set_owners_for, each.key)]))
 }
 
 resource "google_kms_crypto_key_iam_binding" "decrypters" {
-  count         = length(var.set_decrypters_for)
+  for_each      = toset(var.set_decrypters_for)
   role          = "roles/cloudkms.cryptoKeyDecrypter"
-  crypto_key_id = local.keys_by_name[var.set_decrypters_for[count.index]]
-  members       = compact(split(",", var.decrypters[count.index]))
+  crypto_key_id = local.keys_by_name[each.key]
+  members       = compact(split(",", var.owners[index(var.decrypters, each.key)]))
 }
 
 resource "google_kms_crypto_key_iam_binding" "encrypters" {
-  count         = length(var.set_encrypters_for)
+  for_each      = toset(var.set_encrypters_for)
   role          = "roles/cloudkms.cryptoKeyEncrypter"
-  crypto_key_id = local.keys_by_name[element(var.set_encrypters_for, count.index)]
-  members       = compact(split(",", var.encrypters[count.index]))
+  crypto_key_id = local.keys_by_name[each.key]
+  members       = compact(split(",", var.owners[index(var.encrypters, each.key)]))
 }
