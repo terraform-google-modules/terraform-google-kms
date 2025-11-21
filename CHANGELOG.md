@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.1](https://github.com/terraform-google-modules/terraform-google-kms/compare/v4.1.0...v4.1.1) (2025-11-21)
+
+
+### Bug Fixes
+
+* Making kms module adc compliant ([#185](https://github.com/terraform-google-modules/terraform-google-kms/issues/185)) ([99c74ae](https://github.com/terraform-google-modules/terraform-google-kms/commit/99c74aed32fd40acec169999b758fcb29f514ee5))
+
 ## [4.1.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v4.0.0...v4.1.0) (2025-09-17)
 
 
