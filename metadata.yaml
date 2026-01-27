@@ -127,7 +127,9 @@ spec:
     outputs:
       - name: key_id_list
         description: The list of the crypto key IDs.
-        type: list(string)
+        type:
+          - list
+          - string
       - name: keyring
         description: Self link of the keyring.
         type: string
