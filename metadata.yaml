@@ -69,6 +69,7 @@ spec:
       - name: key_destroy_scheduled_duration
         description: Set the period of time that versions of keys spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED.
         varType: string
+        defaultValue: null
       - name: purpose
         description: The immutable purpose of the CryptoKey. Default value is ENCRYPT_DECRYPT. See purpose reference (https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose) for possible inputs.
         varType: string
@@ -124,6 +125,7 @@ spec:
       - name: crypto_key_backend
         description: (Optional) The resource name of the backend environment associated with all CryptoKeyVersions within this CryptoKey. The resource name is in the format 'projects//locations//ekmConnections/*' and only applies to 'EXTERNAL_VPC' keys.
         varType: string
+        defaultValue: null
     outputs:
       - name: key_id_list
         description: The list of the crypto key IDs.
