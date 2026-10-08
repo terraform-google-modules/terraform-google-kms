@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.2.1](https://github.com/terraform-google-modules/terraform-google-kms/compare/v4.2.0...v4.2.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* populate null defaultValue in kms blueprint metadata ([#195](https://github.com/terraform-google-modules/terraform-google-kms/issues/195)) ([8b032e7](https://github.com/terraform-google-modules/terraform-google-kms/commit/8b032e70a504a1622093d3e38ad7e521828ec936))
+
 ## [4.2.0](https://github.com/terraform-google-modules/terraform-google-kms/compare/v4.1.2...v4.2.0) (2026-09-25)
 
 
