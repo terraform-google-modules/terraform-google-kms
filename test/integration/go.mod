@@ -1,6 +1,6 @@
 module github.com/terraform-google-modules/terraform-google-kms/test/integration
 
-go 1.23.0
+go 1.24
 
 toolchain go1.24.7
 
@@ -37,7 +37,7 @@ require (
 	github.com/hashicorp/terraform-json v0.26.0 // indirect
 	github.com/jinzhu/copier v0.4.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
-	github.com/klauspost/compress v1.16.7 // indirect
+	github.com/klauspost/compress v1.18.7 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-shellwords v1.0.12 // indirect
 	github.com/mattn/go-zglob v0.0.4 // indirect
@@ -64,5 +64,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20241212222426-2c72e554b1e7 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.20.1 // indirect
-	sigs.k8s.io/yaml v1.5.0 // indirect
 )
